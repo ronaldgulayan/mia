@@ -1,0 +1,390 @@
+{
+  "places": [
+    {
+      "country": "Afghanistan",
+      "code": "AF",
+      "airport": "Hamid Karzai International Airport",
+      "location": "Kabul",
+      "flag": "",
+      "details": true
+    },
+    {
+      "country": "Bahrain",
+      "code": "BH",
+      "airport": "Bahrain International Airport",
+      "location": "Manama",
+      "flag": ""
+    },
+    {
+      "country": "Bangladesh",
+      "code": "BD",
+      "airport": "Shahjalal International Airport",
+      "location": "Dhaka",
+      "flag": ""
+    },
+    {
+      "country": "Bhutan",
+      "code": "BT",
+      "airport": "Paro International Airport",
+      "location": "Paro",
+      "flag": ""
+    },
+    {
+      "country": "Brunei",
+      "code": "BN",
+      "airport": "Brunei International Airport",
+      "location": "Bandar Seri Begawan",
+      "flag": ""
+    },
+    {
+      "country": "Cambodia",
+      "code": "KH",
+      "airport": "Phnom Penh International Airport",
+      "location": "Phnom Penh",
+      "flag": ""
+    },
+    {
+      "country": "China",
+      "code": "CN",
+      "airport": "Beijing Capital International Airport",
+      "location": "Beijing",
+      "flag": ""
+    },
+    {
+      "country": "Cyprus",
+      "code": "CY",
+      "airport": "Larnaca International Airport",
+      "location": "Larnaca",
+      "flag": ""
+    },
+    {
+      "country": "Georgia",
+      "code": "GE",
+      "airport": "Tbilisi International Airport",
+      "location": "Tbilisi",
+      "flag": ""
+    },
+    {
+      "country": "India",
+      "code": "IN",
+      "airport": "Indira Gandhi International Airport",
+      "location": "New Delhi",
+      "flag": ""
+    },
+    {
+      "country": "Indonesia",
+      "code": "ID",
+      "airport": "Soekarno-Hatta International Airport",
+      "location": "Tangerang, Jakarta",
+      "flag": ""
+    },
+    {
+      "country": "Iran",
+      "code": "IR",
+      "airport": "Imam Khomeini International Airport",
+      "location": "Tehran",
+      "flag": ""
+    },
+    {
+      "country": "Iraq",
+      "code": "IQ",
+      "airport": "Baghdad International Airport",
+      "location": "Baghdad",
+      "flag": ""
+    },
+    {
+      "country": "Israel",
+      "code": "IL",
+      "airport": "Ben Gurion Airport",
+      "location": "Tel Aviv",
+      "flag": ""
+    },
+    {
+      "country": "Japan",
+      "code": "JP",
+      "airport": "Tokyo Haneda Airport",
+      "location": "Tokyo",
+      "flag": ""
+    },
+    {
+      "country": "Jordan",
+      "code": "JO",
+      "airport": "Queen Alia International Airport",
+      "location": "Amman",
+      "flag": ""
+    },
+    {
+      "country": "Kazakhstan",
+      "code": "KZ",
+      "airport": "Nursultan Nazarbayev International Airport",
+      "location": "Nur-Sultan",
+      "flag": ""
+    },
+    {
+      "country": "Kuwait",
+      "code": "KW",
+      "airport": "Kuwait International Airport",
+      "location": "Farwaniya",
+      "flag": ""
+    },
+    {
+      "country": "Kyrgyzstan",
+      "code": "KG",
+      "airport": "Manas International Airport",
+      "location": "Bishkek",
+      "flag": ""
+    },
+    {
+      "country": "Laos",
+      "code": "LA",
+      "airport": "Wattay International Airport",
+      "location": "Vientiane",
+      "flag": ""
+    },
+    {
+      "country": "Lebanon",
+      "code": "LB",
+      "airport": "Beirut-Rafic Hariri International Airport",
+      "location": "Beirut",
+      "flag": ""
+    },
+    {
+      "country": "Malaysia",
+      "code": "MY",
+      "airport": "Kuala Lumpur International Airport",
+      "location": "Sepang, Selangor",
+      "flag": ""
+    },
+    {
+      "country": "Maldives",
+      "code": "MV",
+      "airport": "Velana International Airport",
+      "location": "Hulhulé, Malé",
+      "flag": ""
+    },
+    {
+      "country": "Mongolia",
+      "code": "MN",
+      "airport": "Chinggis Khaan International Airport",
+      "location": "Ulaanbaatar",
+      "flag": ""
+    },
+    {
+      "country": "Myanmar",
+      "code": "MM",
+      "airport": "Yangon International Airport",
+      "location": "Yangon",
+      "flag": ""
+    },
+    {
+      "country": "Nepal",
+      "code": "NP",
+      "airport": "Tribhuvan International Airport",
+      "location": "Kathmandu",
+      "flag": ""
+    },
+    {
+      "country": "North Korea",
+      "code": "KP",
+      "airport": "Pyongyang Sunan International Airport",
+      "location": "Pyongyang",
+      "flag": ""
+    },
+    {
+      "country": "Oman",
+      "code": "OM",
+      "airport": "Muscat International Airport",
+      "location": "Muscat",
+      "flag": ""
+    },
+    {
+      "country": "Pakistan",
+      "code": "PK",
+      "airport": "Jinnah International Airport",
+      "location": "Karachi",
+      "flag": ""
+    },
+    {
+      "country": "Qatar",
+      "code": "QA",
+      "airport": "Hamad International Airport",
+      "location": "Doha",
+      "flag": ""
+    },
+    {
+      "country": "Saudi Arabia",
+      "code": "SA",
+      "airport": "King Abdulaziz International Airport",
+      "location": "Jeddah",
+      "flag": ""
+    },
+    {
+      "country": "Singapore",
+      "code": "SG",
+      "airport": "Changi Airport",
+      "location": "Changi",
+      "flag": ""
+    },
+    {
+      "country": "South Korea",
+      "code": "KR",
+      "airport": "Incheon International Airport",
+      "location": "Incheon",
+      "flag": ""
+    },
+    {
+      "country": "Sri Lanka",
+      "code": "LK",
+      "airport": "Bandaranaike International Airport",
+      "location": "Negombo",
+      "flag": ""
+    },
+    {
+      "country": "Syria",
+      "code": "SY",
+      "airport": "Damascus International Airport",
+      "location": "Damascus",
+      "flag": ""
+    },
+    {
+      "country": "Taiwan",
+      "code": "TW",
+      "airport": "Taoyuan International Airport",
+      "location": "Taoyuan City",
+      "flag": ""
+    },
+    {
+      "country": "Tajikistan",
+      "code": "TJ",
+      "airport": "Dushanbe International Airport",
+      "location": "Dushanbe",
+      "flag": ""
+    },
+    {
+      "country": "Thailand",
+      "code": "TH",
+      "airport": "Suvarnabhumi Airport",
+      "location": "Bangkok",
+      "flag": ""
+    },
+    {
+      "country": "Timor-Leste",
+      "code": "TL",
+      "airport": "Presidente Nicolau Lobato International Airport",
+      "location": "Dili",
+      "flag": ""
+    },
+    {
+      "country": "Turkey",
+      "code": "TR",
+      "airport": "Istanbul Airport",
+      "location": "Istanbul",
+      "flag": ""
+    },
+    {
+      "country": "Turkmenistan",
+      "code": "TM",
+      "airport": "Ashgabat International Airport",
+      "location": "Ashgabat",
+      "flag": ""
+    },
+    {
+      "country": "United Arab Emirates",
+      "code": "AE",
+      "airport": "Dubai International Airport",
+      "location": "Dubai",
+      "flag": ""
+    },
+    {
+      "country": "Uzbekistan",
+      "code": "UZ",
+      "airport": "Tashkent International Airport",
+      "location": "Tashkent",
+      "flag": ""
+    },
+    {
+      "country": "Vietnam",
+      "code": "VN",
+      "airport": "Tan Son Nhat International Airport",
+      "location": "Ho Chi Minh City",
+      "flag": ""
+    },
+    {
+      "country": "Yemen",
+      "code": "YE",
+      "airport": "Aden International Airport",
+      "location": "Aden",
+      "flag": ""
+    },
+    {
+      "country": "Philippines",
+      "code": "PH",
+      "airport": "Ninoy Aquino International Airport",
+      "location": "Pasay City, Metro Manila",
+      "flag": ""
+    },
+    {
+      "country": "Philippines",
+      "code": "PH",
+      "airport": "Mactan-Cebu International Airport",
+      "location": "Lapu-Lapu City, Cebu",
+      "flag": ""
+    },
+    {
+      "country": "Philippines",
+      "code": "PH",
+      "airport": "Davao International Airport",
+      "location": "Davao City, Davao del Sur",
+      "flag": ""
+    },
+    {
+      "country": "Philippines",
+      "code": "PH",
+      "airport": "Clark International Airport",
+      "location": "Angeles City, Pampanga",
+      "flag": ""
+    },
+    {
+      "country": "Philippines",
+      "code": "PH",
+      "airport": "Iloilo International Airport",
+      "location": "Iloilo City, Iloilo",
+      "flag": ""
+    },
+    {
+      "country": "Philippines",
+      "code": "PH",
+      "airport": "Kalibo International Airport",
+      "location": "Kalibo, Aklan",
+      "flag": ""
+    },
+    {
+      "country": "Philippines",
+      "code": "PH",
+      "airport": "Francisco Bangoy International Airport",
+      "location": "Davao City, Davao del Sur",
+      "flag": ""
+    },
+    {
+      "country": "Philippines",
+      "code": "PH",
+      "airport": "Bacolod-Silay International Airport",
+      "location": "Silay City, Negros Occidental",
+      "flag": ""
+    },
+    {
+      "country": "Philippines",
+      "code": "PH",
+      "airport": "Zamboanga International Airport",
+      "location": "Zamboanga City",
+      "flag": ""
+    },
+    {
+      "country": "Philippines",
+      "code": "PH",
+      "airport": "Puerto Princesa International Airport",
+      "location": "Puerto Princesa City, Palawan",
+      "flag": ""
+    }
+  ]
+}

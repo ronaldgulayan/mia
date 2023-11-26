@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Header from "./components/Header";
-import Carousel from "./components/Carousel";
-import Booking from "./pages/Booking";
 import FlightTypeContext from "./context/CustomContext";
+import CarouselPage from "./pages/CarouselPage";
+import BookingPage from "./pages/BookingPage";
+import ServicesPage from "./pages/ServicesPage";
 
 function App() {
   const [flightType, setFlightType] = useState("return");
@@ -13,9 +14,9 @@ function App() {
     >
       <div className="relative bg-light min-h-screen w-full flex flex-col">
         <Header />
-        <Carousel />
-        <Booking />
-        <div className="h-96 w-full bg-red-500"></div>
+        <CarouselPage />
+        <BookingPage />
+        <ServicesPage />
       </div>
     </FlightTypeContext.Provider>
   );

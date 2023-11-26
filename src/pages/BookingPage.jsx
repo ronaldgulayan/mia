@@ -48,7 +48,7 @@ const availablePlace = [
   "Zamboanga",
 ];
 
-function Booking() {
+function BookingPage() {
   const [radiosValue, setRadiosValue] = useState([
     {
       label: "Return",
@@ -110,4 +110,4 @@ function Booking() {
   );
 }
 
-export default Booking;
+export default BookingPage;

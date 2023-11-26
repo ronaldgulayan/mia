@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 
-function Carousel() {
+function CarouselPage() {
   const images = [
     "/banners/img-1.png",
     "/banners/img-2.png",
@@ -58,4 +58,4 @@ function Carousel() {
   );
 }
 
-export default Carousel;
+export default CarouselPage;

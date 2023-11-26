@@ -12,7 +12,12 @@ export default {
       },
       fontFamily: {
         poppins: "Poppins",
+        "montserrat-regular": "Montserrat-regular",
+        "montserrat-bold": "Montserrat-bold",
       },
+    },
+    letterSpacing: {
+      widest: "0.4rem",
     },
   },
   plugins: [],

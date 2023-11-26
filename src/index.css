@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: Montserrat-bold;
+  src: url(./assets/fonts/Montserrat-Bold.ttf);
+}
+
+@font-face {
+  font-family: Montserrat-regular;
+  src: url(./assets/fonts/Montserrat-Regular.ttf);
+}
+
 * {
-  font-family: Poppins;
+  font-family: Montserrat-regular;
 }

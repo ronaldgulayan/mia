@@ -4,6 +4,7 @@ import FlightTypeContext from "./context/CustomContext";
 import CarouselPage from "./pages/CarouselPage";
 import BookingPage from "./pages/BookingPage";
 import ServicesPage from "./pages/ServicesPage";
+import GuidePage from "./pages/GuidePage";
 
 function App() {
   const [flightType, setFlightType] = useState("return");
@@ -17,6 +18,7 @@ function App() {
         <CarouselPage />
         <BookingPage />
         <ServicesPage />
+        <GuidePage />
       </div>
     </FlightTypeContext.Provider>
   );

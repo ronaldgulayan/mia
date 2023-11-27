@@ -5,6 +5,7 @@ import CarouselPage from "./pages/CarouselPage";
 import BookingPage from "./pages/BookingPage";
 import ServicesPage from "./pages/ServicesPage";
 import GuidePage from "./pages/GuidePage";
+import Footer from "./pages/Footer";
 
 function App() {
   const [flightType, setFlightType] = useState("return");
@@ -19,6 +20,7 @@ function App() {
         <BookingPage />
         <ServicesPage />
         <GuidePage />
+        <Footer />
       </div>
     </FlightTypeContext.Provider>
   );

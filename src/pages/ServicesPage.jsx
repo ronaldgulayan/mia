@@ -128,11 +128,11 @@ function ServicesPage() {
               data-selected={dot.selected}
               className="w-5 h-5 group rounded-full border-[0.25rem] cursor-pointer duration-300 bg-white border-black data-[selected=true]:shadow-md z-[2] data-[selected=true]:bg-black flex items-center"
             >
-              <div className="absolute group-hover:block font-bold hidden rounded-md bg-white shadow-md w-fit left-[calc(100%+1.5rem)] items-center">
-                <p className="w-full select-none relative whitespace-nowrap rounded-md bg-white h-full px-4 py-3 text-sm z-[2]">
+              <div className="absolute group-hover:block font-bold hidden rounded-md bg-[#efefef] shadow-md w-fit left-[calc(100%+1.5rem)] items-center">
+                <p className="w-full select-none relative whitespace-nowrap rounded-md bg-[#efefef] h-full px-4 py-3 text-sm z-[2]">
                   {dot.label}
                 </p>
-                <div className="absolute z-[1] bg-white top-1/2 -left-1 -translate-y-1/2 rotate-45 w-4 h-4" />
+                <div className="absolute z-[1] bg-[#efefef] top-1/2 -left-1 -translate-y-1/2 rotate-45 w-4 h-4" />
               </div>
             </div>
           ))}

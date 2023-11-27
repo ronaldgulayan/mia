@@ -12,7 +12,7 @@ const Content1 = () => {
             and enjoy the best of PAL.
           </p>
         </div>
-        <button className="w-fit px-3 py-2 bg-blue text-white rounded-sm">
+        <button className="w-fit px-3 py-2 bg-main hover:bg-main-hover active:bg-main-active text-white rounded-sm">
           UPGRADE NOW
         </button>
       </div>
@@ -31,7 +31,7 @@ const Content2 = () => {
             Flights, hotels, experiences, and transport in one easy booking!
           </p>
         </div>
-        <button className="w-fit px-3 py-2 bg-blue text-white rounded-sm">
+        <button className="w-fit px-3 py-2 bg-main hover:bg-main-hover active:bg-main-active text-white rounded-sm">
           LEARN MORE
         </button>
       </div>
@@ -52,7 +52,7 @@ const Content3 = () => {
             credit card or convert your Mabuhay Miles to purchase.
           </p>
         </div>
-        <button className="w-fit px-3 py-2 bg-blue text-white rounded-sm">
+        <button className="w-fit px-3 py-2 bg-main hover:bg-main-hover active:bg-main-active text-white rounded-sm">
           BUY NOW
         </button>
       </div>
@@ -71,7 +71,7 @@ const Content4 = () => {
             you there. Got work offsite? We'll take you there.
           </p>
         </div>
-        <button className="w-fit px-3 py-2 bg-blue text-white rounded-sm">
+        <button className="w-fit px-3 py-2 bg-main hover:bg-main-hover active:bg-main-active text-white rounded-sm">
           LEARN MORE
         </button>
       </div>

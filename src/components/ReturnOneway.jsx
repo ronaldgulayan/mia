@@ -59,7 +59,7 @@ function ReturnOneway() {
         <div>
           <button
             onClick={searchFlightEvent}
-            className="px-5 py-3 select-none rounded-lg hover:bg-[rgb(46,95,149)] bg-blue active:bg-[rgb(36,85,139)] text-white font-poppins text-lg"
+            className="px-5 py-3 select-none rounded-lg hover:bg-main-hover bg-main active:bg-main-active text-white text-lg"
           >
             Search Flight
           </button>

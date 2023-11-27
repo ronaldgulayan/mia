@@ -7,7 +7,9 @@ export default {
         pad: "5rem",
       },
       colors: {
-        blue: "#38699F",
+        main: "#38699F",
+        "main-hover": "#28598F",
+        "main-active": "#18497F",
         light: "#eeeeee",
       },
       fontFamily: {

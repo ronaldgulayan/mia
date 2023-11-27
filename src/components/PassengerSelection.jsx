@@ -5,7 +5,7 @@ const Icons = ({ Icon, onClick }) => {
   return (
     <Icon
       onClick={onClick}
-      className="w-8 h-8 bg-blue opacity-90 active:opacity-100 hover:bg-[rgb(46,85,139)] cursor-pointer rounded-full text-white p-2"
+      className="w-8 h-8 bg-main opacity-90 active:opacity-100 hover:bg-main-hover cursor-pointer rounded-full text-white p-2"
     />
   );
 };
@@ -28,7 +28,7 @@ const Item = ({ label, value, setValue, description, max = 10 }) => {
                   if (description) return !curr;
                 });
               }}
-              className="w-5 h-5 cursor-pointer bg-blue rounded-full p-1 text-white"
+              className="w-5 h-5 cursor-pointer bg-main rounded-full p-1 text-white"
             />
           )}
         </div>

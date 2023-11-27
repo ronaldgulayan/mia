@@ -94,14 +94,14 @@ function MultiCity() {
               return [...curr, newData];
             })
           }
-          className="px-5 py-3 flex items-center gap-x-2 hover:bg-[rgb(46,95,149)] bg-blue active:bg-[rgb(36,85,139)] text-white font-poppins rounded-md"
+          className="px-5 py-3 flex items-center gap-x-2 hover:bg-main-hover bg-main active:bg-main-active text-white font-poppins rounded-md"
         >
           <FaPlus />
           Add Flight
         </button>
         <button
           onClick={searchFlightEvent}
-          className="px-5 py-3 select-none rounded-md hover:bg-[rgb(46,95,149)] bg-blue active:bg-[rgb(36,85,139)] text-white font-poppins text-lg"
+          className="px-5 py-3 select-none rounded-md hover:bg-main-hover bg-main active:bg-main-active text-white font-poppins text-lg"
         >
           Search Flight
         </button>

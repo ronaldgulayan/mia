@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <div className="w-full h-20 relative z-[2] shadow-md bg-blue px-pad flex items-center justify-between">
+    <div className="w-full h-20 relative z-[2] shadow-md bg-main px-pad flex items-center justify-between">
       <Logo />
       <div className="flex items-center gap-x-10">
         <ul className="flex items-center gap-x-5 text-white text-lg font-poppins">

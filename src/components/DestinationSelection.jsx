@@ -297,7 +297,7 @@ function DestinationSelection({ z = 3, setParentValue = function (value) {} }) {
                     <IoMdClose className="w-7 h-7 opacity-[90%] group-hover:opacity-100 text-blue group-active:text-[rgb(36,85,139)] pointer-events-none" />
                   )}
                 </button>
-                <span className="bg-blue text-white w-10 text-center py-[0.2rem] rounded-md">
+                <span className="bg-main text-white w-10 text-center py-[0.2rem] rounded-md">
                   {data.code}
                 </span>
               </div>

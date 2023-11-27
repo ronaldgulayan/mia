@@ -212,6 +212,7 @@ function SigninPopup() {
             <p>
               Don't have an account?{" "}
               <Link
+                onClick={() => visibilityContext.setValue(false)}
                 to="/registration"
                 className="text-main cursor-pointer hover:underline underline-offset-4"
               >

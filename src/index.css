@@ -12,6 +12,26 @@
   src: url(./assets/fonts/Montserrat-Regular.ttf);
 }
 
+@font-face {
+  font-family: Montserrat-black;
+  src: url(./assets/fonts/Montserrat-Black.ttf);
+}
+
+@font-face {
+  font-family: Montserrat-black-italic;
+  src: url(./assets/fonts/Montserrat-BlackItalic.ttf);
+}
+
+@font-face {
+  font-family: Montserrat-bold-italic;
+  src: url(./assets/fonts/Montserrat-BoldItalic.ttf);
+}
+
+@font-face {
+  font-family: Montserrat-italic;
+  src: url(./assets/fonts/Montserrat-Italic.ttf);
+}
+
 * {
   font-family: Montserrat-regular;
 }

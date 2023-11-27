@@ -15,7 +15,11 @@ export default {
       fontFamily: {
         poppins: "Poppins",
         "montserrat-regular": "Montserrat-regular",
+        "montserrat-italic": "Montserrat-italic",
         "montserrat-bold": "Montserrat-bold",
+        "montserrat-bold-italic": "Montserrat-bold-italic",
+        "montserrat-black": "Montserrat-black",
+        "montserrat-black-italic": "Montserrat-black-italic",
       },
     },
     letterSpacing: {

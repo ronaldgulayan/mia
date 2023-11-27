@@ -1,5 +1,6 @@
 import { createContext } from "react";
 
 const FlightTypeContext = createContext();
+const SigninPopupContext = createContext();
 
-export default FlightTypeContext;
+export { FlightTypeContext, SigninPopupContext };

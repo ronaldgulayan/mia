@@ -116,6 +116,7 @@ function ServicesPage() {
         <div className="flex flex-col h-fit items-center gap-y-10 relative">
           {dots.map((dot) => (
             <div
+              key={dot.key}
               onClick={() => {
                 setDots((curr) => {
                   return curr.map((raw) => {

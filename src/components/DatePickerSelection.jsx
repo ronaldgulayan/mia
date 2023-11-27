@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import Calendar from "../toolbox/Calendar";
 import dayjs from "dayjs";
 import Tooltip from "@mui/material/Tooltip";
-import FlightTypeContext from "../context/CustomContext";
+import { FlightTypeContext } from "../context/CustomContext";
 import { fixMonth, getDate } from "../toolbox/Tools";
 
 const DropDown = ({

@@ -1,21 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
-// import { Form, Radio } from "semantic-ui-react";
+import React, { useContext, useState } from "react";
 import Radio from "@mui/material/Radio";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import SelectDestination from "../components/SelectDestination";
-import DestinationSelection from "../components/DestinationSelection";
-import PassengerSelection from "../components/PassengerSelection";
-import Calendar from "../toolbox/Calendar";
-import DatePickerSelection from "../components/DatePickerSelection";
-import ClassSelection from "../components/ClassSelection";
-import { Button, Icon } from "semantic-ui-react";
-import FlightTypeContext from "../context/CustomContext";
+import { FlightTypeContext } from "../context/CustomContext";
 import ReturnOneway from "../components/ReturnOneway";
-import DepartureSelection from "../components/DepartureSelection";
 import MultiCity from "../components/MultiCity";
 
 const availablePlace = [

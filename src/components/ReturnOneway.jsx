@@ -3,7 +3,7 @@ import DestinationSelection from "./DestinationSelection";
 import PassengerSelection from "./PassengerSelection";
 import DatePickerSelection from "./DatePickerSelection";
 import ClassSelection from "./ClassSelection";
-import FlightTypeContext from "../context/CustomContext";
+import { FlightTypeContext } from "../context/CustomContext";
 import { places } from "../assets/places.json";
 
 function ReturnOneway() {

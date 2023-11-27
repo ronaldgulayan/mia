@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "./components/Header";
-import { FlightTypeContext } from "./context/CustomContext";
+import { FlightTypeContext, SigninPopupContext } from "./context/CustomContext";
 import CarouselPage from "./pages/CarouselPage";
 import BookingPage from "./pages/BookingPage";
 import ServicesPage from "./pages/ServicesPage";
@@ -10,20 +10,28 @@ import SigninPopup from "./components/SigninPopup";
 
 function App() {
   const [flightType, setFlightType] = useState("return");
+  const [visibleSigninPopup, setVisibleSigninPopup] = useState(false);
 
   return (
     <FlightTypeContext.Provider
       value={{ value: flightType, setValue: setFlightType }}
     >
-      <SigninPopup />
-      <div className="relative bg-light min-h-screen w-full flex flex-col">
-        <Header />
-        <CarouselPage />
-        <BookingPage />
-        <ServicesPage />
-        <GuidePage />
-        <Footer />
-      </div>
+      <SigninPopupContext.Provider
+        value={{
+          value: visibleSigninPopup,
+          setValue: setVisibleSigninPopup,
+        }}
+      >
+        <SigninPopup />
+        <div className="relative bg-light min-h-screen w-full flex flex-col">
+          <Header />
+          <CarouselPage />
+          <BookingPage />
+          <ServicesPage />
+          <GuidePage />
+          <Footer />
+        </div>
+      </SigninPopupContext.Provider>
     </FlightTypeContext.Provider>
   );
 }

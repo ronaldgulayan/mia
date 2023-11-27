@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
@@ -9,8 +9,11 @@ import IconButton from "@mui/material/IconButton";
 import FormHelperText from "@mui/material/FormHelperText";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import Button from "@mui/material/Button";
+import { SigninPopupContext } from "../context/CustomContext";
+import { Link } from "react-router-dom";
 
 function SigninPopup() {
+  const visibilityContext = useContext(SigninPopupContext);
   const [email, setEmail] = useState({
     value: "",
     error: false,
@@ -22,18 +25,38 @@ function SigninPopup() {
     helper: "This field is required",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [submitBtnDisabled, setSubmitBtnDisabled] = useState(true);
+
+  useEffect(() => {
+    if (email.value && password.value) {
+      if (!email.error && !password.error) {
+        setSubmitBtnDisabled(false);
+      } else if (email.error || password.error) {
+        setSubmitBtnDisabled(true);
+      }
+    } else {
+      setSubmitBtnDisabled(true);
+    }
+  }, [email, password]);
 
   return (
-    <div className="w-full z-[10] bg-[#0009] backdrop-blur-sm shadow-md h-screen fixed left-0 top-0 flex justify-center pt-32">
-      <div className="w-[30rem] h-fit bg-white rounded-lg shadow-md overflow-hidden">
+    <div
+      data-visibility={visibilityContext.value}
+      className="w-full duration-200 z-[10] data-[visibility=true]:opacity-100 data-[visibility=true]:pointer-events-auto opacity-0 pointer-events-none bg-[#0009] backdrop-blur-sm shadow-md h-screen fixed left-0 top-0 flex justify-center pt-32"
+    >
+      <div
+        data-visibility={visibilityContext.value}
+        className="w-[30rem] duration-200 -translate-y-10 data-[visibility=true]:translate-y-0 h-fit bg-white rounded-lg shadow-md overflow-hidden"
+      >
         <div className="w-full h-16 border-b border-b-slate-300 flex justify-between items-center px-5">
           <p className="font-bold text-black text-xl">Signin</p>
-          <button>
+          <button onClick={() => visibilityContext.setValue(false)}>
             <IoMdClose className="w-6 h-6 text-black opacity-70 hover:opacity-100 duration-100" />
           </button>
         </div>
         <div className="w-full h-fit p-5 flex flex-col gap-y-5">
           <TextField
+            tabIndex={1}
             autoComplete="off"
             type="text"
             variant="outlined"
@@ -95,7 +118,10 @@ function SigninPopup() {
             }}
           />
           <div className="w-full flex flex-col items-end gap-y-1">
-            <button className="w-fit text-main hover:underline underline-offset-4">
+            <button
+              tabIndex={3}
+              className="w-fit text-main hover:underline underline-offset-4"
+            >
               Forgot password
             </button>
             <FormControl sx={{ m: 0, width: "100%" }} variant="outlined">
@@ -106,6 +132,7 @@ function SigninPopup() {
                 Password
               </InputLabel>
               <OutlinedInput
+                tabIndex={2}
                 error={password.error}
                 id="outlined-adornment-password"
                 type={showPassword ? "text" : "password"}
@@ -173,15 +200,23 @@ function SigninPopup() {
               )}
             </FormControl>
           </div>
-          <Button fullWidth variant="contained" size="large">
+          <Button
+            disabled={submitBtnDisabled}
+            fullWidth
+            variant="contained"
+            size="large"
+          >
             LOGIN
           </Button>
           <div>
             <p>
               Don't have an account?{" "}
-              <button className="text-main cursor-pointer hover:underline underline-offset-4">
+              <Link
+                to="/registration"
+                className="text-main cursor-pointer hover:underline underline-offset-4"
+              >
                 Register here
-              </button>
+              </Link>
             </p>
           </div>
         </div>

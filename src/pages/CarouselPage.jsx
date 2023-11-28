@@ -11,7 +11,7 @@ function CarouselPage() {
   ];
 
   return (
-    <div className="w-full h-[calc(100vh-5rem)] relative z-[2]">
+    <div className="w-full h-[75dvh] relative z-[2]">
       <Splide
         tag="section"
         aria-label="Select a slide to show"
@@ -47,7 +47,7 @@ function CarouselPage() {
           {images.map((image, i) => (
             <SplideSlide key={i}>
               <img
-                className="h-[calc(100vh-5rem)] relative z-[1] w-full object-cover"
+                className="h-[95dvh] relative z-[1] w-full object-cover"
                 src={image}
                 alt="Image 1"
               />

@@ -12,6 +12,9 @@ function Header() {
       <Logo />
       <div className="flex items-center gap-x-10 h-full">
         <ul className="flex items-center gap-x-5 h-full text-white text-lg font-poppins">
+          <button className="hover:text-inherit h-full group hover:underline relative underline-offset-4">
+            About Us
+          </button>
           <button
             onClick={() => console.log(signinPopupContext.value)}
             className="hover:text-inherit h-full group hover:underline relative underline-offset-4"

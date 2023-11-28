@@ -21,7 +21,11 @@ function Header() {
                 Help & Support
               </p>
               <div className="flex flex-col gap-y-1">
-                <CustomLink className="text-based font-montserrat-italic">
+                <CustomLink
+                  onClick={() => signinPopupContext.setValue(false)}
+                  url="/contact"
+                  className="text-based font-montserrat-italic"
+                >
                   Contact Us
                 </CustomLink>
                 <CustomLink className="text-based font-montserrat-italic">

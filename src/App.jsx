@@ -9,6 +9,7 @@ import SigninPopup from "./components/SigninPopup";
 import ContextWrapper from "./context/ContextWrapper";
 import { Route, Routes } from "react-router-dom";
 import RegistratingPage from "./pages/RegistratingPage";
+import ContactUs from "./pages/ContactUs";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           }
         />
         <Route path="/registration" element={<RegistratingPage />} />
+        <Route path="/contact" element={<ContactUs />} />
       </Routes>
     </ContextWrapper>
   );

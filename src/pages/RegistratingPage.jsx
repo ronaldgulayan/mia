@@ -14,6 +14,7 @@ import PasswordField from "../toolbox/PasswordField";
 import Checkbox from "@mui/material/Checkbox";
 import CustomLink from "../toolbox/CustomLink";
 import Footer from "./Footer";
+import MiniBanner from "../toolbox/MiniBanner";
 
 function RegistratingPage() {
   const [gender, setGender] = useState("");
@@ -24,9 +25,7 @@ function RegistratingPage() {
   return (
     <div className="w-full min-h-screen">
       <Header />
-      <div id="haha" className="w-full h-[70dvh]">
-        <img src="/banners/img-6.jpg" className="h-full w-full object-cover" />
-      </div>
+      <MiniBanner img="/banners/img-6.jpg" />
       <div className="w-full min-h-screen py-pad px-[10rem] flex flex-col">
         <p
           onClick={() => {

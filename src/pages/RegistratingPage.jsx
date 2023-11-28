@@ -24,10 +24,9 @@ function RegistratingPage() {
   return (
     <div className="w-full min-h-screen">
       <Header />
-      <div
-        id="haha"
-        className="w-full min-h-[70dvh] bg-[url(/banners/img-6.jpg)] bg-cover bg-center bg-no-repeat"
-      ></div>
+      <div id="haha" className="w-full h-[70dvh]">
+        <img src="/banners/img-6.jpg" className="h-full w-full object-cover" />
+      </div>
       <div className="w-full min-h-screen py-pad px-[10rem] flex flex-col">
         <p
           onClick={() => {

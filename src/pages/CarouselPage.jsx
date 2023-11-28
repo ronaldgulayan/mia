@@ -3,6 +3,8 @@ import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 
 function CarouselPage() {
   const images = [
+    "/banners/img-6.jpg",
+    "/banners/img-7.jpg",
     "/banners/img-1.png",
     "/banners/img-2.png",
     "/banners/img-3.png",

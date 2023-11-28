@@ -21,16 +21,22 @@ function RegistratingPage() {
   const [password, setPassword] = useState("");
   const checkboxId = useId();
 
-  useEffect(() => {
-    console.log(phone);
-  }, [phone]);
-
   return (
     <div className="w-full min-h-screen">
       <Header />
-      <div className="w-full min-h-[70dvh] bg-[url(/banners/img-5.png)] bg-cover bg-center bg-no-repeat"></div>
+      <div
+        id="haha"
+        className="w-full min-h-[70dvh] bg-[url(/banners/img-6.jpg)] bg-cover bg-center bg-no-repeat"
+      ></div>
       <div className="w-full min-h-screen py-pad px-[10rem] flex flex-col">
-        <p className="font-montserrat-black pb-[4rem] text-5xl text-blue-800">
+        <p
+          onClick={() => {
+            const element = document.getElementById("haha");
+            const { width, height } = element.getBoundingClientRect();
+            console.log(width, height);
+          }}
+          className="font-montserrat-black pb-[4rem] text-5xl text-blue-800"
+        >
           Register Form
         </p>
         <p className="text-2xl text-main pb-5">
@@ -97,7 +103,7 @@ function RegistratingPage() {
               autoFormat
               placeholder="Mobile number"
               containerClass="w-full"
-              country={"ph"}
+              country="ph"
               value={phone}
               onChange={(value) => setPhone(value)}
               // dropdownStyle={{ bottom: "100%" }}

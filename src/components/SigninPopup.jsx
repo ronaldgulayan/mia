@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
@@ -27,6 +27,8 @@ function SigninPopup() {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [submitBtnDisabled, setSubmitBtnDisabled] = useState(true);
+  const popupRef = useRef();
+  const backgroundRef = useRef();
 
   useEffect(() => {
     if (email.value && password.value) {
@@ -40,12 +42,24 @@ function SigninPopup() {
     }
   }, [email, password]);
 
+  useEffect(() => {
+    const clickOutside = (e) => {
+      if (backgroundRef.current && backgroundRef.current == e.target) {
+        visibilityContext.setValue(false);
+      }
+    };
+    document.addEventListener("click", clickOutside);
+    return () => document.removeEventListener("click", clickOutside);
+  }, []);
+
   return (
     <div
+      ref={backgroundRef}
       data-visibility={visibilityContext.value}
       className="w-full duration-200 z-[10] data-[visibility=true]:opacity-100 data-[visibility=true]:pointer-events-auto opacity-0 pointer-events-none bg-[#0009] backdrop-blur-sm shadow-md h-screen fixed left-0 top-0 flex justify-center pt-32"
     >
       <div
+        ref={popupRef}
         data-visibility={visibilityContext.value}
         className="w-[30rem] duration-200 -translate-y-10 data-[visibility=true]:translate-y-0 h-fit bg-white rounded-lg shadow-md overflow-hidden"
       >

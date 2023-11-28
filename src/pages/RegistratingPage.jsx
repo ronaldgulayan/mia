@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import Header from "../components/Header";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
@@ -10,10 +10,20 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import PasswordField from "../toolbox/PasswordField";
+import Checkbox from "@mui/material/Checkbox";
+import CustomLink from "../toolbox/CustomLink";
+import Footer from "./Footer";
 
 function RegistratingPage() {
   const [gender, setGender] = useState("");
   const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const checkboxId = useId();
+
+  useEffect(() => {
+    console.log(phone);
+  }, [phone]);
 
   return (
     <div className="w-full min-h-screen">
@@ -90,7 +100,7 @@ function RegistratingPage() {
               country={"ph"}
               value={phone}
               onChange={(value) => setPhone(value)}
-              dropdownStyle={{ bottom: "100%" }}
+              // dropdownStyle={{ bottom: "100%" }}
             />
             <div></div>
           </div>
@@ -109,10 +119,36 @@ function RegistratingPage() {
               label="Email address"
               color="primary"
             />
+            <div></div>
+          </div>
+          <div className="w-full grid grid-cols-2 gap-x-3 mb-2">
+            <PasswordField
+              value={password}
+              setValue={setPassword}
+              placeholder="Password"
+            />
+            <PasswordField
+              value={password}
+              setValue={setPassword}
+              placeholder="Re-enter password"
+            />
+          </div>
+          <div className="w-full flex items-center">
+            <Checkbox id={checkboxId} size="medium" className="" />
+            <label htmlFor={checkboxId} className="text-lg select-none">
+              I have read and agree to the <CustomLink>Terms</CustomLink> and{" "}
+              <CustomLink>Data Privacy Policy</CustomLink> of MIA Airlines.
+            </label>
+          </div>
+          <div className="w-full text-end">
+            <button className="px-6 py-3 text-xl bg-main hover:bg-main-hover active:bg-main-active text-white rounded-full">
+              Submit
+            </button>
           </div>
         </div>
-        <div className="w-full h-96 mt-10 bg-main"></div>
+        {/* <div className="w-full h-96 mt-10 bg-main"></div> */}
       </div>
+      <Footer />
     </div>
   );
 }

@@ -11,6 +11,7 @@ import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import Button from "@mui/material/Button";
 import { SigninPopupContext } from "../context/CustomContext";
 import { Link } from "react-router-dom";
+import CustomLink from "../toolbox/CustomLink";
 
 function SigninPopup() {
   const visibilityContext = useContext(SigninPopupContext);
@@ -118,12 +119,7 @@ function SigninPopup() {
             }}
           />
           <div className="w-full flex flex-col items-end gap-y-1">
-            <button
-              tabIndex={3}
-              className="w-fit text-main hover:underline underline-offset-4"
-            >
-              Forgot password
-            </button>
+            <CustomLink>Forgot password</CustomLink>
             <FormControl sx={{ m: 0, width: "100%" }} variant="outlined">
               <InputLabel
                 error={password.error}
@@ -211,13 +207,12 @@ function SigninPopup() {
           <div>
             <p>
               Don't have an account?{" "}
-              <Link
+              <CustomLink
                 onClick={() => visibilityContext.setValue(false)}
-                to="/registration"
-                className="text-main cursor-pointer hover:underline underline-offset-4"
+                url="/registration"
               >
                 Register here
-              </Link>
+              </CustomLink>
             </p>
           </div>
         </div>

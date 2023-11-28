@@ -10,7 +10,9 @@ function CustomLink({
   return (
     <Link
       onClick={onClick}
-      className={"text-main underline-offset-4 hover:underline " + className}
+      className={
+        "text-main underline-offset-4 hover:underline w-fit " + className
+      }
       to={url}
     >
       {children}

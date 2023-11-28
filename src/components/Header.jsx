@@ -8,7 +8,7 @@ import CustomLink from "../toolbox/CustomLink";
 function Header() {
   const signinPopupContext = useContext(SigninPopupContext);
   return (
-    <div className="w-full h-20 fixed z-[5] bg-gradient-to-b from-[#0009] to-[#0001] px-pad flex items-center justify-between">
+    <div className="w-full h-20 fixed z-[5] bg-gradient-to-b from-[#0009] to-[#0000] px-pad flex items-center justify-between">
       <Logo />
       <div className="flex items-center gap-x-10 h-full">
         <ul className="flex items-center gap-x-5 h-full text-white text-lg font-poppins">

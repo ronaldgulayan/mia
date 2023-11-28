@@ -107,8 +107,7 @@ function ServicesPage() {
       selected: false,
     },
   ]);
-
-  const [content, setContent] = useState(<Content2 />);
+  const [content, setContent] = useState(<Content1 />);
 
   return (
     <div className="w-full h-[90dvh] flex bg-white px-pad">

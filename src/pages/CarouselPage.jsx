@@ -2,7 +2,13 @@ import React, { useRef } from "react";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 
 function CarouselPage() {
-  const images = ["/banners/img-6.jpg", "/banners/img-7.jpg"];
+  const images = [
+    "/banners/img-8.jpg",
+    "/banners/img-9.jpg",
+    "/banners/img-10.jpg",
+    "/banners/img-6.jpg",
+    "/banners/img-7.jpg",
+  ];
 
   return (
     <div className="w-full h-[calc(100vh-5rem)] relative z-[2]">

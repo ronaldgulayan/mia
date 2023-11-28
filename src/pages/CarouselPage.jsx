@@ -3,18 +3,18 @@ import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 
 function CarouselPage() {
   const images = [
-    "/sample/img1.jpg",
-    "/sample/img2.jpg",
-    "/sample/img3.jpg",
-    "/sample/img4.jpg",
-    "/sample/img5.jpg",
-    "/banners/img-8.jpg",
-    "/banners/img-9.jpg",
-    "/banners/img-10.jpg",
+    "/banners/place1.jpg",
+    "/banners/place2.jpg",
+    "/banners/place3.jpg",
+    "/banners/place4.jpg",
+    "/banners/place5.jpg",
+    "/banners/place6.jpg",
+    "/banners/place7.jpg",
+    "/banners/place8.jpg",
   ];
 
   return (
-    <div className="w-full h-[75dvh] relative z-[2]">
+    <div className="w-full h-[90dvh] relative z-[2]">
       <Splide
         tag="section"
         aria-label="Select a slide to show"
@@ -29,7 +29,7 @@ function CarouselPage() {
         hasTrack={false}
       >
         <ul
-          className="splide__pagination splide__pagination--ltr flex absolute -translate-y-[15rem]"
+          className="splide__pagination splide__pagination--ltr flex absolute -translate-y-[8.5rem]"
           role="tablist"
           aria-label="Select a slide to show"
         >

@@ -21,7 +21,7 @@ function CarouselPage() {
         options={{
           autoplay: true,
           arrows: false,
-          interval: 300,
+          interval: 5000,
           rewind: true,
           lazyLoad: "sequential",
           pagination: true,

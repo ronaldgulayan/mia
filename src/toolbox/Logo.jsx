@@ -7,7 +7,7 @@ function Logo() {
     <Tooltip className="text-2xl" color="#f00" title="Back to homepage">
       <Link
         to="/"
-        className="h-full select-none flex items-center gap-x-1 py-2"
+        className="h-full select-none flex items-center gap-x-3 py-2"
       >
         <img
           className="h-full"
@@ -15,7 +15,7 @@ function Logo() {
           src="/logos/logo-colored.png"
         />
         <h1 className="font-poppins text-white font-bold text-3xl">
-          <span className="text-4xl">M</span>IA
+          Manila International Airport
         </h1>
       </Link>
     </Tooltip>

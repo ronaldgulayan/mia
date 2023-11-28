@@ -27,7 +27,7 @@ function GuidePage() {
       </p>
       <p className="text-5xl font-montserrat-bold">Explore with confidence</p>
       <div className="w-full text-center">
-        <button className="w-fit bg-main text-white px-5 py-3 rounded-full">
+        <button className="w-fit bg-main hover:bg-main-hover active:bg-main-active text-white px-5 py-3 rounded-full">
           COVID INFORMATION
         </button>
       </div>

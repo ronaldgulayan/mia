@@ -10,11 +10,11 @@ function Logo() {
         className="h-full select-none flex items-center gap-x-3 py-2"
       >
         <img
-          className="h-full"
+          className="h-[3rem]"
           draggable={false}
           src="/logos/logo-colored.png"
         />
-        <h1 className="font-poppins text-white font-bold text-3xl">
+        <h1 className="text-white font-montserrat-bold text-2xl">
           Manila International Airport
         </h1>
       </Link>

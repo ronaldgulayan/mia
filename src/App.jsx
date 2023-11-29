@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Header from "./components/Header";
 import CarouselPage from "./pages/CarouselPage";
 import BookingPage from "./pages/BookingPage";
@@ -10,25 +10,25 @@ import ContextWrapper from "./context/ContextWrapper";
 import { Route, Routes } from "react-router-dom";
 import RegistratingPage from "./pages/RegistratingPage";
 import ContactUs from "./pages/ContactUs";
+import TopButton from "./toolbox/TopButton";
 
 function App() {
   return (
     <ContextWrapper>
       <SigninPopup />
+      <TopButton />
       <Routes>
         <Route
           path="/"
           element={
-            <>
-              <div className="relative bg-light min-h-screen w-full flex flex-col">
-                <Header />
-                <CarouselPage />
-                <BookingPage />
-                <ServicesPage />
-                <GuidePage />
-                <Footer />
-              </div>
-            </>
+            <div className="relative bg-light min-h-screen w-full flex flex-col">
+              <Header />
+              <CarouselPage />
+              <BookingPage />
+              <ServicesPage />
+              <GuidePage />
+              <Footer />
+            </div>
           }
         />
         <Route path="/registration" element={<RegistratingPage />} />

@@ -52,6 +52,14 @@ function SigninPopup() {
     return () => document.removeEventListener("click", clickOutside);
   }, []);
 
+  useEffect(() => {
+    if (visibilityContext.value) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [visibilityContext.value]);
+
   return (
     <div
       ref={backgroundRef}

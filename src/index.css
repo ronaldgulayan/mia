@@ -35,3 +35,7 @@
 * {
   font-family: Montserrat-regular;
 }
+
+body {
+  zoom: 100%;
+}

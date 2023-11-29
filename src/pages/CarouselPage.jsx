@@ -14,7 +14,7 @@ function CarouselPage() {
   ];
 
   return (
-    <div className="w-full h-[90dvh] relative z-[2]">
+    <div className="observer w-full h-[90dvh] relative z-[2]">
       <Splide
         tag="section"
         aria-label="Select a slide to show"

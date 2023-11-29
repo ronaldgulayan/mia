@@ -15,6 +15,7 @@ import Checkbox from "@mui/material/Checkbox";
 import CustomLink from "../toolbox/CustomLink";
 import Footer from "./Footer";
 import MiniBanner from "../toolbox/MiniBanner";
+import Content from "../toolbox/Content";
 
 function RegistratingPage() {
   const [gender, setGender] = useState("");
@@ -25,18 +26,8 @@ function RegistratingPage() {
   return (
     <div className="w-full min-h-screen">
       <Header />
-      <MiniBanner img="/banners/img-6.jpg" />
-      <div className="w-full min-h-screen py-pad px-[10rem] flex flex-col">
-        <p
-          onClick={() => {
-            const element = document.getElementById("haha");
-            const { width, height } = element.getBoundingClientRect();
-            console.log(width, height);
-          }}
-          className="font-montserrat-black pb-[4rem] text-5xl text-blue-800"
-        >
-          Register Form
-        </p>
+      <MiniBanner img="/banners/registration.jpg" />
+      <Content title="Registration Form">
         <p className="text-2xl text-main pb-5">
           For existing members, please fill-out the form below to create your
           password and be able to access your account online. For non-members,
@@ -151,7 +142,7 @@ function RegistratingPage() {
           </div>
         </div>
         {/* <div className="w-full h-96 mt-10 bg-main"></div> */}
-      </div>
+      </Content>
       <Footer />
     </div>
   );

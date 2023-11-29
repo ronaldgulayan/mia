@@ -11,6 +11,7 @@ import { Route, Routes } from "react-router-dom";
 import RegistratingPage from "./pages/RegistratingPage";
 import ContactUs from "./pages/ContactUs";
 import TopButton from "./toolbox/TopButton";
+import AboutUsPage from "./pages/AboutUsPage";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         />
         <Route path="/registration" element={<RegistratingPage />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/about" element={<AboutUsPage />} />
       </Routes>
     </ContextWrapper>
   );

@@ -67,7 +67,7 @@ function Header() {
             </div>
             HELP & SUPPORT
           </button>
-          <CustomLink className="text-white hover:text-white">
+          <CustomLink url="/about" className="text-white hover:text-white">
             ABOUT US
           </CustomLink>
           <button

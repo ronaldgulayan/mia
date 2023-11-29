@@ -292,9 +292,9 @@ function DestinationSelection({ z = 3, setParentValue = function (value) {} }) {
                   id={`detailsbtn-${data.key}`}
                 >
                   {!data.details ? (
-                    <IoMdInformationCircle className="w-7 h-7 opacity-[90%] group-hover:opacity-100 text-blue group-active:text-[rgb(36,85,139)] pointer-events-none" />
+                    <IoMdInformationCircle className="w-7 h-7 opacity-[90%] group-hover:opacity-100 text-main group-active:text-main-active pointer-events-none group-hover:text-main-hover" />
                   ) : (
-                    <IoMdClose className="w-7 h-7 opacity-[90%] group-hover:opacity-100 text-blue group-active:text-[rgb(36,85,139)] pointer-events-none" />
+                    <IoMdClose className="w-7 h-7 opacity-[90%] group-hover:opacity-100 text-main group-active:text-main-active pointer-events-none group-hover:text-main-hover" />
                   )}
                 </button>
                 <span className="bg-main text-white w-10 text-center py-[0.2rem] rounded-md">

@@ -98,7 +98,7 @@ function ServicesPage() {
                     return { ...raw, selected: false };
                   });
                 });
-                setContent(<Content key={dot.key} {...dot} />);
+                setContent(() => <Content key={dot.key} {...dot} />);
               }}
               data-selected={dot.selected}
               className="w-5 h-5 group rounded-full border-[0.25rem] cursor-pointer duration-300 bg-white border-black data-[selected=true]:shadow-md z-[2] data-[selected=true]:bg-black flex items-center"

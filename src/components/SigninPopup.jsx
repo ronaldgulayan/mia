@@ -12,14 +12,11 @@ import Button from "@mui/material/Button";
 import { SigninPopupContext } from "../context/CustomContext";
 import { Link } from "react-router-dom";
 import CustomLink from "../toolbox/CustomLink";
+import EmailField from "../toolbox/EmailField";
 
 function SigninPopup() {
   const visibilityContext = useContext(SigninPopupContext);
-  const [email, setEmail] = useState({
-    value: "",
-    error: false,
-    helper: "This field is required",
-  });
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState({
     value: "",
     error: false,
@@ -78,67 +75,12 @@ function SigninPopup() {
           </button>
         </div>
         <div className="w-full h-fit p-5 flex flex-col gap-y-5">
-          <TextField
+          <EmailField
             tabIndex={1}
-            autoComplete="off"
-            type="text"
-            variant="outlined"
-            helperText={email.error && email.helper}
-            fullWidth
-            label="Email address"
-            color="primary"
-            error={email.error}
-            value={email.value}
-            onChange={(e) => {
-              setEmail((curr) => ({ ...curr, value: e.target.value }));
-              setEmail((curr) => {
-                if (curr.value) {
-                  if (!curr.value.includes("@gmail.com")) {
-                    return {
-                      ...curr,
-                      value: e.target.value,
-                      error: true,
-                      helper: "Incorrect email address format",
-                    };
-                  } else {
-                    return {
-                      ...curr,
-                      value: e.target.value,
-                      error: false,
-                    };
-                  }
-                }
-                return {
-                  ...curr,
-                  value: e.target.value,
-                  error: true,
-                  helper: "This field is required",
-                };
-              });
-            }}
-            onBlur={(e) => {
-              setEmail((curr) => {
-                if (!curr.value) {
-                  return {
-                    ...curr,
-                    error: true,
-                    helper: "This field is required",
-                  };
-                }
-                if (!curr.value.includes("@gmail.com")) {
-                  return {
-                    ...curr,
-                    error: true,
-                    helper: "Incorrect email address format",
-                  };
-                } else {
-                  return {
-                    ...curr,
-                    error: false,
-                  };
-                }
-              });
-            }}
+            placeholder="Email address"
+            value={email}
+            setValue={setEmail}
+            required
           />
           <div className="w-full flex flex-col items-end gap-y-1">
             <CustomLink>Forgot password</CustomLink>

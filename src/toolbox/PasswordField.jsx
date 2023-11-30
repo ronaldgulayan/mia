@@ -36,7 +36,7 @@ function PasswordField({
   return (
     <FormControl sx={{ width: "100%" }} variant="outlined">
       <InputLabel className="bg-white" error={isError && first} htmlFor={id}>
-        {placeholder}
+        {placeholder + "*"}
       </InputLabel>
       <OutlinedInput
         tabIndex={tabIndex}

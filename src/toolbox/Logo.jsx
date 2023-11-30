@@ -12,7 +12,7 @@ function Logo() {
         <img
           className="h-[3rem]"
           draggable={false}
-          src="/logos/logo-colored.png"
+          src="/logos/main-logo.png"
         />
         <h1 className="text-white font-montserrat-bold text-2xl">
           Manila International Airport

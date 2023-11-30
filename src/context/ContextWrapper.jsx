@@ -1,9 +1,22 @@
 import React, { useState } from "react";
-import { FlightTypeContext, SigninPopupContext } from "./CustomContext";
+import {
+  FlightTypeContext,
+  RegistrationAlertBoxContext,
+  SearchingContext,
+  SigninPopupContext,
+} from "./CustomContext";
 
 function ContextWrapper({ children }) {
   const [flightType, setFlightType] = useState("return");
   const [visibleSigninPopup, setVisibleSigninPopup] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+  const [registrationAlertBoxContext, setRegistrationAlertBoxContext] =
+    useState({
+      state: false,
+      title: "Title",
+      error: false,
+      message: "Message...",
+    });
   return (
     <>
       <FlightTypeContext.Provider
@@ -15,7 +28,21 @@ function ContextWrapper({ children }) {
             setValue: setVisibleSigninPopup,
           }}
         >
-          {children}
+          <SearchingContext.Provider
+            value={{
+              value: isSearching,
+              setValue: setIsSearching,
+            }}
+          >
+            <RegistrationAlertBoxContext.Provider
+              value={{
+                value: registrationAlertBoxContext,
+                setValue: setRegistrationAlertBoxContext,
+              }}
+            >
+              {children}
+            </RegistrationAlertBoxContext.Provider>
+          </SearchingContext.Provider>
         </SigninPopupContext.Provider>
       </FlightTypeContext.Provider>
     </>

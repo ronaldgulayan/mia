@@ -9,36 +9,6 @@ import ReturnOneway from "../components/ReturnOneway";
 import MultiCity from "../components/MultiCity";
 import CustomLink from "../toolbox/CustomLink";
 
-const availablePlace = [
-  "Cavite",
-  "Manila",
-  "Roxas",
-  "Puerto Princesa",
-  "Baguio",
-  "Bacolod",
-  "Tuguegarao",
-  "Basco",
-  "Butuan",
-  "Cotabato",
-  "Cebu",
-  "Camiguin",
-  "Cagayan de Oro",
-  "Catarman",
-  "Calbayog",
-  "Dumaguete",
-  "Dipolog",
-  "Davao",
-  "San Jose",
-  "Siargao",
-  "Kalibo",
-  "Laoag",
-  "Legazpi",
-  "Ozamiz",
-  "Tacloban",
-  "Busuanga",
-  "Zamboanga",
-];
-
 function BookingPage() {
   const [radiosValue, setRadiosValue] = useState([
     {

@@ -20,6 +20,8 @@ import CustomTextField from "../toolbox/CustomTextField";
 import EmailField from "../toolbox/EmailField";
 import { fixMonth } from "../toolbox/Tools";
 import { RegistrationAlertBoxContext } from "../context/CustomContext";
+import axios from "axios";
+import { Button } from "semantic-ui-react";
 
 function RegistratingPage() {
   const [gender, setGender] = useState("");
@@ -33,6 +35,7 @@ function RegistratingPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const popupContext = useContext(RegistrationAlertBoxContext);
   const [privacyCheck, setPrivacyCheck] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const popupMessage = (title, message, error = true) => {
     popupContext.setValue((curr) => ({
@@ -68,7 +71,6 @@ function RegistratingPage() {
         data: phone,
       },
     ];
-
     for (let i = 0; i < datas.length; i++) {
       if (datas[i].data == "") {
         popupMessage(
@@ -80,6 +82,14 @@ function RegistratingPage() {
       cont++;
     }
     if (cont === 5) {
+      if (phone.length !== 12 && phone.length !== 13) {
+        popupMessage(
+          "Invalid phone number",
+          "Please enter your valid phone number."
+        );
+        return;
+      }
+
       if (!emailAddress) {
         popupMessage(
           "Invalid email address",
@@ -146,11 +156,31 @@ function RegistratingPage() {
         );
         return;
       }
-      popupMessage(
-        "Congrats",
-        "Di pa tapos pero correct data mo, di pa nag save sa database to"
-      );
       // here kapag correct na
+
+      const data = {
+        firstName: firstName,
+        lastName: lastName,
+        gender: gender,
+        birthDate: birthDate,
+        phoneNumber: phone,
+        email: emailAddress,
+        password: password,
+      };
+      setIsLoading(true);
+      axios
+        .put("http://localhost:8081/mia/api/insert-user-account", data)
+        .then((value) => {
+          popupMessage(value.data.title, value.data.message);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          popupMessage(
+            "Server Error",
+            "The server is currently offline. Please try again later."
+          );
+          setIsLoading(false);
+        });
     }
   };
 
@@ -200,9 +230,6 @@ function RegistratingPage() {
                 label="Age"
                 onChange={(e) => setGender(e.target.value)}
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
                 <MenuItem value="Male">Male</MenuItem>
                 <MenuItem value="Female">Female</MenuItem>
               </Select>
@@ -277,12 +304,16 @@ function RegistratingPage() {
             </label>
           </div>
           <div className="w-full text-end">
-            <button
+            <Button
+              primary
+              size="big"
+              circular
               onClick={submitEventHandler}
-              className="px-6 py-3 text-xl bg-main hover:bg-main-hover active:bg-main-active text-white rounded-full"
+              loading={isLoading}
+              disabled={isLoading}
             >
               Submit
-            </button>
+            </Button>
           </div>
         </div>
       </Content>

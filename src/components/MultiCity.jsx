@@ -4,6 +4,7 @@ import DepartureSelection from "./DepartureSelection";
 import { FaPlus } from "react-icons/fa";
 import { v4 } from "uuid";
 import { FaTrashCan } from "react-icons/fa6";
+import axios from "axios";
 
 function MultiCity() {
   const [flights, setFlights] = useState([
@@ -22,7 +23,14 @@ function MultiCity() {
   ]);
 
   const searchFlightEvent = () => {
-    console.log(flights);
+    // axios
+    //   .get("http://localhost:8081/api/get-data")
+    //   .then((value) => {
+    //     console.log(value);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   const setDestinationValue = (from, to, key) => {

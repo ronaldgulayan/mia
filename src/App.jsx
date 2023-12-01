@@ -18,6 +18,7 @@ import {
 } from "./context/CustomContext";
 import Loading from "./pages/Loading";
 import AlertBox from "./toolbox/AlertBox";
+import UserAccount from "./auth/UserAccount";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path="/registration" element={<RegistratingPage />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/about" element={<AboutUsPage />} />
+          <Route path="/account" element={<UserAccount />} />
         </Routes>
         {/* </SearchingContext.Provider> */}
       </ContextWrapper>

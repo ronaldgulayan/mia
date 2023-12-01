@@ -1,38 +1,34 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
-import TextField from "@mui/material/TextField";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
-import FormHelperText from "@mui/material/FormHelperText";
-import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import Button from "@mui/material/Button";
-import { SigninPopupContext } from "../context/CustomContext";
-import { Link } from "react-router-dom";
+import {
+  RegistrationAlertBoxContext,
+  SigninPopupContext,
+} from "../context/CustomContext";
 import CustomLink from "../toolbox/CustomLink";
 import EmailField from "../toolbox/EmailField";
+import PasswordField from "../toolbox/PasswordField";
+import axios from "axios";
 
 function SigninPopup() {
   const visibilityContext = useContext(SigninPopupContext);
+  const popupContext = useContext(RegistrationAlertBoxContext);
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState({
-    value: "",
-    error: false,
-    helper: "This field is required",
-  });
-  const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState("");
   const [submitBtnDisabled, setSubmitBtnDisabled] = useState(true);
   const popupRef = useRef();
   const backgroundRef = useRef();
 
   useEffect(() => {
-    if (email.value && password.value) {
-      if (!email.error && !password.error) {
-        setSubmitBtnDisabled(false);
-      } else if (email.error || password.error) {
+    if (email && password) {
+      if (!email.includes("@gmail.com")) {
         setSubmitBtnDisabled(true);
+      } else if (email.split("@")[0].length < 3) {
+        setSubmitBtnDisabled(true);
+      } else if (password.length <= 5) {
+        setSubmitBtnDisabled(true);
+      } else {
+        setSubmitBtnDisabled(false);
       }
     } else {
       setSubmitBtnDisabled(true);
@@ -56,6 +52,36 @@ function SigninPopup() {
       document.body.style.overflow = "auto";
     }
   }, [visibilityContext.value]);
+
+  const popupMessage = (title, message, error = true) => {
+    popupContext.setValue((curr) => ({
+      ...curr,
+      state: true,
+      message: message,
+      error: error,
+      title: title,
+    }));
+  };
+
+  const submitEventHandler = () => {
+    const data = { email, password };
+    axios
+      .post("http://localhost:8081/mia/api/login", data)
+      .then((value) => {
+        if (value.data.status === 500) {
+          popupMessage(value.data.title, value.data.message);
+        } else if (value.data.status === 200) {
+          // success
+          popupMessage(value.data.title, value.data.message);
+        }
+      })
+      .catch((err) => {
+        popupMessage(
+          "Server Error",
+          "The server is currently offline. Please try again later."
+        );
+      });
+  };
 
   return (
     <div
@@ -84,87 +110,18 @@ function SigninPopup() {
           />
           <div className="w-full flex flex-col items-end gap-y-1">
             <CustomLink>Forgot password</CustomLink>
-            <FormControl sx={{ m: 0, width: "100%" }} variant="outlined">
-              <InputLabel
-                error={password.error}
-                htmlFor="outlined-adornment-password"
-              >
-                Password
-              </InputLabel>
-              <OutlinedInput
-                tabIndex={2}
-                error={password.error}
-                id="outlined-adornment-password"
-                type={showPassword ? "text" : "password"}
-                onChange={(e) => {
-                  setPassword((curr) => ({ ...curr, value: e.target.value }));
-                  setPassword((curr) => {
-                    if (curr.value) {
-                      if (curr.value.length <= 5) {
-                        return {
-                          ...curr,
-                          error: true,
-                          helper: "Invalid password length",
-                        };
-                      }
-                      return { ...curr, error: false };
-                    }
-                    return {
-                      ...curr,
-                      error: true,
-                      helper: "This field is required",
-                    };
-                  });
-                }}
-                onBlur={() => {
-                  setPassword((curr) => {
-                    if (curr.value) {
-                      if (curr.value.length <= 5) {
-                        return {
-                          ...curr,
-                          error: true,
-                          helper: "Invalid password length",
-                        };
-                      }
-                      return { ...curr, error: false };
-                    }
-                    return {
-                      ...curr,
-                      error: true,
-                      helper: "This field is required",
-                    };
-                  });
-                }}
-                value={password.value}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={() => setShowPassword((curr) => !curr)}
-                      edge="end"
-                    >
-                      {showPassword ? (
-                        <MdVisibility className="w-5 h-5 text-inherit" />
-                      ) : (
-                        <MdVisibilityOff className="w-5 h-5 text-inherit" />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label="Password"
-              />
-              {password.error && (
-                <FormHelperText error id="component-helper-text">
-                  {password.helper}
-                </FormHelperText>
-              )}
-            </FormControl>
+            <PasswordField
+              value={password}
+              setValue={setPassword}
+              placeholder="Password"
+            />
           </div>
           <Button
             disabled={submitBtnDisabled}
             fullWidth
             variant="contained"
             size="large"
+            onClick={submitEventHandler}
           >
             LOGIN
           </Button>

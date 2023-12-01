@@ -48,18 +48,16 @@ function Header() {
           >
             CONTACT US
           </CustomLink>
-
           <CustomLink url="/about" className="text-white hover:text-white">
             ABOUT US
           </CustomLink>
-          <button
+          <CustomLink
+            className="text-white hover:text-white"
             onClick={() => signinPopupContext.setValue(true)}
-            className="hover:text-inherit hover:underline underline-offset-4"
           >
             SIGN IN
-          </button>
+          </CustomLink>
         </ul>
-        <Input action={{ icon: "search" }} placeholder="Search..." />
       </div>
     </div>
   );

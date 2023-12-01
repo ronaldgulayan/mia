@@ -25,6 +25,14 @@ function EmailField({
             helperText: "Incorrect email address format",
           };
         });
+      } else if (value.split("@")[0].length < 3) {
+        setProperties((curr) => {
+          return {
+            ...curr,
+            error: true,
+            helperText: "Invalid email length",
+          };
+        });
       } else {
         setProperties((curr) => {
           return { ...curr, error: false };

@@ -1,8 +1,29 @@
 import React from "react";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaFacebook } from "react-icons/fa";
+import { IoPerson } from "react-icons/io5";
 import CustomLink from "../toolbox/CustomLink";
+import Tooltip from "@mui/material/Tooltip";
+import { Navigate } from "react-router-dom";
 
 function Footer() {
+  const icons = [
+    {
+      label: "Facebook",
+      Icon: FaFacebook,
+      url: "https://www.facebook.com/ronald.gulayan/",
+    },
+    {
+      label: "Portfolio",
+      Icon: IoPerson,
+      url: "https://ronaldgulayan.github.io/portfolio/",
+    },
+    {
+      label: "Github",
+      Icon: FaGithub,
+      url: "https://github.com/ronaldgulayan",
+    },
+  ];
+
   return (
     <div className="w-full">
       <div className="w-full h-fit bg-main relative flex flex-col px-pad pt-pad pb-[2rem]">
@@ -19,24 +40,30 @@ function Footer() {
           </div>
         </div>
         <div className="w-full grid grid-cols-3">
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center gap-y-1">
             <CustomLink className="text-white hover:text-white">
               PRIVACY POLICY
             </CustomLink>
             <CustomLink className="text-white hover:text-white">
               TERMS & CONDITION
             </CustomLink>
-            <CustomLink className="text-white hover:text-white">
+            <CustomLink url="/about" className="text-white hover:text-white">
               ABOUT
             </CustomLink>
           </div>
           <div className="flex justify-evenly gap-x-14 h-28 relative">
-            <FaGithub className="w-7 h-7 text-white" />
-            <FaGithub className="w-7 h-7 text-white" />
-            <FaGithub className="w-7 h-7 text-white" />
+            {icons.map((icon, i) => {
+              return (
+                <Tooltip key={i} title={icon.label} arrow>
+                  <a className="h-fit" href={icon.url} target="_blank">
+                    {icon.Icon && <icon.Icon className="w-7 h-7 text-white" />}
+                  </a>
+                </Tooltip>
+              );
+            })}
             <div className="w-[2px] h-1/2 bottom-0 bg-black absolute left-1/2 -translate-x-1/2" />
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center gap-y-1">
             <CustomLink className="text-white hover:text-white">
               airlinemia@gmail.com
             </CustomLink>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/Header";
 import MiniBanner from "../toolbox/MiniBanner";
 import Content from "../toolbox/Content";
@@ -6,6 +6,13 @@ import TitleAndParagraph from "../toolbox/TitleAndParagraph";
 import Footer from "./Footer";
 
 function AboutUsPage() {
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      behavior: "instant",
+    });
+  }, [window.location.href]);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />

@@ -37,6 +37,13 @@ function RegistratingPage() {
   const [privacyCheck, setPrivacyCheck] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      behavior: "instant",
+    });
+  }, [window.location.href]);
+
   const popupMessage = (title, message, error = true) => {
     popupContext.setValue((curr) => ({
       ...curr,

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 
 function CarouselPage() {
@@ -12,6 +12,12 @@ function CarouselPage() {
     "/banners/place7.jpg",
     "/banners/place8.jpg",
   ];
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      behavior: "instant",
+    });
+  }, [window.location.href]);
 
   return (
     <div className="observer w-full h-[90dvh] relative z-[2]">

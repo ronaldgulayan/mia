@@ -22,10 +22,10 @@ const Content = ({
         </div>
         <div className="w-[27rem] relative h-96 shadow-md rounded-md overflow-hidden">
           <img
-            className="w-full h-full object-cover relative z-[5]"
+            className="w-full h-full object-cover relative z-[2]"
             src={img}
           />
-          <Placeholder className="absolute z-[1] w-full h-full">
+          <Placeholder className="relative z-[1] w-full h-full">
             <Placeholder.Image />
           </Placeholder>
         </div>
@@ -35,7 +35,7 @@ const Content = ({
   return (
     <>
       <div className="w-[27rem] h-96 relative shadow-md rounded-md overflow-hidden">
-        <img className="w-full h-full object-cover relative z-[5]" src={img} />
+        <img className="w-full h-full object-cover relative z-[2]" src={img} />
         <Placeholder className="absolute z-[1] w-full h-full">
           <Placeholder.Image />
         </Placeholder>

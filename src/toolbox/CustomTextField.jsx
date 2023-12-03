@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 
 function CustomTextField({
-  placeholder = "Placeholder",
+  placeholder = "",
   required = false,
   value = "",
   setValue = (e) => {},

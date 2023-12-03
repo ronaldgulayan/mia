@@ -5,6 +5,7 @@ import {
   SearchingContext,
   SigninPopupContext,
   AccountPopupContext,
+  ProfileContext,
 } from "./CustomContext";
 
 function ContextWrapper({ children }) {
@@ -24,6 +25,8 @@ function ContextWrapper({ children }) {
     error: false,
     message: "Message...",
   });
+
+  const [profileVisibility, setProfileVisibility] = useState(false);
 
   return (
     <>
@@ -54,7 +57,14 @@ function ContextWrapper({ children }) {
                   setValue: setAccountAlertBoxContext,
                 }}
               >
-                {children}
+                <ProfileContext.Provider
+                  value={{
+                    value: profileVisibility,
+                    setValue: setProfileVisibility,
+                  }}
+                >
+                  {children}
+                </ProfileContext.Provider>
               </AccountPopupContext.Provider>
             </RegistrationAlertBoxContext.Provider>
           </SearchingContext.Provider>

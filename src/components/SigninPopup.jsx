@@ -91,7 +91,7 @@ function SigninPopup() {
       <div
         ref={popupRef}
         data-visibility={visibilityContext.value}
-        className="w-[30rem] duration-200 -translate-y-10 data-[visibility=true]:translate-y-0 h-fit bg-white rounded-lg shadow-md overflow-hidden"
+        className="w-[90%] md:w-[30rem] duration-200 -translate-y-10 data-[visibility=true]:translate-y-0 h-fit bg-white rounded-lg shadow-md overflow-hidden"
       >
         <div className="w-full h-16 border-b border-b-slate-300 flex justify-between items-center px-5">
           <p className="font-bold text-black text-xl">Signin</p>

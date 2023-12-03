@@ -6,6 +6,7 @@ const SearchingContext = createContext();
 const RegistrationAlertBoxContext = createContext();
 const AccountPopupContext = createContext();
 const AccountDrawerContext = createContext();
+const ProfileContext = createContext();
 
 export {
   FlightTypeContext,
@@ -14,4 +15,5 @@ export {
   RegistrationAlertBoxContext,
   AccountPopupContext,
   AccountDrawerContext,
+  ProfileContext,
 };

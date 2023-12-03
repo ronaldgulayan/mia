@@ -20,12 +20,14 @@ import {
 import Loading from "./pages/Loading";
 import AlertBox from "./toolbox/AlertBox";
 import Account from "./private/Account";
+import ProfilePopup from "./components/ProfilePopup";
 
 function App() {
   return (
     <div>
       <ContextWrapper>
         <SigninPopup />
+        <ProfilePopup />
         {/* <TopButton /> */}
         <Loading label="Searching..." />
         <AlertBox Context={RegistrationAlertBoxContext} seconds={5} type="ok" />

@@ -129,7 +129,7 @@ function DatePickerSelection({ setParentValue = function (value) {} }) {
       <div
         id="datepicker-dropdown"
         data-open={isOpen}
-        className="w-[95%] data-[open=true]:block hidden h-fit bg-white shadow-md border border-slate-200 rounded-md absolute top-[95%]"
+        className="w-fit data-[open=true]:block hidden h-fit bg-white shadow-md border border-slate-200 rounded-md absolute top-[95%]"
       >
         <Calendar
           value={selectedDate}

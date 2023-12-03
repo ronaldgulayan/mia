@@ -25,7 +25,7 @@ const Content = ({
             className="w-full h-full object-cover relative z-[2]"
             src={img}
           />
-          <Placeholder className="relative z-[1] w-full h-full">
+          <Placeholder className="absolute z-[1] w-full h-full">
             <Placeholder.Image />
           </Placeholder>
         </div>

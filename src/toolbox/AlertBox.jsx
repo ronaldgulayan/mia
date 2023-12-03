@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
  *     - value.title (string): The title of the AlertBox.
  *     - value.error (boolean): If true, the title and message will be displayed in red; otherwise, it will be normal.
  *     - value.message (string): The message in the AlertBox.
- *     - value.submitEventHandler - (string): This function will call if you click the "ok" button.
+ *     - value.submitEventHandler - (function): This function will call if you click the "ok" button.
  *   - setValue (function): A function that can modify the value.
  * @param {String} type - This type has only three possible values ("ok", "okcancel", "input")
  * @param {boolean} closeWhenOkay - If true, It automatically close the popup when you submit the data or click ok button.

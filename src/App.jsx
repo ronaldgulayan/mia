@@ -13,26 +13,34 @@ import ContactUs from "./pages/ContactUs";
 import TopButton from "./toolbox/TopButton";
 import AboutUsPage from "./pages/AboutUsPage";
 import {
+  AccountPopupContext,
   RegistrationAlertBoxContext,
   SearchingContext,
 } from "./context/CustomContext";
 import Loading from "./pages/Loading";
 import AlertBox from "./toolbox/AlertBox";
-import UserAccount from "./auth/UserAccount";
+import Account from "./private/Account";
 
 function App() {
   return (
     <div>
       <ContextWrapper>
-        {/* <SearchingContext.Provider value={{ value: isOpen, setValue: setIsOpen }}> */}
         <SigninPopup />
-        <TopButton />
+
+        {/* <TopButton /> */}
         <Loading label="Searching..." />
         <AlertBox Context={RegistrationAlertBoxContext} seconds={5} type="ok" />
+        <AlertBox
+          Context={AccountPopupContext}
+          type="okcancel"
+          seconds={5}
+          closeWhenOkay
+        />
         <Routes>
           <Route
             path="/"
             element={
+              // MAIN PAGE
               <div className="relative bg-light min-h-screen w-full flex flex-col">
                 <Header />
                 <CarouselPage />
@@ -46,7 +54,7 @@ function App() {
           <Route path="/registration" element={<RegistratingPage />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/about" element={<AboutUsPage />} />
-          <Route path="/account" element={<UserAccount />} />
+          <Route path="/account" element={<Account />} />
         </Routes>
         {/* </SearchingContext.Provider> */}
       </ContextWrapper>

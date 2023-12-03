@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
-import Button from "@mui/material/Button";
 import {
   RegistrationAlertBoxContext,
   SigninPopupContext,
@@ -9,6 +8,8 @@ import CustomLink from "../toolbox/CustomLink";
 import EmailField from "../toolbox/EmailField";
 import PasswordField from "../toolbox/PasswordField";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Button } from "semantic-ui-react";
 
 function SigninPopup() {
   const visibilityContext = useContext(SigninPopupContext);
@@ -18,6 +19,7 @@ function SigninPopup() {
   const [submitBtnDisabled, setSubmitBtnDisabled] = useState(true);
   const popupRef = useRef();
   const backgroundRef = useRef();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (email && password) {
@@ -63,8 +65,11 @@ function SigninPopup() {
     }));
   };
 
+  const navigate = useNavigate();
+
   const submitEventHandler = () => {
     const data = { email, password };
+    setIsLoading(true);
     axios
       .post("http://localhost:8081/mia/api/login", data)
       .then((value) => {
@@ -74,12 +79,16 @@ function SigninPopup() {
           // success
           popupMessage(value.data.title, value.data.message);
         }
+        setIsLoading(false);
       })
       .catch((err) => {
-        popupMessage(
-          "Server Error",
-          "The server is currently offline. Please try again later."
-        );
+        setIsLoading(false);
+        visibilityContext.setValue(false);
+        navigate("/account");
+        // popupMessage(
+        //   "Server Error",
+        //   "The server is currently offline. Please try again later."
+        // );
       });
   };
 
@@ -109,19 +118,21 @@ function SigninPopup() {
             required
           />
           <div className="w-full flex flex-col items-end gap-y-1">
-            <CustomLink>Forgot password</CustomLink>
+            <CustomLink tabIndex={3}>Forgot password</CustomLink>
             <PasswordField
+              tabIndex={2}
               value={password}
               setValue={setPassword}
               placeholder="Password"
             />
           </div>
           <Button
-            disabled={submitBtnDisabled}
-            fullWidth
-            variant="contained"
-            size="large"
+            color="blue"
             onClick={submitEventHandler}
+            size="large"
+            fluid
+            loading={isLoading}
+            disabled={submitBtnDisabled}
           >
             LOGIN
           </Button>

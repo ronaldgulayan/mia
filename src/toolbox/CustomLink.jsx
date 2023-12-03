@@ -6,10 +6,12 @@ function CustomLink({
   className = "",
   children,
   onClick = () => {},
+  tabIndex = 0,
 }) {
   if (!url) {
     return (
       <button
+        tabIndex={tabIndex}
         onClick={onClick}
         className={
           "text-main underline-offset-4 hover:underline w-fit " + className

@@ -4,6 +4,7 @@ import {
   RegistrationAlertBoxContext,
   SearchingContext,
   SigninPopupContext,
+  AccountPopupContext,
 } from "./CustomContext";
 
 function ContextWrapper({ children }) {
@@ -17,6 +18,13 @@ function ContextWrapper({ children }) {
       error: false,
       message: "Message...",
     });
+  const [accountAlertBoxContext, setAccountAlertBoxContext] = useState({
+    state: false,
+    title: "Title",
+    error: false,
+    message: "Message...",
+  });
+
   return (
     <>
       <FlightTypeContext.Provider
@@ -40,7 +48,14 @@ function ContextWrapper({ children }) {
                 setValue: setRegistrationAlertBoxContext,
               }}
             >
-              {children}
+              <AccountPopupContext.Provider
+                value={{
+                  value: accountAlertBoxContext,
+                  setValue: setAccountAlertBoxContext,
+                }}
+              >
+                {children}
+              </AccountPopupContext.Provider>
             </RegistrationAlertBoxContext.Provider>
           </SearchingContext.Provider>
         </SigninPopupContext.Provider>

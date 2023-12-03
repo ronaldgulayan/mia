@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Placeholder } from "semantic-ui-react";
 
 const Content = ({
   description = "description",
@@ -19,13 +20,26 @@ const Content = ({
             {btnLabel}
           </button>
         </div>
-        <img className="h-96 rounded-2xl shadow-md" src={img} />
+        <div className="w-[27rem] relative h-96 shadow-md rounded-md overflow-hidden">
+          <img
+            className="w-full h-full object-cover relative z-[5]"
+            src={img}
+          />
+          <Placeholder className="absolute z-[1] w-full h-full">
+            <Placeholder.Image />
+          </Placeholder>
+        </div>
       </>
     );
   }
   return (
     <>
-      <img className="h-96 rounded-2xl shadow-md" src={img} />
+      <div className="w-[27rem] h-96 relative shadow-md rounded-md overflow-hidden">
+        <img className="w-full h-full object-cover relative z-[5]" src={img} />
+        <Placeholder className="absolute z-[1] w-full h-full">
+          <Placeholder.Image />
+        </Placeholder>
+      </div>
       <div className="w-fit h-96 flex flex-col max-w-[30rem] justify-center px-5 gap-y-5">
         <div className="flex flex-col gap-y-1">
           <p className="font-bold text-4xl text-[#222]">{title}</p>

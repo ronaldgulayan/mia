@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Tooltip from "@mui/material/Tooltip";
 
-function Logo() {
+function Logo({ title }) {
   return (
     <Tooltip className="text-2xl" color="#f00" title="Back to homepage">
       <Link
@@ -14,9 +14,9 @@ function Logo() {
           draggable={false}
           src="/logos/main-logo.png"
         />
-        <h1 className="text-white font-montserrat-bold text-2xl">
-          Manila International Airport
-        </h1>
+        {title && (
+          <h1 className="text-white font-montserrat-bold text-2xl">{title}</h1>
+        )}
       </Link>
     </Tooltip>
   );

@@ -38,16 +38,6 @@ function SigninPopup() {
   }, [email, password]);
 
   useEffect(() => {
-    const clickOutside = (e) => {
-      if (backgroundRef.current && backgroundRef.current == e.target) {
-        visibilityContext.setValue(false);
-      }
-    };
-    document.addEventListener("click", clickOutside);
-    return () => document.removeEventListener("click", clickOutside);
-  }, []);
-
-  useEffect(() => {
     if (visibilityContext.value) {
       document.body.style.overflow = "hidden";
     } else {

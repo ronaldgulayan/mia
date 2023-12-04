@@ -54,6 +54,17 @@ function RegistratingPage() {
     }));
   };
 
+  const fixPhoneNumber = (phone) => {
+    if (phone.length === 12) {
+      const slice = phone.substring(2);
+      return "0" + slice;
+    }
+    if (phone.length === 13) {
+      return phone.substring(2);
+    }
+    return phone;
+  };
+
   const submitEventHandler = () => {
     let cont = 0;
     const datas = [
@@ -170,7 +181,7 @@ function RegistratingPage() {
         lastName: lastName,
         gender: gender,
         birthDate: birthDate,
-        phoneNumber: phone,
+        phoneNumber: fixPhoneNumber(phone),
         email: emailAddress,
         password: password,
       };

@@ -4,7 +4,6 @@ import {
   RegistrationAlertBoxContext,
   SigninPopupContext,
   AccountPopupContext,
-  ProfileContext,
   LoadingContext,
 } from "./CustomContext";
 
@@ -24,8 +23,6 @@ function ContextWrapper({ children }) {
     error: false,
     message: "Message...",
   });
-
-  const [profileVisibility, setProfileVisibility] = useState(false);
   const [loadingData, setLoadingData] = useState({
     state: false,
     label: "Loading...",
@@ -54,21 +51,14 @@ function ContextWrapper({ children }) {
                 setValue: setAccountAlertBoxContext,
               }}
             >
-              <ProfileContext.Provider
+              <LoadingContext.Provider
                 value={{
-                  value: profileVisibility,
-                  setValue: setProfileVisibility,
+                  value: loadingData,
+                  setValue: setLoadingData,
                 }}
               >
-                <LoadingContext.Provider
-                  value={{
-                    value: loadingData,
-                    setValue: setLoadingData,
-                  }}
-                >
-                  {children}
-                </LoadingContext.Provider>
-              </ProfileContext.Provider>
+                {children}
+              </LoadingContext.Provider>
             </AccountPopupContext.Provider>
           </RegistrationAlertBoxContext.Provider>
         </SigninPopupContext.Provider>

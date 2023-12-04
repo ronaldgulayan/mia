@@ -8,8 +8,10 @@ import {
 import ReturnOneway from "../components/ReturnOneway";
 import MultiCity from "../components/MultiCity";
 import CustomLink from "../toolbox/CustomLink";
+import useCookies from "../hooks/useCookies";
 
 function BookingPage() {
+  const { getCookie } = useCookies("token");
   const [radiosValue, setRadiosValue] = useState([
     {
       label: "Return",
@@ -63,9 +65,11 @@ function BookingPage() {
               );
             })}
           </div>
-          <CustomLink onClick={() => signinPopupContext.setValue(true)}>
-            Sign In Account First
-          </CustomLink>
+          {!getCookie() && (
+            <CustomLink onClick={() => signinPopupContext.setValue(true)}>
+              Sign In Account First
+            </CustomLink>
+          )}
         </div>
         {flightTypeContext.value === "multi_city" ? (
           <MultiCity />

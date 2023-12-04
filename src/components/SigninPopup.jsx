@@ -12,6 +12,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import useCookies from "../hooks/useCookies";
+import { getGlobalUrl } from "../functions/methods";
 
 function SigninPopup() {
   const visibilityContext = useContext(SigninPopupContext);
@@ -68,7 +69,7 @@ function SigninPopup() {
     const data = { email, password };
     setIsLoading(true);
     axios
-      .post("http://localhost:8081/mia/api/login", data)
+      .post(getGlobalUrl() + "/mia/api/login", data)
       .then((value) => {
         if (value.data.status === 500) {
           popupMessage(value.data.title, value.data.message);
@@ -93,7 +94,7 @@ function SigninPopup() {
         setIsLoading(false);
       })
       .catch((err) => {
-        // console.log(err);
+        // ERROR
         setIsLoading(false);
         popupMessage(
           "Server Error",

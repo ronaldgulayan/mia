@@ -4,10 +4,14 @@ import Logo from "../toolbox/Logo";
 import { Link } from "react-router-dom";
 import { SigninPopupContext } from "../context/CustomContext";
 import CustomLink from "../toolbox/CustomLink";
+import useCookies from "../hooks/useCookies";
+import { IoPersonCircleSharp } from "react-icons/io5";
+import { Tooltip } from "@mui/material";
 
 function Header() {
   const signinPopupContext = useContext(SigninPopupContext);
   const [isColored, setIsColored] = useState(false);
+  const { getCookie } = useCookies("token");
 
   const observer = new IntersectionObserver(
     (entries, observer) => {
@@ -51,12 +55,22 @@ function Header() {
           <CustomLink url="/about" className="text-white hover:text-white">
             ABOUT US
           </CustomLink>
-          <CustomLink
-            className="text-white hover:text-white"
-            onClick={() => signinPopupContext.setValue(true)}
-          >
-            SIGN IN
-          </CustomLink>
+          {getCookie() ? (
+            <Tooltip title="Account" arrow>
+              <Link to="/account" draggable={false}>
+                <span>
+                  <IoPersonCircleSharp className="w-10 h-10 text-white cursor-pointer" />
+                </span>
+              </Link>
+            </Tooltip>
+          ) : (
+            <CustomLink
+              className="text-white hover:text-white"
+              onClick={() => signinPopupContext.setValue(true)}
+            >
+              SIGN IN
+            </CustomLink>
+          )}
         </ul>
       </div>
     </div>

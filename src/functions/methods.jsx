@@ -41,4 +41,10 @@ function getAge(month, day, year) {
   return age;
 }
 
-export { convertMonthToNumber, getAge };
+const getGlobalUrl = () => {
+  const PORT = 8081;
+  const HOST = "localhost";
+  return `http://${HOST}:${PORT}`;
+};
+
+export { convertMonthToNumber, getAge, getGlobalUrl };

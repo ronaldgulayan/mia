@@ -27,7 +27,6 @@ function App() {
     <div>
       <ContextWrapper>
         <SigninPopup />
-        <ProfilePopup />
         {/* <TopButton /> */}
         <Loading label="Searching..." />
         <AlertBox Context={RegistrationAlertBoxContext} seconds={5} type="ok" />

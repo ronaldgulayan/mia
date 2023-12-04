@@ -5,7 +5,6 @@ const SigninPopupContext = createContext();
 const RegistrationAlertBoxContext = createContext();
 const AccountPopupContext = createContext();
 const AccountDrawerContext = createContext();
-const ProfileContext = createContext();
 const LoadingContext = createContext();
 
 export {
@@ -14,6 +13,5 @@ export {
   RegistrationAlertBoxContext,
   AccountPopupContext,
   AccountDrawerContext,
-  ProfileContext,
   LoadingContext,
 };

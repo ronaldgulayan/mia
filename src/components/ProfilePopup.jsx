@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import CustomTextField from "../toolbox/CustomTextField";
 import TextToField from "../toolbox/TextToField";
 import { Button } from "semantic-ui-react";
-import {
-  ProfileContext,
-  RegistrationAlertBoxContext,
-} from "../context/CustomContext";
+import { RegistrationAlertBoxContext } from "../context/CustomContext";
 import { convertMonthToNumber, getAge } from "../functions/methods";
+import {
+  PrivateContext,
+  PrivateProfileContext,
+} from "../private/private_context/PrivateContext";
 
 const NotField = ({ placeholder = "", value = "" }) => (
   <div className="w-full flex flex-col mb-2">
@@ -18,12 +19,13 @@ const NotField = ({ placeholder = "", value = "" }) => (
 );
 
 function ProfilePopup() {
-  const visibilityContext = useContext(ProfileContext);
+  const visibilityContext = useContext(PrivateProfileContext);
+  const privateContext = useContext(PrivateContext);
 
-  const [firstName, setFirstName] = useState("Ronald");
-  const [lastName, setLastName] = useState("Gulayan");
-  const [phone, setPhone] = useState("09384535499");
-  const [password, setPassword] = useState("ronald02");
+  const [firstName, setFirstName] = useState(privateContext.value.first_name);
+  const [lastName, setLastName] = useState(privateContext.value.last_name);
+  const [phone, setPhone] = useState(privateContext.value.phone_number);
+  const [password, setPassword] = useState(privateContext.value.password);
   const popupContext = useContext(RegistrationAlertBoxContext);
 
   const [edit, setEdit] = useState(false);
@@ -79,6 +81,13 @@ function ProfilePopup() {
     setEdit((value) => !value);
   };
 
+  const stringDateToNumber = (date) => {
+    const month = date.split(" ")[0];
+    const day = Number.parseInt(date.split(" ")[1].replace(",", ""));
+    const year = Number.parseInt(date.split(", ")[1]);
+    return { month, day, year };
+  };
+
   return (
     <div
       data-visibility={visibilityContext.value}
@@ -116,11 +125,19 @@ function ProfilePopup() {
             <NotField placeholder="Birth date" value="July 12, 2002" />
             <NotField
               placeholder="Age"
-              value={getAge(convertMonthToNumber("july"), 12, 2002)}
+              value={(() => {
+                const { month, day, year } = stringDateToNumber(
+                  privateContext.value.birth_date
+                );
+                return getAge(convertMonthToNumber(month), day, year);
+              })()}
             />
           </div>
           <div className="grid grid-cols-2 gap-x-2 ">
-            <NotField placeholder="Gender" value="Male" />
+            <NotField
+              placeholder="Gender"
+              value={privateContext.value.gender}
+            />
             <TextToField
               placeholder="Phone number"
               value={phone}
@@ -129,7 +146,10 @@ function ProfilePopup() {
             />
           </div>
           <div className="grid grid-cols-2 gap-x-2 ">
-            <NotField placeholder="Email address" value="ron@gmail.com" />
+            <NotField
+              placeholder="Email address"
+              value={privateContext.value.email}
+            />
             <TextToField
               placeholder="Password"
               value={password}

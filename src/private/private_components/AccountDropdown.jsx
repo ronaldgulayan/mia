@@ -3,11 +3,13 @@ import { IoPersonCircle, IoArrowBack } from "react-icons/io5";
 import { HiChevronDown } from "react-icons/hi";
 import { IoMdPerson } from "react-icons/io";
 import { MdLogout } from "react-icons/md";
-import {
-  AccountPopupContext,
-  ProfileContext,
-} from "../../context/CustomContext";
+import { AccountPopupContext } from "../../context/CustomContext";
 import { useNavigate } from "react-router-dom";
+import useCookies from "../../hooks/useCookies";
+import {
+  PrivateContext,
+  PrivateProfileContext,
+} from "../private_context/PrivateContext";
 
 function AccountDropdown() {
   const navigate = useNavigate();
@@ -15,10 +17,13 @@ function AccountDropdown() {
   const dropdownRef = useRef();
   const btnRef = useRef();
   const accountPopupContext = useContext(AccountPopupContext);
-  const profileVisibilityContext = useContext(ProfileContext);
+  const profileVisibilityContext = useContext(PrivateProfileContext);
+  const { removeCookie } = useCookies("token");
+  const privateContext = useContext(PrivateContext);
 
   const okEventHandler = (type) => {
     if (type === "ok") {
+      removeCookie();
       navigate("/");
     }
   };
@@ -38,6 +43,9 @@ function AccountDropdown() {
     return () => document.removeEventListener("click", clickOutside);
   }, []);
 
+  const fullName =
+    privateContext.value.first_name + " " + privateContext.value.last_name;
+
   return (
     <div
       ref={btnRef}
@@ -47,7 +55,7 @@ function AccountDropdown() {
     >
       <div className="flex items-center gap-x-2">
         <IoPersonCircle className="h-8 w-8" />
-        <span>Ronald Gulayan</span>
+        <span>{fullName}</span>
       </div>
       <HiChevronDown
         data-open={isOpen}

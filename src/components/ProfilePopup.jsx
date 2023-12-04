@@ -6,6 +6,7 @@ import {
   ProfileContext,
   RegistrationAlertBoxContext,
 } from "../context/CustomContext";
+import { convertMonthToNumber, getAge } from "../functions/methods";
 
 const NotField = ({ placeholder = "", value = "" }) => (
   <div className="w-full flex flex-col mb-2">
@@ -112,10 +113,14 @@ function ProfilePopup() {
             />
           </div>
           <div className="grid grid-cols-2 gap-x-2 ">
-            <NotField placeholder="Gender" value="Male" />
             <NotField placeholder="Birth date" value="July 12, 2002" />
+            <NotField
+              placeholder="Age"
+              value={getAge(convertMonthToNumber("july"), 12, 2002)}
+            />
           </div>
           <div className="grid grid-cols-2 gap-x-2 ">
+            <NotField placeholder="Gender" value="Male" />
             <TextToField
               placeholder="Phone number"
               value={phone}

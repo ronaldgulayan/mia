@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Title from "../private_components/Title";
 import { Button, Message } from "semantic-ui-react";
 import { TbDotsVertical } from "react-icons/tb";
 import Alert from "@mui/material/Alert";
+import Tooltip from "@mui/material/Tooltip";
+import { FcPaid } from "react-icons/fc";
 
 const MultiCityFlight = ({
   flightNumber = 1,
@@ -48,9 +50,16 @@ const MultiCityFlight = ({
 const ReturnItem = () => {
   return (
     <div className="flex flex-col w-full p-5 border-2 gap-y-2 border-slate-400 rounded-md">
-      <h1 className="text-xl font-montserrat-bold-italic text-[#333]">
-        Return
-      </h1>
+      <div className="w-full flex items-center justify-between">
+        <p className="text-xl font-montserrat-bold-italic text-[#333]">
+          Return
+        </p>
+        <Tooltip title="Paid" arrow>
+          <span>
+            <FcPaid className="w-8 h-8" />
+          </span>
+        </Tooltip>
+      </div>
       <hr />
       <table className="w-full overflow-hidden rounded-md outline outline-1 outline-slate-300 mt-2">
         <thead>
@@ -109,9 +118,16 @@ const ReturnItem = () => {
 const OneWayItem = () => {
   return (
     <div className="flex flex-col w-full p-5 border-2 gap-y-2 border-slate-400 rounded-md">
-      <h1 className="text-xl font-montserrat-bold-italic text-[#333]">
-        One Way
-      </h1>
+      <div className="w-full flex items-center justify-between">
+        <p className="text-xl font-montserrat-bold-italic text-[#333]">
+          One Way
+        </p>
+        <Tooltip title="Paid" arrow>
+          <span>
+            <FcPaid className="w-8 h-8" />
+          </span>
+        </Tooltip>
+      </div>
       <hr />
       <table className="w-full overflow-hidden rounded-md outline outline-1 outline-slate-300 mt-2">
         <thead>
@@ -170,9 +186,16 @@ const MultiCityItem = () => {
 
   return (
     <div className="flex flex-col w-full p-5 border-2 gap-y-2 border-slate-400 rounded-md">
-      <h1 className="text-xl font-montserrat-bold-italic text-[#333]">
-        Multi City
-      </h1>
+      <div className="w-full flex items-center justify-between">
+        <p className="text-xl font-montserrat-bold-italic text-[#333]">
+          Multi City
+        </p>
+        <Tooltip title="Paid" arrow>
+          <span>
+            <FcPaid className="w-8 h-8" />
+          </span>
+        </Tooltip>
+      </div>
       <hr />
       <MultiCityFlight
         flightNumber={1}
@@ -238,6 +261,18 @@ const Item = ({ title, value, className }) => (
 );
 
 function Dashboard() {
+  const [flights, setFlights] = useState([
+    {
+      type: "return",
+      from: "Cavite",
+      to: "Manila",
+      departure: "",
+      return: "",
+      paid: "",
+      date: "",
+    },
+  ]);
+
   return (
     <>
       <Title label="Dashboard" />

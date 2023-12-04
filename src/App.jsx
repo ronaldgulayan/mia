@@ -15,12 +15,12 @@ import AboutUsPage from "./pages/AboutUsPage";
 import {
   AccountPopupContext,
   RegistrationAlertBoxContext,
-  SearchingContext,
 } from "./context/CustomContext";
 import Loading from "./pages/Loading";
 import AlertBox from "./toolbox/AlertBox";
 import Account from "./private/Account";
 import ProfilePopup from "./components/ProfilePopup";
+import Auth from "./auth/Auth";
 
 function App() {
   return (
@@ -55,7 +55,9 @@ function App() {
           <Route path="/registration" element={<RegistratingPage />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/about" element={<AboutUsPage />} />
-          <Route path="/account" element={<Account />} />
+          <Route element={<Auth />}>
+            <Route path="/account" element={<Account />} />
+          </Route>
         </Routes>
         {/* </SearchingContext.Provider> */}
       </ContextWrapper>

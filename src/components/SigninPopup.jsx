@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import {
+  LoadingContext,
   RegistrationAlertBoxContext,
   SigninPopupContext,
 } from "../context/CustomContext";
@@ -10,6 +11,7 @@ import PasswordField from "../toolbox/PasswordField";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button } from "semantic-ui-react";
+import useCookies from "../hooks/useCookies";
 
 function SigninPopup() {
   const visibilityContext = useContext(SigninPopupContext);
@@ -20,6 +22,9 @@ function SigninPopup() {
   const popupRef = useRef();
   const backgroundRef = useRef();
   const [isLoading, setIsLoading] = useState(false);
+  const { setCookie } = useCookies("token");
+  const navigate = useNavigate();
+  const loadingContext = useContext(LoadingContext);
 
   useEffect(() => {
     if (email && password) {
@@ -55,9 +60,11 @@ function SigninPopup() {
     }));
   };
 
-  const navigate = useNavigate();
+  const submitEventHandler = (e) => {
+    e.preventDefault();
 
-  const submitEventHandler = () => {
+    if (submitBtnDisabled || isLoading) return;
+
     const data = { email, password };
     setIsLoading(true);
     axios
@@ -67,18 +74,31 @@ function SigninPopup() {
           popupMessage(value.data.title, value.data.message);
         } else if (value.data.status === 200) {
           // success
-          popupMessage(value.data.title, value.data.message);
+          setCookie(value.data.token);
+          visibilityContext.setValue(false);
+          loadingContext.setValue((curr) => ({
+            state: true,
+            label: "Redirecting...",
+          }));
+
+          window.setTimeout(() => {
+            loadingContext.setValue((curr) => ({
+              state: false,
+              label: "Success",
+            }));
+
+            navigate("/account");
+          }, 3000);
         }
         setIsLoading(false);
       })
       .catch((err) => {
+        // console.log(err);
         setIsLoading(false);
-        visibilityContext.setValue(false);
-        navigate("/account");
-        // popupMessage(
-        //   "Server Error",
-        //   "The server is currently offline. Please try again later."
-        // );
+        popupMessage(
+          "Server Error",
+          "The server is currently offline. Please try again later."
+        );
       });
   };
 
@@ -95,11 +115,20 @@ function SigninPopup() {
       >
         <div className="w-full h-16 border-b border-b-slate-300 flex justify-between items-center px-5">
           <p className="font-bold text-black text-xl">Signin</p>
-          <button onClick={() => visibilityContext.setValue(false)}>
+          <button
+            onClick={() => {
+              setEmail("");
+              setPassword("");
+              visibilityContext.setValue(false);
+            }}
+          >
             <IoMdClose className="w-6 h-6 text-black opacity-70 hover:opacity-100 duration-100" />
           </button>
         </div>
-        <div className="w-full h-fit p-5 flex flex-col gap-y-5">
+        <form
+          onSubmit={submitEventHandler}
+          className="w-full h-fit p-5 flex flex-col gap-y-5"
+        >
           <EmailField
             tabIndex={1}
             placeholder="Email address"
@@ -118,11 +147,11 @@ function SigninPopup() {
           </div>
           <Button
             color="blue"
-            onClick={submitEventHandler}
             size="large"
+            type="submit"
             fluid
             loading={isLoading}
-            disabled={submitBtnDisabled}
+            disabled={submitBtnDisabled || isLoading}
           >
             LOGIN
           </Button>
@@ -137,7 +166,7 @@ function SigninPopup() {
               </CustomLink>
             </p>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

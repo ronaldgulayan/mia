@@ -2,16 +2,15 @@ import React, { useState } from "react";
 import {
   FlightTypeContext,
   RegistrationAlertBoxContext,
-  SearchingContext,
   SigninPopupContext,
   AccountPopupContext,
   ProfileContext,
+  LoadingContext,
 } from "./CustomContext";
 
 function ContextWrapper({ children }) {
   const [flightType, setFlightType] = useState("return");
   const [visibleSigninPopup, setVisibleSigninPopup] = useState(false);
-  const [isSearching, setIsSearching] = useState(false);
   const [registrationAlertBoxContext, setRegistrationAlertBoxContext] =
     useState({
       state: false,
@@ -27,6 +26,10 @@ function ContextWrapper({ children }) {
   });
 
   const [profileVisibility, setProfileVisibility] = useState(false);
+  const [loadingData, setLoadingData] = useState({
+    state: false,
+    label: "Loading...",
+  });
 
   return (
     <>
@@ -39,35 +42,35 @@ function ContextWrapper({ children }) {
             setValue: setVisibleSigninPopup,
           }}
         >
-          <SearchingContext.Provider
+          <RegistrationAlertBoxContext.Provider
             value={{
-              value: isSearching,
-              setValue: setIsSearching,
+              value: registrationAlertBoxContext,
+              setValue: setRegistrationAlertBoxContext,
             }}
           >
-            <RegistrationAlertBoxContext.Provider
+            <AccountPopupContext.Provider
               value={{
-                value: registrationAlertBoxContext,
-                setValue: setRegistrationAlertBoxContext,
+                value: accountAlertBoxContext,
+                setValue: setAccountAlertBoxContext,
               }}
             >
-              <AccountPopupContext.Provider
+              <ProfileContext.Provider
                 value={{
-                  value: accountAlertBoxContext,
-                  setValue: setAccountAlertBoxContext,
+                  value: profileVisibility,
+                  setValue: setProfileVisibility,
                 }}
               >
-                <ProfileContext.Provider
+                <LoadingContext.Provider
                   value={{
-                    value: profileVisibility,
-                    setValue: setProfileVisibility,
+                    value: loadingData,
+                    setValue: setLoadingData,
                   }}
                 >
                   {children}
-                </ProfileContext.Provider>
-              </AccountPopupContext.Provider>
-            </RegistrationAlertBoxContext.Provider>
-          </SearchingContext.Provider>
+                </LoadingContext.Provider>
+              </ProfileContext.Provider>
+            </AccountPopupContext.Provider>
+          </RegistrationAlertBoxContext.Provider>
         </SigninPopupContext.Provider>
       </FlightTypeContext.Provider>
     </>

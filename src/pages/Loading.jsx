@@ -1,23 +1,24 @@
 import React, { useContext } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import { SearchingContext } from "../context/CustomContext";
+import { LoadingContext } from "../context/CustomContext";
 
 function Loading({ label = "Loading..." }) {
-  const searchingContext = useContext(SearchingContext);
-
+  const loadingContext = useContext(LoadingContext);
   return (
     <Backdrop
       sx={{
         color: "#fff",
         zIndex: (theme) => theme.zIndex.modal + 1,
       }}
-      open={searchingContext.value}
-      onClick={() => searchingContext.setValue(false)}
+      open={loadingContext.value.state}
+      onClick={() => {
+        loadingContext.setValue((curr) => ({ ...curr, state: false }));
+      }}
       className="flex flex-col justify-center gap-y-2"
     >
       <CircularProgress color="inherit" />
-      <span>{label}</span>
+      <span>{loadingContext.value.label}</span>
     </Backdrop>
   );
 }

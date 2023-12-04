@@ -3,7 +3,7 @@ import DestinationSelection from "./DestinationSelection";
 import PassengerSelection from "./PassengerSelection";
 import DatePickerSelection from "./DatePickerSelection";
 import ClassSelection from "./ClassSelection";
-import { FlightTypeContext, SearchingContext } from "../context/CustomContext";
+import { FlightTypeContext, LoadingContext } from "../context/CustomContext";
 import { places } from "../assets/places.json";
 
 function ReturnOneway() {
@@ -15,7 +15,7 @@ function ReturnOneway() {
   const [classValue, setClassValue] = useState(null);
   const [passengerValue, setPassengerValue] = useState();
   const flightTypeContext = useContext(FlightTypeContext);
-  const searchingContext = useContext(SearchingContext);
+  const loadingContext = useContext(LoadingContext);
 
   const searchFlightEvent = () => {
     const type = flightTypeContext.value;
@@ -25,7 +25,10 @@ function ReturnOneway() {
       case "one_way":
         break;
     }
-    searchingContext.setValue(true);
+    loadingContext.setValue((curr) => ({
+      state: true,
+      label: "Loading...",
+    }));
   };
 
   return (

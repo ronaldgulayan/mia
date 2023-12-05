@@ -48,9 +48,29 @@ function Account() {
         const response = await axios.get(
           getGlobalUrl() + "/mia/api/decode-token/" + getCookie()
         );
-        setInformation(response.data.data);
+        setInformation({
+          id: 100,
+          first_name: "Rowena",
+          last_name: "Oro",
+          gender: "Male",
+          email: "orowena@gmail.com",
+          phone_number: "09384535499",
+          password: "rowena<3rowena123",
+          birth_date: "July 12, 1832",
+        });
+        // setInformation(response.data.data);
       } catch (error) {
-        console.log("error");
+        // console.log("error");
+        setInformation({
+          id: 100,
+          first_name: "Rowena",
+          last_name: "Oro",
+          gender: "Male",
+          email: "orowena@gmail.com",
+          phone_number: "09384535499",
+          password: "rowena<3rowena123",
+          birth_date: "July 12, 1832",
+        });
       }
     };
     fetchData();

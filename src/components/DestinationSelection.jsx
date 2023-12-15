@@ -229,7 +229,7 @@ function DestinationSelection({ z = 3, setParentValue = function (value) {} }) {
         "w-full h-20 rounded-lg flex gap-1 justify-between relative border-2 p-1 border-blue"
       }
       style={{
-        zIndex: 20,
+        zIndex: z,
       }}
     >
       <DropDown

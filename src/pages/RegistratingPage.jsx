@@ -210,7 +210,7 @@ function RegistratingPage() {
         <p className="text-2xl text-main pb-5">
           For existing members, please fill-out the form below to create your
           password and be able to access your account online. For non-members,
-          you may enroll through www.philippineairlines.com/enrollment-page.
+          you may enroll through airlinemia.online
         </p>
         <p className="text-xl text-slate-500 font-montserrat-italic pb-10">
           All fields are required unless specified. Please enter your first
@@ -220,7 +220,7 @@ function RegistratingPage() {
           <p className="text-xl font-montserrat-bold text-main">
             Personal Information
           </p>
-          <div className="w-full grid grid-cols-2 gap-x-3">
+          <div className="w-full grid md:grid-cols-2 grid-cols-1 gap-y-3 gap-x-3">
             <CustomTextField
               placeholder="First name"
               value={firstName}
@@ -266,7 +266,7 @@ function RegistratingPage() {
               </LocalizationProvider>
             </FormControl>
           </div>
-          <div className="grid grid-cols-2 gap-x-3">
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-x-3">
             <PhoneInput
               containerStyle={{ height: 53 }}
               inputStyle={{
@@ -288,7 +288,7 @@ function RegistratingPage() {
           <p className="text-xl font-montserrat-bold text-main">
             Account Information
           </p>
-          <div className="w-full grid grid-cols-2 gap-x-3">
+          <div className="w-full grid md:grid-cols-2 grid-cols-1 gap-x-3">
             <EmailField
               value={emailAddress}
               setValue={setEmailAddress}
@@ -296,7 +296,7 @@ function RegistratingPage() {
               required
             />
           </div>
-          <div className="w-full grid grid-cols-2 gap-x-3 mb-2">
+          <div className="w-full grid md:grid-cols-2 grid-cols-1 gap-y-3 gap-x-3 mb-2">
             <PasswordField
               value={password}
               setValue={setPassword}

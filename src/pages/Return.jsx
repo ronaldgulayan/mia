@@ -24,14 +24,14 @@ const List = ({ title, description }) => {
 const Con = ({ date = "", data }) => {
   if (!data) {
     return (
-      <Placeholder className="col-span-3" fluid>
+      <Placeholder className="md:col-span-3 col-span-1" fluid>
         <Placeholder.Image />
       </Placeholder>
     );
   }
 
   return (
-    <div className="flex flex-col p-5 gap-y-2 col-span-3">
+    <div className="flex flex-col p-5 bg-[#ccc] rounded-md gap-y-2 md:col-span-3 col-span-1">
       <div className="w-full flex justify-between mb-2 items-center border-b border-b-slate-400 pb-1">
         <p className="text-lg font-montserrat-bold">From ({date})</p>
         {data.code && <Flag name={data.code.toLowerCase()} />}
@@ -160,9 +160,9 @@ function Return() {
   };
 
   return (
-    <div className="w-full h-screen bg-light p-pad flex flex-col gap-y-10 overflow-y-scroll">
-      <header className="w-full flex items-center justify-between">
-        <span className="text-3xl flex items-center gap-x-3 font-montserrat-black text-green-500 uppercase">
+    <div className="w-full h-screen bg-light md:p-pad p-6 flex flex-col gap-y-10 overflow-y-scroll">
+      <header className="w-full flex md:flex-row flex-col items-center gap-y-2 justify-between">
+        <span className="md:text-3xl text-2xl flex items-center gap-x-3 font-montserrat-black text-green-500 uppercase">
           available flight found <FaCircleCheck className="w-7 h-7" />
         </span>
         <Button
@@ -176,7 +176,7 @@ function Return() {
         />
       </header>
       <div className="w-full">
-        <div className="w-full grid grid-cols-7">
+        <div className="w-full grid md:grid-cols-7 md:gap-y-0 gap-y-5 grid-cols-1">
           <Con date={bookData.depart} data={fromData} />
           <div className="flex items-center col-span-1 flex-col">
             <p className="text-base font-montserrat-bold">Return flight</p>
@@ -187,7 +187,7 @@ function Return() {
           <Con date={bookData.return} data={toData} />
         </div>
       </div>
-      <div className="flex w-full justify-between">
+      <div className="flex w-full justify-between md:flex-row flex-col">
         <div className="flex flex-col gap-y-1">
           <div
             onClick={() => setPassengerIsOpen(!passengerIsOpen)}

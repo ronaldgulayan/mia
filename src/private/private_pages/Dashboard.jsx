@@ -5,11 +5,28 @@ import { TbDotsVertical } from "react-icons/tb";
 import Alert from "@mui/material/Alert";
 import Tooltip from "@mui/material/Tooltip";
 import { FcPaid } from "react-icons/fc";
-import { AccountInformationContext } from "../../context/CustomContext";
+import {
+  AccountInformationContext,
+  AccountPopupContext,
+} from "../../context/CustomContext";
 import { CgSpinnerTwo } from "react-icons/cg";
 import axios from "axios";
 import { getGlobalUrl } from "../../functions/methods";
 import { HiChevronDown } from "react-icons/hi";
+
+const cancelFlightEventHandler = (response, book_id) => {
+  if (response === "ok") {
+    axios
+      .post(getGlobalUrl("/mia/api/cancel-flight/" + book_id))
+      .then((value) => {
+        if (value.data.status === 500) {
+          window.alert("Something error.");
+        } else if (value.data.status === 200) {
+          window.location.reload();
+        }
+      });
+  }
+};
 
 const MultiCityFlight = ({
   flightNumber = 1,
@@ -57,6 +74,7 @@ const OneWayItem = ({ ...infos }) => {
   const [toPlace, setToPlace] = useState();
   const [flightInfo, setFlightInfo] = useState();
   const [detailsIsOpen, setDetailsIsOpen] = useState(false);
+  const alertBoxContext = useContext(AccountPopupContext);
 
   useEffect(() => {
     const fetch = async () => {
@@ -102,6 +120,24 @@ const OneWayItem = ({ ...infos }) => {
       },
     ];
     return passengers.filter((value) => value.value > 0);
+  };
+
+  const getTicketEvent = () => {
+    // get ticket
+  };
+
+  const cancelFlightEvent = () => {
+    const submitTemp = (response) => {
+      cancelFlightEventHandler(response, infos.id);
+    };
+    alertBoxContext.setValue((curr) => ({
+      ...curr,
+      state: true,
+      title: "Confirmation",
+      message: `Are you sure you want to cancel this flight '${infos.id}'?`,
+      error: true,
+      submitEventHandler: submitTemp,
+    }));
   };
 
   if (!fromPlace || !toPlace) {
@@ -195,9 +231,9 @@ const OneWayItem = ({ ...infos }) => {
           seamless and hassle-free process.
         </Alert>
       </div>
-      <div className="w-full flex justify-end md:flex-row flex-col gap-y-2">
+      <div className="w-full flex justify-end md:flex-row flex-col gap-2">
         {infos.status === "done" ? (
-          <Button fluid color="green">
+          <Button onClick={getTicketEvent} fluid color="green">
             Get Ticket
           </Button>
         ) : (
@@ -209,7 +245,9 @@ const OneWayItem = ({ ...infos }) => {
             </span>
           </Tooltip>
         )}
-        <Button color="red">Cancel Flight</Button>
+        <Button onClick={cancelFlightEvent} color="red">
+          Cancel Flight
+        </Button>
       </div>
     </div>
   );
@@ -220,6 +258,7 @@ const ReturnItem = ({ ...infos }) => {
   const [toPlace, setToPlace] = useState();
   const [flightInfo, setFlightInfo] = useState();
   const [detailsIsOpen, setDetailsIsOpen] = useState(false);
+  const alertBoxContext = useContext(AccountPopupContext);
 
   useEffect(() => {
     const fetch = async () => {
@@ -244,6 +283,24 @@ const ReturnItem = ({ ...infos }) => {
     };
     fetch();
   }, []);
+
+  const getTicketEvent = () => {
+    // get ticket
+  };
+
+  const cancelFlightEvent = () => {
+    const submitTemp = (response) => {
+      cancelFlightEventHandler(response, infos.id);
+    };
+    alertBoxContext.setValue((curr) => ({
+      ...curr,
+      state: true,
+      title: "Confirmation",
+      message: `Are you sure you want to cancel this flight '${infos.id}'?`,
+      error: true,
+      submitEventHandler: submitTemp,
+    }));
+  };
 
   const getPassengers = () => {
     const passengers = [
@@ -360,9 +417,9 @@ const ReturnItem = ({ ...infos }) => {
           seamless and hassle-free process.
         </Alert>
       </div>
-      <div className="w-full flex justify-end md:flex-row gap-y-2 flex-col">
+      <div className="w-full flex justify-end md:flex-row gap-2 flex-col">
         {infos.status === "done" ? (
-          <Button color="green" fluid>
+          <Button onClick={getTicketEvent} color="green" fluid>
             Get Ticket
           </Button>
         ) : (
@@ -374,7 +431,9 @@ const ReturnItem = ({ ...infos }) => {
             </span>
           </Tooltip>
         )}
-        <Button color="red">Cancel Flight</Button>
+        <Button onClick={cancelFlightEvent} color="red">
+          Cancel Flight
+        </Button>
       </div>
     </div>
   );
@@ -440,14 +499,11 @@ const MultiCityItem = () => {
   );
 };
 
-const Item = ({ title, value, className }) => (
+const Item = ({ title = "", value, className }) => (
   <div className={"flex h-fit bg-main p-10 text-white rounded-md " + className}>
     <div className="flex w-[calc(100%-8rem)] h-fit flex-col gap-y-2">
       <Tooltip title={title} arrow>
-        <p
-          title={title}
-          className="text-base font-montserrat-italic uppercase truncate"
-        >
+        <p className="text-base font-montserrat-italic uppercase truncate">
           {title}
         </p>
       </Tooltip>

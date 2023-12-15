@@ -7,7 +7,7 @@ const fixDate = (date) => {
   return `${fixMonth(date.$M + 1)} ${date.$D}, ${date.$y}`;
 };
 
-function DepartureSelection({ setParentValue = (value) => {} }) {
+function DepartureSelection({ setParentValue = (value) => {}, z = 3 }) {
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState("");
   const btnRef = useRef();
@@ -44,7 +44,10 @@ function DepartureSelection({ setParentValue = (value) => {} }) {
   }, []);
 
   return (
-    <div className="w-full h-20 select-none rounded-lg flex flex-col relative border-2 border-blue items-center cursor-pointer p-1">
+    <div
+      style={{ zIndex: z }}
+      className="w-full h-20 select-none rounded-lg flex flex-col relative border-2 border-blue items-center cursor-pointer p-1"
+    >
       <div className="w-full h-full relative z-[2]">
         <div
           onClick={() => setIsFocus(!isFocus)}
@@ -69,7 +72,7 @@ function DepartureSelection({ setParentValue = (value) => {} }) {
       <div
         ref={dropdownRef}
         data-open={isFocus}
-        className="w-[95%] data-[open=true]:block hidden h-fit bg-white absolute top-[90%] border border-slate-200 shadow-md z-[3] rounded-md"
+        className="w-fit data-[open=true]:block hidden h-fit bg-white absolute top-[90%] border border-slate-200 shadow-md z-[3] rounded-md"
       >
         <Calendar value={calendarValue} setValue={setCalendarValue} />
       </div>

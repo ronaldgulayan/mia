@@ -61,19 +61,24 @@ function MultiCity() {
   return (
     <div className="w-full h-fit flex flex-col gap-y-5">
       {flights.map((data, i) => (
-        <div key={data.key} className="flex flex-col gap-y-1 relative">
+        <div
+          style={{ zIndex: flights.length + 2 - i }}
+          key={data.key}
+          className="flex flex-col gap-y-1 relative"
+        >
           <div className="w-full flex justify-between items-center">
             <span className="font-poppins text-xl">Flight {i + 1}</span>
           </div>
           <div className="w-full h-fit flex items-center gap-x-2">
-            <div className="w-full grid grid-cols-2 gap-x-2">
+            <div className="w-full grid md:grid-cols-2 grid-cols-1 gap-y-2 gap-x-2">
               <DestinationSelection
-                z={flights.length + 2 - i}
+                z={flights.length + 3 - i}
                 setParentValue={([from, to]) =>
                   setDestinationValue(from, to, data.key)
                 }
               />
               <DepartureSelection
+                // z={flights.length + 2 - i}
                 setParentValue={(value) => setDateValue(value, data.key)}
               />
             </div>
@@ -92,11 +97,11 @@ function MultiCity() {
           </div>
         </div>
       ))}
-      <div className="w-full grid grid-cols-2 gap-x-2">
+      <div className="w-full relative z-[2] grid md:grid-cols-2 grid-cols-1 gap-y-2 gap-x-2">
         <PassengerSelection />
         <ClassSelection />
       </div>
-      <div className="w-full flex justify-between">
+      <div className="w-full md:flex grid grid-cols-2 gap-x-2 justify-between">
         <button
           onClick={() =>
             setFlights((curr) => {

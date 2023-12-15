@@ -4,7 +4,7 @@ import Tooltip from "@mui/material/Tooltip";
 
 function Logo({ title }) {
   return (
-    <Tooltip className="text-2xl" color="#f00" title="Back to homepage">
+    <Tooltip color="#f00" title="Back to homepage">
       <Link
         to="/"
         className="h-full select-none flex items-center gap-x-3 py-2"

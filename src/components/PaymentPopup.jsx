@@ -137,7 +137,7 @@ const Gcash = () => {
       </div>
       <img
         draggable="false"
-        className="w-72 h-72 object-cover select-none"
+        className="w-72 md:h-72 h-[15rem] object-cover select-none"
         src="/images/gcash-qr.jpg"
       />
       <p className="text-lg">or send your gcash payment to this number:</p>
@@ -274,7 +274,7 @@ const Paymaya = () => {
       </div>
       <img
         draggable="false"
-        className="w-72 h-72 object-cover select-none"
+        className="w-72 md:h-72 h-[15rem] object-cover select-none"
         src="/images/paymaya-qr.jpg"
       />
       <p className="text-lg">or send your paymaya payment to this number:</p>
@@ -301,7 +301,7 @@ const Paymaya = () => {
     </div>
   );
 };
-// here na ako baket zero ( 0 ) ang pumapasok na total payment sa db
+
 function PaymentPopup() {
   const paymentContext = useContext(PaymentPopupContext);
   const [element, setElement] = useState(<Gcash />);
@@ -327,7 +327,7 @@ function PaymentPopup() {
     >
       <div
         data-state={paymentContext.value.state}
-        className="w-[30rem] data-[state=true]:opacity-100 data-[state=true]:translate-y-0 h-fit bg-white flex rounded-md shadow-md opacity-0 -translate-y-10 duration-200"
+        className="md:w-[30rem] w-[95%] data-[state=true]:opacity-100 data-[state=true]:translate-y-0 h-fit bg-white flex rounded-md shadow-md opacity-0 -translate-y-10 duration-200"
       >
         <div className="h-full w-[10rem] flex flex-col py-3 pl-3 gap-y-2">
           <div className="w-full flex flex-col py-2">

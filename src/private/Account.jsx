@@ -19,13 +19,19 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import {
   DrawerVisibilityContext,
   PrivateProfileContext,
+  TicketContext,
 } from "./private_context/PrivateContext";
 import ProfilePopup from "./private_components/ProfilePopup";
+import TicketPopup from "./private_components/TicketPopup";
 
 function Account() {
   const [popupVisibility, setPopupVisibility] = useState(false);
   const [drawerVisibility, setDrawerVisibility] = useState(false);
   const accountInfo = useContext(AccountInformationContext);
+  const [ticketData, setTicketData] = useState({
+    state: false,
+    data: null,
+  });
 
   const [drawerButtons, setDrawerButtons] = useState([
     {
@@ -72,95 +78,103 @@ function Account() {
             setValue: setDrawerVisibility,
           }}
         >
-          <ProfilePopup />
-          <div
-            data-open={drawerVisibility}
-            className="w-[80%] fixed data-[open=true]:left-0 top-[5rem] duration-200 -left-[81%] z-[2] h-[calc(100%-5rem)] md:hidden block bg-white shadow-md p-3"
+          <TicketContext.Provider
+            value={{
+              value: ticketData,
+              setValue: setTicketData,
+            }}
           >
-            {drawerButtons.map((data) => (
-              <div
-                onClick={() => {
-                  setDrawerButtons((curr) => {
-                    return curr.map((btn) => {
-                      if (btn.key === data.key) {
-                        return { ...btn, selected: true };
-                      }
-                      return { ...btn, selected: false };
-                    });
-                  });
-                  setElement(data.element);
-                  setDrawerVisibility(false);
-                }}
-                data-selected={data.selected}
-                key={data.key}
-                className="w-full select-none data-[selected=true]:bg-main data-[selected=true]:text-white group h-14 rounded-md duration-100 flex items-center justify-between px-3 hover:bg-slate-100 text-base cursor-pointer text-[#222]"
-              >
-                <div className="flex items-center gap-x-2">
-                  {data.Icon && <data.Icon className="w-6 h-6" />}
-                  {data.label}
-                </div>
-                <HiMiniChevronRight
-                  data-selected={data.selected}
-                  className="w-6 h-6 opacity-0 data-[selected=true]:text-white group-hover:opacity-100 text-[#222] duration-100"
-                />
-              </div>
-            ))}
-            <Link
-              className="w-full group h-14 rounded-md duration-100 flex items-center justify-between px-3 select-none hover:bg-slate-100 text-base cursor-pointer text-[#222] hover:text-[#222]"
-              to="/"
+            <ProfilePopup />
+            <TicketPopup />
+            <div
+              data-open={drawerVisibility}
+              className="w-[80%] fixed data-[open=true]:left-0 top-[5rem] duration-200 -left-[81%] z-[2] h-[calc(100%-5rem)] md:hidden block bg-white shadow-md p-3"
             >
-              <div className="flex items-center gap-x-2">
-                <IoArrowBack className="w-6 h-6" />
-                Back
-              </div>
-            </Link>
-          </div>
-          <div className="w-full h-screen bg-light">
-            <AccountHeader />
-            <div className="w-full h-[calc(100%-5rem)] flex">
-              <div className="w-72 h-full md:block hidden bg-white shadow-md p-3">
-                {drawerButtons.map((data) => (
-                  <div
-                    onClick={() => {
-                      setDrawerButtons((curr) => {
-                        return curr.map((btn) => {
-                          if (btn.key === data.key) {
-                            return { ...btn, selected: true };
-                          }
-                          return { ...btn, selected: false };
-                        });
+              {drawerButtons.map((data) => (
+                <div
+                  onClick={() => {
+                    setDrawerButtons((curr) => {
+                      return curr.map((btn) => {
+                        if (btn.key === data.key) {
+                          return { ...btn, selected: true };
+                        }
+                        return { ...btn, selected: false };
                       });
-                      setElement(data.element);
-                    }}
-                    data-selected={data.selected}
-                    key={data.key}
-                    className="w-full select-none data-[selected=true]:bg-main data-[selected=true]:text-white group h-14 rounded-md duration-100 flex items-center justify-between px-3 hover:bg-slate-100 text-base cursor-pointer text-[#222]"
-                  >
-                    <div className="flex items-center gap-x-2">
-                      {data.Icon && <data.Icon className="w-6 h-6" />}
-                      {data.label}
-                    </div>
-                    <HiMiniChevronRight
-                      data-selected={data.selected}
-                      className="w-6 h-6 opacity-0 data-[selected=true]:text-white group-hover:opacity-100 text-[#222] duration-100"
-                    />
-                  </div>
-                ))}
-                <Link
-                  className="w-full group h-14 rounded-md duration-100 flex items-center justify-between px-3 select-none hover:bg-slate-100 text-base cursor-pointer text-[#222] hover:text-[#222]"
-                  to="/"
+                    });
+                    setElement(data.element);
+                    setDrawerVisibility(false);
+                  }}
+                  data-selected={data.selected}
+                  key={data.key}
+                  className="w-full select-none data-[selected=true]:bg-main data-[selected=true]:text-white group h-14 rounded-md duration-100 flex items-center justify-between px-3 hover:bg-slate-100 text-base cursor-pointer text-[#222]"
                 >
                   <div className="flex items-center gap-x-2">
-                    <IoArrowBack className="w-6 h-6" />
-                    Back
+                    {data.Icon && <data.Icon className="w-6 h-6" />}
+                    {data.label}
                   </div>
-                </Link>
-              </div>
-              <div className="md:w-[calc(100%-18rem)] w-full h-full flex flex-col gap-y-5 p-[2rem] overflow-y-scroll">
-                {element}
+                  <HiMiniChevronRight
+                    data-selected={data.selected}
+                    className="w-6 h-6 opacity-0 data-[selected=true]:text-white group-hover:opacity-100 text-[#222] duration-100"
+                  />
+                </div>
+              ))}
+              <Link
+                className="w-full group h-14 rounded-md duration-100 flex items-center justify-between px-3 select-none hover:bg-slate-100 text-base cursor-pointer text-[#222] hover:text-[#222]"
+                to="/"
+              >
+                <div className="flex items-center gap-x-2">
+                  <IoArrowBack className="w-6 h-6" />
+                  Back
+                </div>
+              </Link>
+            </div>
+            <div className="w-full h-screen bg-light">
+              <AccountHeader />
+              <div className="w-full h-[calc(100%-5rem)] flex">
+                <div className="w-72 h-full md:block hidden bg-white shadow-md p-3">
+                  {drawerButtons.map((data) => (
+                    <div
+                      onClick={() => {
+                        setDrawerButtons((curr) => {
+                          return curr.map((btn) => {
+                            if (btn.key === data.key) {
+                              return { ...btn, selected: true };
+                            }
+                            return { ...btn, selected: false };
+                          });
+                        });
+                        setElement(data.element);
+                      }}
+                      data-selected={data.selected}
+                      key={data.key}
+                      className="w-full select-none data-[selected=true]:bg-main data-[selected=true]:text-white group h-14 rounded-md duration-100 flex items-center justify-between px-3 hover:bg-slate-100 text-base cursor-pointer text-[#222]"
+                    >
+                      <div className="flex items-center gap-x-2">
+                        {data.Icon && <data.Icon className="w-6 h-6" />}
+                        {data.label}
+                      </div>
+                      <HiMiniChevronRight
+                        data-selected={data.selected}
+                        className="w-6 h-6 opacity-0 data-[selected=true]:text-white group-hover:opacity-100 text-[#222] duration-100"
+                      />
+                    </div>
+                  ))}
+                  <Link
+                    className="w-full group h-14 rounded-md duration-100 flex items-center justify-between px-3 select-none hover:bg-slate-100 text-base cursor-pointer text-[#222] hover:text-[#222]"
+                    to="/"
+                  >
+                    <div className="flex items-center gap-x-2">
+                      <IoArrowBack className="w-6 h-6" />
+                      Back
+                    </div>
+                  </Link>
+                </div>
+                <div className="md:w-[calc(100%-18rem)] w-full h-full flex flex-col gap-y-5 p-[2rem] overflow-y-scroll">
+                  {element}
+                </div>
               </div>
             </div>
-          </div>
+          </TicketContext.Provider>
         </DrawerVisibilityContext.Provider>
       </PrivateProfileContext.Provider>
     </AccountDrawerContext.Provider>

@@ -13,6 +13,7 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import axios from "axios";
 import { getGlobalUrl } from "../../functions/methods";
 import { HiChevronDown } from "react-icons/hi";
+import { TicketContext } from "../private_context/PrivateContext";
 
 const cancelFlightEventHandler = (response, book_id) => {
   if (response === "ok") {
@@ -75,6 +76,8 @@ const OneWayItem = ({ ...infos }) => {
   const [flightInfo, setFlightInfo] = useState();
   const [detailsIsOpen, setDetailsIsOpen] = useState(false);
   const alertBoxContext = useContext(AccountPopupContext);
+  const ticketContext = useContext(TicketContext);
+  const userAccount = useContext(AccountInformationContext);
 
   useEffect(() => {
     const fetch = async () => {
@@ -124,6 +127,25 @@ const OneWayItem = ({ ...infos }) => {
 
   const getTicketEvent = () => {
     // get ticket
+
+    const fullName = `${userAccount.value.first_name} ${userAccount.value.last_name}`;
+    const data = {
+      book_id: infos.id,
+      user_id: infos.user_id,
+      class: infos.class,
+      passengers: [infos.child, infos.adult, infos.senior, infos.pwd],
+      from: fromPlace.airport_name,
+      to: toPlace.airport_name,
+      fromCode: fromPlace.code,
+      toCode: toPlace.code,
+      type: infos.type,
+      fullName: fullName,
+    };
+    ticketContext.setValue((curr) => ({
+      ...curr,
+      state: true,
+      data: data,
+    }));
   };
 
   const cancelFlightEvent = () => {
@@ -233,13 +255,13 @@ const OneWayItem = ({ ...infos }) => {
       </div>
       <div className="w-full flex justify-end md:flex-row flex-col gap-2">
         {infos.status === "done" ? (
-          <Button onClick={getTicketEvent} fluid color="green">
+          <Button onClick={getTicketEvent} color="green">
             Get Ticket
           </Button>
         ) : (
           <Tooltip title="Pending payment" arrow>
             <span>
-              <Button fluid disabled color="green">
+              <Button disabled color="green">
                 Get Ticket
               </Button>
             </span>
@@ -259,6 +281,8 @@ const ReturnItem = ({ ...infos }) => {
   const [flightInfo, setFlightInfo] = useState();
   const [detailsIsOpen, setDetailsIsOpen] = useState(false);
   const alertBoxContext = useContext(AccountPopupContext);
+  const ticketContext = useContext(TicketContext);
+  const userAccount = useContext(AccountInformationContext);
 
   useEffect(() => {
     const fetch = async () => {
@@ -286,6 +310,25 @@ const ReturnItem = ({ ...infos }) => {
 
   const getTicketEvent = () => {
     // get ticket
+
+    const fullName = `${userAccount.value.first_name} ${userAccount.value.last_name}`;
+    const data = {
+      book_id: infos.id,
+      user_id: infos.user_id,
+      class: infos.class,
+      passengers: [infos.child, infos.adult, infos.senior, infos.pwd],
+      from: fromPlace.airport_name,
+      to: toPlace.airport_name,
+      fromCode: fromPlace.code,
+      toCode: toPlace.code,
+      type: infos.type,
+      fullName: fullName,
+    };
+    ticketContext.setValue((curr) => ({
+      ...curr,
+      state: true,
+      data: data,
+    }));
   };
 
   const cancelFlightEvent = () => {
@@ -420,82 +463,22 @@ const ReturnItem = ({ ...infos }) => {
         </Alert>
       </div>
       <div className="w-full flex justify-end md:flex-row gap-2 flex-col">
-        {infos.status === "done" ? (
-          <Button onClick={getTicketEvent} color="green" fluid>
-            Get Ticket
-          </Button>
-        ) : (
+        {infos.status === "pending" ? (
           <Tooltip title="Pending payment" arrow>
             <span>
-              <Button fluid disabled color="green">
+              <Button disabled color="green">
                 Get Ticket
               </Button>
             </span>
           </Tooltip>
+        ) : (
+          <Button onClick={getTicketEvent} color="green">
+            Get Ticket
+          </Button>
         )}
         <Button onClick={cancelFlightEvent} color="red">
           Cancel Flight
         </Button>
-      </div>
-    </div>
-  );
-};
-
-const MultiCityItem = () => {
-  const tempFlag = "/flags/philippines.png";
-
-  return (
-    <div className="flex flex-col w-full p-5 border-2 gap-y-2 border-slate-400 rounded-md">
-      <div className="w-full flex items-center justify-between">
-        <p className="text-xl font-montserrat-bold-italic text-[#333]">
-          Multi City
-        </p>
-        <Tooltip title="Paid" arrow>
-          <span>
-            <FcPaid className="w-8 h-8" />
-          </span>
-        </Tooltip>
-      </div>
-      <hr />
-      <MultiCityFlight
-        flightNumber={1}
-        from="Cavite"
-        to={"Manila"}
-        fromFlag={tempFlag}
-        toFlag={tempFlag}
-        departure="July 12, 2023"
-      />
-      <MultiCityFlight
-        flightNumber={2}
-        from="Cavite"
-        to={"Manila"}
-        fromFlag={tempFlag}
-        toFlag={tempFlag}
-        departure="July 13, 2023"
-      />
-      <MultiCityFlight
-        flightNumber={3}
-        from="Cavite"
-        to={"Manila"}
-        fromFlag={tempFlag}
-        toFlag={tempFlag}
-        departure="July 14, 2023"
-      />
-      <div className="my-2 flex flex-col gap-y-2">
-        <Alert severity="warning">
-          Not attending the scheduled departure briefing may lead to the
-          forfeiture of your payment or necessitate the rescheduling of your
-          flight. It is crucial to prioritize attendance to avoid any
-          inconvenience and ensure a seamless travel experience.
-        </Alert>
-        <Alert severity="info">
-          Should you desire to make changes to your destination or adjust the
-          travel date, I highly recommend initiating a new booking to ensure a
-          seamless and hassle-free process.
-        </Alert>
-      </div>
-      <div className="w-full flex justify-end">
-        <Button color="red">Cancel Flight</Button>
       </div>
     </div>
   );
@@ -534,6 +517,9 @@ function Dashboard() {
             `/mia/api/get-flights/${accountContext.value.id}/pending`
           )
         );
+        const paidFlight = await axios.get(
+          getGlobalUrl(`/mia/api/get-flights/${accountContext.value.id}/paid`)
+        );
         const doneFlightTemp = await axios.get(
           getGlobalUrl(`/mia/api/get-flights/${accountContext.value.id}/done`)
         );
@@ -542,7 +528,7 @@ function Dashboard() {
             `/mia/api/get-flights/${accountContext.value.id}/cancelled`
           )
         );
-        setFlights(pendingFlight.data.data);
+        setFlights([...pendingFlight.data.data, ...paidFlight.data.data]);
         setDoneFlight(doneFlightTemp.data.data);
         setCancelledFlight(cancelledFlightTemp.data.data);
         setLoading(false);

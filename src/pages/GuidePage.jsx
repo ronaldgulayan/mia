@@ -2,7 +2,7 @@ import React from "react";
 
 const Item = ({ title = "", description = "", img = "", url = "" }) => {
   return (
-    <div className="flex group cursor-pointer flex-col w-64 h-full shadow-lg rounded-2xl overflow-hidden">
+    <div className="flex group cursor-pointer flex-col w-64 min-w-[16rem] h-full shadow-lg rounded-2xl overflow-hidden">
       <div className="h-[9rem] overflow-hidden flex items-center justify-center">
         <img className="group-hover:scale-110 duration-200" src={img} />
       </div>
@@ -18,7 +18,7 @@ const Item = ({ title = "", description = "", img = "", url = "" }) => {
 
 function GuidePage() {
   return (
-    <div className="bg-light w-full h-[100dvh] flex flex-col p-pad gap-y-10">
+    <div className="bg-light w-full min-h-screen flex flex-col p-pad gap-y-10">
       <p className="text-lg tracking-widest text-blue">
         <span className="underline underline-offset-8 decoration-orange-700">
           TRAVEL
@@ -31,7 +31,7 @@ function GuidePage() {
           COVID INFORMATION
         </button>
       </div>
-      <div className="w-full h-full flex justify-center gap-x-10">
+      <div className="w-full h-full flex md:justify-center gap-x-10 overflow-x-scroll md:overflow-x-hidden">
         <Item
           title="Safety and well-being"
           description="Find out what it’s like to travel in the new normal"

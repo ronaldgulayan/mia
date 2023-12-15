@@ -39,7 +39,7 @@ function Footer() {
             <div className="w-full h-20 border-t-2 border-t-black"></div>
           </div>
         </div>
-        <div className="w-full grid grid-cols-3">
+        <div className="w-full grid md:grid-cols-3 grid-cols-1">
           <div className="flex flex-col items-center gap-y-1">
             <CustomLink className="text-white hover:text-white">
               PRIVACY POLICY
@@ -51,7 +51,7 @@ function Footer() {
               ABOUT
             </CustomLink>
           </div>
-          <div className="flex justify-evenly gap-x-14 h-28 relative">
+          <div className="flex justify-evenly gap-x-14 md:h-28 h-fit md:py-0 py-8 relative">
             {icons.map((icon, i) => {
               return (
                 <Tooltip key={i} title={icon.label} arrow>
@@ -61,7 +61,7 @@ function Footer() {
                 </Tooltip>
               );
             })}
-            <div className="w-[2px] h-1/2 bottom-0 bg-black absolute left-1/2 -translate-x-1/2" />
+            <div className="w-[2px] md:block hidden h-1/2 bottom-0 bg-black absolute left-1/2 -translate-x-1/2" />
           </div>
           <div className="flex flex-col items-center gap-y-1">
             <CustomLink className="text-white hover:text-white">
@@ -76,7 +76,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="bg-[#111] text-white w-full h-20 flex items-center justify-center">
+      <div className="bg-[#111] text-center px-10 text-white w-full flex items-center justify-center py-8">
         Copyright&#169; 2023. Manila International Airport. All rights reserved.
       </div>
     </div>

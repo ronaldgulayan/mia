@@ -46,7 +46,7 @@ function ClassSelection({ value, setValue }) {
         setIsOpen(!isOpen);
         setIsFocus(!isFocus);
       }}
-      className="w-full h-20 select-none rounded-lg flex gap-1 justify-between relative border-2 px-5 border-blue items-center cursor-pointer"
+      className="w-full h-20 z-[17] select-none rounded-lg flex gap-1 justify-between relative border-2 px-5 border-blue items-center cursor-pointer"
     >
       <div
         ref={classRef}

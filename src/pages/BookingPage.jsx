@@ -46,9 +46,9 @@ function BookingPage() {
 
   return (
     <div className="w-full h-fit bg-light flex justify-center relative z-[3]">
-      <div className="bg-white w-[70%] h-fit px-7 pt-7 pb-10 rounded-lg -translate-y-20 shadow-lg flex flex-col gap-y-2">
+      <div className="bg-white w-[95%] md:w-[70%] h-fit px-7 pt-7 pb-10 rounded-lg -translate-y-20 shadow-lg flex flex-col gap-y-2">
         <div className="flex items-center justify-between">
-          <div className="flex gap-x-5">
+          <div className="flex gap-x-5 md:flex-row flex-col">
             {radiosValue.map((radio, i) => {
               return (
                 <FormControlLabel
@@ -78,7 +78,10 @@ function BookingPage() {
             })}
           </div>
           {!getCookie() && (
-            <CustomLink onClick={() => signinPopupContext.setValue(true)}>
+            <CustomLink
+              className="hidden md:block"
+              onClick={() => signinPopupContext.setValue(true)}
+            >
               Sign In Account First
             </CustomLink>
           )}

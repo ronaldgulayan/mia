@@ -106,7 +106,7 @@ function DatePickerSelection({ setParentValue = function (value) {} }) {
   }, [selectedDate]);
 
   return (
-    <div className="w-full h-20 z-[3] select-none rounded-lg flex flex-col relative border-2 border-blue items-center cursor-pointer p-1">
+    <div className="w-full h-20 z-[18] md:mt-0 mt-2 select-none rounded-lg flex flex-col relative border-2 border-blue items-center cursor-pointer p-1">
       <div className="w-full h-full grid grid-cols-2 gap-1">
         <DropDown
           value={departValue}

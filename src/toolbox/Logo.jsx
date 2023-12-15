@@ -15,7 +15,9 @@ function Logo({ title }) {
           src="/logos/main-logo.png"
         />
         {title && (
-          <h1 className="text-white font-montserrat-bold text-2xl">{title}</h1>
+          <h1 className="text-white hidden md:block font-montserrat-bold text-2xl">
+            {title}
+          </h1>
         )}
       </Link>
     </Tooltip>

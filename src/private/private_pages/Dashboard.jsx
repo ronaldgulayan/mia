@@ -195,13 +195,15 @@ const OneWayItem = ({ ...infos }) => {
           seamless and hassle-free process.
         </Alert>
       </div>
-      <div className="w-full flex justify-end">
+      <div className="w-full flex justify-end md:flex-row flex-col gap-y-2">
         {infos.status === "done" ? (
-          <Button color="green">Get Ticket</Button>
+          <Button fluid color="green">
+            Get Ticket
+          </Button>
         ) : (
           <Tooltip title="Pending payment" arrow>
             <span>
-              <Button disabled color="green">
+              <Button fluid disabled color="green">
                 Get Ticket
               </Button>
             </span>
@@ -358,13 +360,15 @@ const ReturnItem = ({ ...infos }) => {
           seamless and hassle-free process.
         </Alert>
       </div>
-      <div className="w-full flex justify-end">
+      <div className="w-full flex justify-end md:flex-row gap-y-2 flex-col">
         {infos.status === "done" ? (
-          <Button color="green">Get Ticket</Button>
+          <Button color="green" fluid>
+            Get Ticket
+          </Button>
         ) : (
           <Tooltip title="Pending payment" arrow>
             <span>
-              <Button disabled color="green">
+              <Button fluid disabled color="green">
                 Get Ticket
               </Button>
             </span>
@@ -439,12 +443,14 @@ const MultiCityItem = () => {
 const Item = ({ title, value, className }) => (
   <div className={"flex h-fit bg-main p-10 text-white rounded-md " + className}>
     <div className="flex w-[calc(100%-8rem)] h-fit flex-col gap-y-2">
-      <p
-        title={title}
-        className="text-base font-montserrat-italic uppercase truncate"
-      >
-        {title}
-      </p>
+      <Tooltip title={title} arrow>
+        <p
+          title={title}
+          className="text-base font-montserrat-italic uppercase truncate"
+        >
+          {title}
+        </p>
+      </Tooltip>
       <p title={value} className="text-5xl font-montserrat-black truncate">
         {value}
       </p>
@@ -492,7 +498,7 @@ function Dashboard() {
   return (
     <>
       <Title label="Dashboard" />
-      <div className="w-full grid grid-cols-3 gap-x-3">
+      <div className="w-full grid md:grid-cols-3 grid-cols-1 gap-y-2 gap-x-3">
         <Item
           title="Done Flight"
           value={doneFlight.length}

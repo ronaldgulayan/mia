@@ -54,18 +54,18 @@ function AccountDropdown() {
       onClick={() => setIsOpen(!isOpen)}
       className="flex h-fit w-fit items-center active:bg-main-active hover:bg-main-hover cursor-pointer gap-x-1 p-2 select-none rounded-md text-white data-[open=true]:bg-main-hover data-[open=true]:active:bg-main-active relative"
     >
-      <div className="flex items-center gap-x-2">
+      <div className="flex items-center md:gap-x-2 gap-x-1">
         <IoPersonCircle className="h-8 w-8" />
-        <span>{fullName}</span>
+        <span className="md:block hidden">{fullName}</span>
       </div>
       <HiChevronDown
         data-open={isOpen}
-        className="h-8 w-8 data-[open=true]:rotate-180 duration-200"
+        className="h-8 w-8 data-[open=true]:rotate-180 md:block hidden duration-200"
       />
       <ul
         ref={dropdownRef}
         data-open={isOpen}
-        className="absolute top-[85%] pointer-events-none opacity-0 data-[open=true]:opacity-100 data-[open=true]:pointer-events-auto data-[open=true]:top-full duration-200 w-full right-0 h-fit bg-white gap-y-1 text-[#222] text-lg flex py-2 rounded-md shadow-md flex-col"
+        className="absolute top-[85%] pointer-events-none opacity-0 data-[open=true]:opacity-100 data-[open=true]:pointer-events-auto data-[open=true]:top-full duration-200 md:w-full w-fit md:pr-0 pr-10 right-0 h-fit bg-white gap-y-1 text-[#222] text-lg flex py-2 rounded-md shadow-md flex-col"
       >
         <li
           onClick={() => profileVisibilityContext.setValue(true)}

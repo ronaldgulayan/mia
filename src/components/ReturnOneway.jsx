@@ -279,7 +279,7 @@ function ReturnOneway() {
 
   return (
     <div className="w-full flex flex-col gap-y-2">
-      <div className="w-full grid grid-cols-2 gap-x-2">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-x-2">
         <div className="flex flex-col gap-y-2">
           <DestinationSelection
             setParentValue={(value) => {

@@ -40,18 +40,11 @@ function Header() {
     <div
       data-color={isColored}
       id="header"
-      className="w-full h-20 fixed z-[5] data-[color=true]:shadow-md data-[color=true]:bg-main data-[color=false]:bg-gradient-to-b from-[#0009] to-[#0000] px-pad flex items-center justify-between"
+      className="w-full h-20 fixed z-[5] data-[color=true]:shadow-md data-[color=true]:bg-main data-[color=false]:bg-gradient-to-b from-[#0009] to-[#0000] md:p-pad px-[1.5rem] flex items-center justify-between"
     >
       <Logo title="Manila International Airport" />
       <div className="flex items-center gap-x-10 h-full">
         <ul className="flex items-center gap-x-5 h-full text-white text-lg font-poppins">
-          {/* <CustomLink
-            onClick={() => signinPopupContext.setValue(false)}
-            url="/contact"
-            className="text-white hover:text-white"
-          >
-            CONTACT US
-          </CustomLink> */}
           <CustomLink url="/about" className="text-white hover:text-white">
             ABOUT US
           </CustomLink>

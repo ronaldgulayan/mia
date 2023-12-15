@@ -20,7 +20,7 @@ const Content = ({
             {btnLabel}
           </button>
         </div>
-        <div className="w-[27rem] relative h-96 shadow-md rounded-md overflow-hidden">
+        <div className="w-[27rem] hidden md:block relative h-96 shadow-md rounded-md overflow-hidden">
           <img
             className="w-full h-full object-cover relative z-[2]"
             src={img}
@@ -34,7 +34,7 @@ const Content = ({
   }
   return (
     <>
-      <div className="w-[27rem] h-96 relative shadow-md rounded-md overflow-hidden">
+      <div className="w-[27rem] hidden md:block h-96 relative shadow-md rounded-md overflow-hidden">
         <img className="w-full h-full object-cover relative z-[2]" src={img} />
         <Placeholder className="absolute z-[1] w-full h-full">
           <Placeholder.Image />
@@ -99,8 +99,8 @@ function ServicesPage() {
   const [content, setContent] = useState(<Content {...dots[0]} />);
 
   return (
-    <div className="w-full h-[90dvh] flex bg-white px-pad">
-      <div className="w-32 h-full flex items-center justify-center">
+    <div className="w-full h-[90dvh] md:gap-x-0 gap-x-5 flex bg-white px-2 md:px-pad">
+      <div className="w-16 md:w-32 h-full flex items-center justify-center">
         <div className="flex flex-col h-fit items-center gap-y-10 relative">
           {dots.map((dot) => (
             <div
@@ -128,7 +128,7 @@ function ServicesPage() {
           <span className="absolute w-1 h-full z-[1] bg-black" />
         </div>
       </div>
-      <div className="w-[calc(100%-8rem)] h-full flex items-center justify-center gap-x-10">
+      <div className="w-[calc(100%-8rem)] flex-col md:flex-row h-full flex items-center justify-center gap-x-10">
         {content}
       </div>
     </div>

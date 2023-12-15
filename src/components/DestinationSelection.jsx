@@ -229,7 +229,7 @@ function DestinationSelection({ z = 3, setParentValue = function (value) {} }) {
         "w-full h-20 rounded-lg flex gap-1 justify-between relative border-2 p-1 border-blue"
       }
       style={{
-        zIndex: z,
+        zIndex: 20,
       }}
     >
       <DropDown
@@ -267,7 +267,7 @@ function DestinationSelection({ z = 3, setParentValue = function (value) {} }) {
       <ul
         id={dropdownId}
         data-open={isOpen}
-        className="w-[95%] max-h-[calc(45px*5+0.8rem)] overflow-y-scroll hidden data-[open=true]:block py-1 bg-white shadow-md rounded-md border border-slate-200 absolute left-1/2 -translate-x-1/2 top-[90%]"
+        className="w-[95%] max-h-[calc(45px*5+0.8rem)] overflow-y-scroll hidden data-[open=true]:block py-1 bg-white shadow-md rounded-md border border-slate-200 absolute left-1/2 -translate-x-1/2 top-[90%] z-[25]"
       >
         {list.length === 0 && !isError && (
           <div className="w-full h-12 rounded-md flex items-center justify-center">

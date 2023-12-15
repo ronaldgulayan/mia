@@ -40,12 +40,33 @@ function getAge(month, day, year) {
   }
   return age;
 }
+function fixDate(date) {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const year = date.getFullYear();
+  const month = months[date.getMonth()];
+  const day = date.getDate();
+  return `${month} ${day}, ${year}`;
+}
 
 const getGlobalUrl = (url) => {
   const PORT = 18169;
-  const HOST = "https://mia-server.onrender.com";
+  const HOST = "http://localhost:18169";
+  // const HOST = "https://mia-server.onrender.com";
   if (url) return `${HOST}${url}`;
   return `${HOST}`;
 };
 
-export { convertMonthToNumber, getAge, getGlobalUrl };
+export { convertMonthToNumber, getAge, getGlobalUrl, fixDate };

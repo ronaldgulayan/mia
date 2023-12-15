@@ -459,29 +459,55 @@ function Dashboard() {
   const accountContext = useContext(AccountInformationContext);
   const [flights, setFlights] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [doneFlight, setDoneFlight] = useState([]);
+  const [cancelledFlight, setCancelledFlight] = useState([]);
 
   useEffect(() => {
-    // setLoading(true);
-    axios
-      .get(getGlobalUrl("/mia/api/get-flights/" + accountContext.value.id))
-      .then((value) => {
-        if (value.data.status === 200) {
-          setFlights(value.data.data);
-        }
+    const fetch = async () => {
+      try {
+        const pendingFlight = await axios.get(
+          getGlobalUrl(
+            `/mia/api/get-flights/${accountContext.value.id}/pending`
+          )
+        );
+        const doneFlightTemp = await axios.get(
+          getGlobalUrl(`/mia/api/get-flights/${accountContext.value.id}/done`)
+        );
+        const cancelledFlightTemp = await axios.get(
+          getGlobalUrl(
+            `/mia/api/get-flights/${accountContext.value.id}/cancelled`
+          )
+        );
+        setFlights(pendingFlight.data.data);
+        setDoneFlight(doneFlightTemp.data.data);
+        setCancelledFlight(cancelledFlightTemp.data.data);
         setLoading(false);
-      })
-      .catch((err) => {
+      } catch (error) {
         setLoading(false);
-      });
+      }
+    };
+    fetch();
   }, []);
 
   return (
     <>
       <Title label="Dashboard" />
       <div className="w-full grid grid-cols-3 gap-x-3">
-        <Item title="Booked" value={30} className="bg-blue-500" />
-        <Item title="Pending Flight" value={3} className="bg-green-500" />
-        <Item title="Highlights" value={2293} className="bg-orange-700" />
+        <Item
+          title="Done Flight"
+          value={doneFlight.length}
+          className="bg-blue-500"
+        />
+        <Item
+          title="Pending Flight"
+          value={flights.length}
+          className="bg-green-500"
+        />
+        <Item
+          title="Cancelled Flight"
+          value={cancelledFlight.length}
+          className="bg-orange-700"
+        />
       </div>
       <div className="w-full h-fit p-5 gap-y-2 bg-white shadow-md rounded-md flex flex-col">
         <div className="flex justify-between items-center">

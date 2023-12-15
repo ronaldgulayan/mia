@@ -84,7 +84,6 @@ function PassengerSelection({ setParentValue = function (value) {} }) {
   const [adultValue, setAdultValue] = useState(0);
   const [seniorValue, setSeniorValue] = useState(0);
   const [pwdValue, setPwdValue] = useState(0);
-  const [ofwValue, setOfwValue] = useState(0);
   const [value, setValue] = useState("");
 
   useEffect(() => {
@@ -104,17 +103,15 @@ function PassengerSelection({ setParentValue = function (value) {} }) {
   }, []);
 
   useEffect(() => {
-    const total =
-      childrenValue + adultValue + seniorValue + pwdValue + ofwValue;
+    const total = childrenValue + adultValue + seniorValue + pwdValue;
     setValue(total === 0 ? "" : `${total} Passenger${total > 1 ? "s" : ""}`);
     setParentValue({
       child: childrenValue,
       adult: adultValue,
       senior: seniorValue,
       pwd: pwdValue,
-      ofw: ofwValue,
     });
-  }, [childrenValue, adultValue, seniorValue, pwdValue, ofwValue]);
+  }, [childrenValue, adultValue, seniorValue, pwdValue]);
 
   return (
     <div
@@ -171,11 +168,6 @@ function PassengerSelection({ setParentValue = function (value) {} }) {
           label="Person with Disability"
           value={pwdValue}
           setValue={setPwdValue}
-        />
-        <Item
-          label="Overseas Filipino Workers"
-          value={ofwValue}
-          setValue={setOfwValue}
         />
       </div>
     </div>

@@ -2,6 +2,9 @@ import React, { useEffect, useId, useRef, useState } from "react";
 import { HiSwitchHorizontal } from "react-icons/hi";
 import { places } from "../assets/places.json";
 import { IoMdInformationCircle, IoMdClose } from "react-icons/io";
+import axios from "axios";
+import { getGlobalUrl } from "../functions/methods";
+import { Flag } from "semantic-ui-react";
 
 const DropDown = ({
   dropdownId,
@@ -94,15 +97,32 @@ function DestinationSelection({ z = 3, setParentValue = function (value) {} }) {
   const [side, setSide] = useState("");
   const dropdownId = useId();
   const detialsBtnRef = useRef();
+  const [isError, setIsError] = useState(false);
 
-  const [list, setList] = useState(() => {
-    return places.map((place, i) => ({
-      ...place,
-      selected: false,
-      key: i,
-      details: false,
-    }));
-  });
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(getGlobalUrl() + "/mia/api/places")
+      .then((value) => {
+        if (value.data.status === 500) {
+          setIsError(true);
+        }
+        if (value.data.status === 200) {
+          const datas = value.data.data;
+          setList(() => {
+            return datas.map((place, i) => ({
+              ...place,
+              selected: false,
+              details: false,
+            }));
+          });
+        }
+      })
+      .catch((err) => {
+        setIsError(true);
+      });
+  }, []);
 
   const inputEvent = (e) => {
     const value = e.target.value.toLowerCase();
@@ -176,14 +196,13 @@ function DestinationSelection({ z = 3, setParentValue = function (value) {} }) {
     }
   }, [isOpen, isFocusLeft, isFocusRight]);
 
-  const setListEvent = (key, airport, code) => {
-    const value = `${airport} (${code})`;
+  const setListEvent = (airport) => {
     switch (side) {
       case "left":
-        setInputLeft(value);
+        setInputLeft(airport);
         break;
       case "right":
-        setInputRight(value);
+        setInputRight(airport);
         break;
     }
   };
@@ -250,15 +269,25 @@ function DestinationSelection({ z = 3, setParentValue = function (value) {} }) {
         data-open={isOpen}
         className="w-[95%] max-h-[calc(45px*5+0.8rem)] overflow-y-scroll hidden data-[open=true]:block py-1 bg-white shadow-md rounded-md border border-slate-200 absolute left-1/2 -translate-x-1/2 top-[90%]"
       >
+        {list.length === 0 && !isError && (
+          <div className="w-full h-12 rounded-md flex items-center justify-center">
+            Loading...
+          </div>
+        )}
+        {isError && (
+          <div className="w-full h-12 rounded-md flex items-center justify-center">
+            Something error.
+          </div>
+        )}
         {list.map((data, i) => (
           <li
             data-select={data.selected}
             title={`${data.country} / ${data.location}`}
             onClick={(e) => {
-              if (e.target.id === `detailsbtn-${data.key}`) {
+              if (e.target.id === `detailsbtn-${data.id}`) {
                 setList((value) => {
                   return value.map((curr) => {
-                    if (curr.key === data.key) {
+                    if (curr.id === data.id) {
                       return { ...curr, details: !data.details };
                     }
                     return { ...curr, details: false };
@@ -266,12 +295,12 @@ function DestinationSelection({ z = 3, setParentValue = function (value) {} }) {
                 });
               } else {
                 if (!data.selected) {
-                  setListEvent(data.key, data.airport, data.code);
+                  setListEvent(data.airport);
                 }
               }
             }}
             className="cursor-pointer data-[select=true]:cursor-not-allowed hover:bg-slate-100"
-            key={data.key}
+            key={data.id}
           >
             <div className="flex flex-col w-full items-center">
               <div
@@ -280,17 +309,10 @@ function DestinationSelection({ z = 3, setParentValue = function (value) {} }) {
                 className="w-full h-fit flex gap-x-2 items-center py-3 px-4 justify-between data-[select=true]:bg-slate-200 z-[2] relative data-[select=true]:text-zinc-500 data-[details=true]:shadow-md data-[details=true]:bg-slate-200"
               >
                 <div className="flex items-center gap-x-3 w-[calc(100%-4.25rem)]">
-                  {data.flag ? (
-                    <img src={data.flag} />
-                  ) : (
-                    <img className="w-7" src="/flags/philippines.png" />
-                  )}
-                  {data.airport}
+                  <Flag name={data.code.toLowerCase()} className="w-7 h-7" />
+                  <span>{data.airport}</span>
                 </div>
-                <button
-                  className="group relative"
-                  id={`detailsbtn-${data.key}`}
-                >
+                <button className="group relative" id={`detailsbtn-${data.id}`}>
                   {!data.details ? (
                     <IoMdInformationCircle className="w-7 h-7 opacity-[90%] group-hover:opacity-100 text-main group-active:text-main-active pointer-events-none group-hover:text-main-hover" />
                   ) : (

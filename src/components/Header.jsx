@@ -45,13 +45,13 @@ function Header() {
       <Logo title="Manila International Airport" />
       <div className="flex items-center gap-x-10 h-full">
         <ul className="flex items-center gap-x-5 h-full text-white text-lg font-poppins">
-          <CustomLink
+          {/* <CustomLink
             onClick={() => signinPopupContext.setValue(false)}
             url="/contact"
             className="text-white hover:text-white"
           >
             CONTACT US
-          </CustomLink>
+          </CustomLink> */}
           <CustomLink url="/about" className="text-white hover:text-white">
             ABOUT US
           </CustomLink>

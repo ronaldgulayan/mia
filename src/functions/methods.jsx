@@ -41,10 +41,11 @@ function getAge(month, day, year) {
   return age;
 }
 
-const getGlobalUrl = () => {
-  const PORT = 8081;
-  const HOST = "localhost";
-  return `http://${HOST}:${PORT}`;
+const getGlobalUrl = (url) => {
+  const PORT = 18169;
+  const HOST = "https://mia-server.onrender.com";
+  if (url) return `${HOST}${url}`;
+  return `${HOST}`;
 };
 
 export { convertMonthToNumber, getAge, getGlobalUrl };

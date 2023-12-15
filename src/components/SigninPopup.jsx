@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import {
+  AccountInformationContext,
   LoadingContext,
   RegistrationAlertBoxContext,
   SigninPopupContext,
@@ -61,6 +62,9 @@ function SigninPopup() {
     }));
   };
 
+  const { getCookie } = useCookies("token");
+  const accountContext = useContext(AccountInformationContext);
+
   const submitEventHandler = (e) => {
     e.preventDefault();
 
@@ -69,7 +73,7 @@ function SigninPopup() {
     const data = { email, password };
     setIsLoading(true);
     axios
-      .post(getGlobalUrl() + "/mia/api/login", data)
+      .post(getGlobalUrl("/mia/api/login"), data)
       .then((value) => {
         if (value.data.status === 500) {
           popupMessage(value.data.title, value.data.message);
@@ -81,6 +85,12 @@ function SigninPopup() {
             state: true,
             label: "Redirecting...",
           }));
+
+          axios
+            .get(getGlobalUrl("/mia/api/decode-token/" + getCookie()))
+            .then((value) => {
+              accountContext.setValue(value.data.data);
+            });
 
           window.setTimeout(() => {
             loadingContext.setValue((curr) => ({
@@ -96,30 +106,19 @@ function SigninPopup() {
       .catch((err) => {
         // ERROR
         setIsLoading(false);
-        // popupMessage(
-        //   "Server Error",
-        //   "The server is currently offline. Please try again later."
-        // );
-
-        // ******
-        setCookie("123");
-        visibilityContext.setValue(false);
-        loadingContext.setValue((curr) => ({
-          state: true,
-          label: "Sample lang to ah... Reloading...",
-        }));
-
-        window.setTimeout(() => {
-          loadingContext.setValue((curr) => ({
-            state: false,
-            label: "Success",
-          }));
-
-          navigate("/account");
-        }, 3000);
-        // ******
+        popupMessage(
+          "Server Error",
+          "The server is currently offline. Please try again later."
+        );
       });
   };
+
+  useEffect(() => {
+    if (!visibilityContext.value) {
+      setEmail("");
+      setPassword("");
+    }
+  }, [visibilityContext.value]);
 
   return (
     <div
@@ -136,8 +135,6 @@ function SigninPopup() {
           <p className="font-bold text-black text-xl">Signin</p>
           <button
             onClick={() => {
-              setEmail("");
-              setPassword("");
               visibilityContext.setValue(false);
             }}
           >

@@ -19,21 +19,32 @@ import {
 import Loading from "./pages/Loading";
 import AlertBox from "./toolbox/AlertBox";
 import Account from "./private/Account";
-import ProfilePopup from "./components/ProfilePopup";
 import Auth from "./auth/Auth";
+import AvailableFlightsPopup from "./components/AvailableFlightsPopup";
+import Return from "./pages/Return";
+import OneWay from "./pages/OneWay";
+import MultiCity from "./pages/MultiCity";
+import Unavailable from "./pages/Unavailable";
+import ReturnAuth from "./auth/ReturnAuth";
+import OneWayAuth from "./auth/OneWayAuth";
+import PaymentPopup from "./components/PaymentPopup";
+import SuccessPopup from "./components/SuccessPopup";
+import Ticket from "./components/Ticket";
 
 function App() {
   return (
     <div>
       <ContextWrapper>
         <SigninPopup />
-        {/* <TopButton /> */}
+        <AvailableFlightsPopup />
         <Loading label="Searching..." />
-        <AlertBox Context={RegistrationAlertBoxContext} seconds={5} type="ok" />
+        <PaymentPopup />
+        <SuccessPopup />
+        <AlertBox Context={RegistrationAlertBoxContext} seconds={7} type="ok" />
         <AlertBox
           Context={AccountPopupContext}
           type="okcancel"
-          seconds={5}
+          seconds={20}
           closeWhenOkay
         />
         <Routes>
@@ -54,6 +65,14 @@ function App() {
           <Route path="/registration" element={<RegistratingPage />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/about" element={<AboutUsPage />} />
+          <Route path="/unavailable" element={<Unavailable />} />
+          <Route path="/ticket" element={<Ticket />} />
+          <Route element={<OneWayAuth />}>
+            <Route path="/one-way" element={<OneWay />} />
+          </Route>
+          <Route element={<ReturnAuth />}>
+            <Route path="/return" element={<Return />} />
+          </Route>
           <Route element={<Auth />}>
             <Route path="/account" element={<Account />} />
           </Route>

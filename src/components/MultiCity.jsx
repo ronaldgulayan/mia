@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import DestinationSelection from "./DestinationSelection";
 import DepartureSelection from "./DepartureSelection";
 import { FaPlus } from "react-icons/fa";
 import { v4 } from "uuid";
 import { FaTrashCan } from "react-icons/fa6";
 import axios from "axios";
+import PassengerSelection from "./PassengerSelection";
+import ClassSelection from "./ClassSelection";
+import { RegistrationAlertBoxContext } from "../context/CustomContext";
 
 function MultiCity() {
+  const alertboxContext = useContext(RegistrationAlertBoxContext);
   const [flights, setFlights] = useState([
     {
       key: crypto.randomUUID(),
@@ -23,14 +27,13 @@ function MultiCity() {
   ]);
 
   const searchFlightEvent = () => {
-    // axios
-    //   .get("http://localhost:8081/api/get-data")
-    //   .then((value) => {
-    //     console.log(value);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    alertboxContext.setValue((curr) => ({
+      state: true,
+      title: "Unavailable",
+      message:
+        "The multi-city feature is temporarily unavailable due to maintenance. We apologize for any inconvenience.",
+      error: false,
+    }));
   };
 
   const setDestinationValue = (from, to, key) => {
@@ -89,6 +92,10 @@ function MultiCity() {
           </div>
         </div>
       ))}
+      <div className="w-full grid grid-cols-2 gap-x-2">
+        <PassengerSelection />
+        <ClassSelection />
+      </div>
       <div className="w-full flex justify-between">
         <button
           onClick={() =>

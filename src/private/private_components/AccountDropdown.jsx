@@ -3,13 +3,13 @@ import { IoPersonCircle, IoArrowBack } from "react-icons/io5";
 import { HiChevronDown } from "react-icons/hi";
 import { IoMdPerson } from "react-icons/io";
 import { MdLogout } from "react-icons/md";
-import { AccountPopupContext } from "../../context/CustomContext";
+import {
+  AccountInformationContext,
+  AccountPopupContext,
+} from "../../context/CustomContext";
 import { useNavigate } from "react-router-dom";
 import useCookies from "../../hooks/useCookies";
-import {
-  PrivateContext,
-  PrivateProfileContext,
-} from "../private_context/PrivateContext";
+import { PrivateProfileContext } from "../private_context/PrivateContext";
 
 function AccountDropdown() {
   const navigate = useNavigate();
@@ -19,11 +19,12 @@ function AccountDropdown() {
   const accountPopupContext = useContext(AccountPopupContext);
   const profileVisibilityContext = useContext(PrivateProfileContext);
   const { removeCookie } = useCookies("token");
-  const privateContext = useContext(PrivateContext);
+  const privateContext = useContext(AccountInformationContext);
 
   const okEventHandler = (type) => {
     if (type === "ok") {
       removeCookie();
+      privateContext.setValue(null);
       navigate("/");
     }
   };

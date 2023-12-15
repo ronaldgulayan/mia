@@ -12,9 +12,6 @@ function Loading({ label = "Loading..." }) {
         zIndex: (theme) => theme.zIndex.modal + 1,
       }}
       open={loadingContext.value.state}
-      onClick={() => {
-        loadingContext.setValue((curr) => ({ ...curr, state: false }));
-      }}
       className="flex flex-col justify-center gap-y-2"
     >
       <CircularProgress color="inherit" />

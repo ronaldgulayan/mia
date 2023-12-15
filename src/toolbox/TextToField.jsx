@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomTextField from "./CustomTextField";
 import { TextField } from "@mui/material";
 import { IoEye, IoEyeOff } from "react-icons/io5";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 function TextToField({
   value = "",
@@ -9,8 +10,14 @@ function TextToField({
   placeholder = "",
   edit,
   type = "text",
+  onChange = (text) => {},
+  loading,
 }) {
   const [isHidden, setIsHidden] = useState(true);
+
+  useEffect(() => {
+    onChange(value);
+  }, [value]);
 
   const convertToPassword = (password) => {
     const len = password.length;
@@ -33,7 +40,7 @@ function TextToField({
             {placeholder}
           </p>
         )}
-        <div className="flex items-center">
+        <div className="flex items-center gap-x-1">
           {edit ? (
             <input
               className="w-[calc(100%-1.5rem)] flex items-center text-xl outline-none border-b-2 border-b-black py-1"
@@ -50,6 +57,7 @@ function TextToField({
               </div>
             </div>
           )}
+          {loading && <CgSpinnerTwo className="w-6 h-6 animate-spin" />}
           <button onClick={() => setIsHidden(!isHidden)}>
             {isHidden ? (
               <IoEyeOff className="w-6 h-6 text-[#333]" />

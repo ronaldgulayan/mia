@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Radio from "@mui/material/Radio";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import {
@@ -31,6 +31,18 @@ function BookingPage() {
   ]);
   const flightTypeContext = useContext(FlightTypeContext);
   const signinPopupContext = useContext(SigninPopupContext);
+
+  useEffect(() => {
+    setRadiosValue((curr) => {
+      const type = flightTypeContext.value;
+      return curr.map((radio) => {
+        if (radio.value === type) {
+          return { ...radio, checked: true };
+        }
+        return { ...radio, checked: false };
+      });
+    });
+  }, []);
 
   return (
     <div className="w-full h-fit bg-light flex justify-center relative z-[3]">

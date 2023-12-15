@@ -37,6 +37,7 @@ const Gcash = () => {
   const alertboxOkayCancelContext = useContext(AccountPopupContext);
   const loadingContext = useContext(LoadingContext);
   const successContext = useContext(SuccessContext);
+  const number = "09384535499";
 
   const alertBoxEvent = (data) => {
     if (data === "ok") {
@@ -141,7 +142,7 @@ const Gcash = () => {
         src="/images/gcash-qr.jpg"
       />
       <p className="text-lg">or send your gcash payment to this number:</p>
-      <p className="font-montserrat-bold text-xl">09384535499</p>
+      <p className="font-montserrat-bold text-xl">{number}</p>
       <div className="flex items-center gap-x-1 mt-2">
         <Tooltip title="Enter your reference number here." arrow>
           <input
@@ -173,6 +174,7 @@ const Paymaya = () => {
   const alertboxOkayCancelContext = useContext(AccountPopupContext);
   const loadingContext = useContext(LoadingContext);
   const successContext = useContext(SuccessContext);
+  const number = "09123456789";
 
   const alertBoxEvent = (data) => {
     if (data === "ok") {
@@ -278,7 +280,7 @@ const Paymaya = () => {
         src="/images/paymaya-qr.jpg"
       />
       <p className="text-lg">or send your paymaya payment to this number:</p>
-      <p className="font-montserrat-bold text-xl">09384535499</p>
+      <p className="font-montserrat-bold text-xl">{number}</p>
       <div className="flex items-center gap-x-1 mt-2">
         <Tooltip title="Enter your reference number here." arrow>
           <input

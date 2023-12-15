@@ -63,7 +63,7 @@ function fixDate(date) {
 
 const getGlobalUrl = (url) => {
   const PORT = 18169;
-  // const HOST = "http://localhost:18169";
+  // const HOST = `http://localhost:${PORT}`;
   const HOST = "https://mia-server.onrender.com";
   if (url) return `${HOST}${url}`;
   return `${HOST}`;

@@ -22,6 +22,7 @@ import { fixMonth } from "../toolbox/Tools";
 import { RegistrationAlertBoxContext } from "../context/CustomContext";
 import axios from "axios";
 import { Button } from "semantic-ui-react";
+import { getGlobalUrl } from "../functions/methods";
 
 function RegistratingPage() {
   const [gender, setGender] = useState("");
@@ -174,7 +175,6 @@ function RegistratingPage() {
         );
         return;
       }
-      // here kapag correct na
 
       const data = {
         firstName: firstName,
@@ -187,7 +187,7 @@ function RegistratingPage() {
       };
       setIsLoading(true);
       axios
-        .put("http://localhost:8081/mia/api/insert-user-account", data)
+        .put(getGlobalUrl("/mia/api/insert-user-account"), data)
         .then((value) => {
           popupMessage(value.data.title, value.data.message);
           setIsLoading(false);

@@ -324,6 +324,8 @@ const ReturnItem = ({ ...infos }) => {
     return passengers.filter((value) => value.value > 0);
   };
 
+  // return null;
+
   if (!fromPlace || !toPlace) {
     return (
       <div className="flex flex-col w-full p-5 border-2 gap-y-2 border-slate-400 rounded-md">

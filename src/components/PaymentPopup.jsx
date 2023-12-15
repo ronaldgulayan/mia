@@ -33,15 +33,23 @@ const Gcash = () => {
   const alertboxContext = useContext(RegistrationAlertBoxContext);
   const paymentContext = useContext(PaymentPopupContext);
   const [referenceNumber, setReferenceNumber] = useState("");
-  const { getCookie } = useCookies("oneway_book");
+  const oneWayCookie = useCookies("oneway_book");
+  const returnCookie = useCookies("return_book");
   const alertboxOkayCancelContext = useContext(AccountPopupContext);
   const loadingContext = useContext(LoadingContext);
   const successContext = useContext(SuccessContext);
   const number = "09384535499";
 
   const alertBoxEvent = (data) => {
+    let cookieData;
+
     if (data === "ok") {
-      const cookieData = JSON.parse(getCookie());
+      if (paymentContext.value.type === "return") {
+        cookieData = JSON.parse(returnCookie.getCookie());
+      } else {
+        cookieData = JSON.parse(oneWayCookie.getCookie());
+      }
+
       const data = {
         userId: cookieData.userId,
         type: cookieData.type,
@@ -53,6 +61,7 @@ const Gcash = () => {
         to: cookieData.to,
         departure: cookieData.depart,
         payment_method: "gcash",
+        _return: cookieData.return,
       };
       loadingContext.setValue((curr) => ({
         state: true,
@@ -170,15 +179,22 @@ const Paymaya = () => {
   const alertboxContext = useContext(RegistrationAlertBoxContext);
   const paymentContext = useContext(PaymentPopupContext);
   const [referenceNumber, setReferenceNumber] = useState("");
-  const { getCookie } = useCookies("return_book");
+  const returnCookie = useCookies("return_book");
+  const oneWayCookie = useCookies("oneway_book");
   const alertboxOkayCancelContext = useContext(AccountPopupContext);
   const loadingContext = useContext(LoadingContext);
   const successContext = useContext(SuccessContext);
   const number = "09123456789";
 
   const alertBoxEvent = (data) => {
+    let cookieData;
     if (data === "ok") {
-      const cookieData = JSON.parse(getCookie());
+      if (paymentContext.value.type === "return") {
+        cookieData = JSON.parse(returnCookie.getCookie());
+      } else {
+        cookieData = JSON.parse(oneWayCookie.getCookie());
+      }
+
       const data = {
         userId: cookieData.userId,
         type: cookieData.type,
@@ -192,6 +208,7 @@ const Paymaya = () => {
         _return: cookieData.return,
         payment_method: "paymaya",
       };
+
       loadingContext.setValue((curr) => ({
         state: true,
         label: "Loading...",

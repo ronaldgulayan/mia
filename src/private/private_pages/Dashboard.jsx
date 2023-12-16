@@ -254,18 +254,18 @@ const OneWayItem = ({ ...infos }) => {
         </Alert>
       </div>
       <div className="w-full flex justify-end md:flex-row flex-col gap-2">
-        {infos.status === "done" ? (
-          <Button onClick={getTicketEvent} color="green">
-            Get Ticket
-          </Button>
-        ) : (
+        {infos.status === "pending" ? (
           <Tooltip title="Pending payment" arrow>
             <span>
-              <Button disabled color="green">
+              <Button fluid disabled color="green">
                 Get Ticket
               </Button>
             </span>
           </Tooltip>
+        ) : (
+          <Button onClick={getTicketEvent} color="green">
+            Get Ticket
+          </Button>
         )}
         <Button onClick={cancelFlightEvent} color="red">
           Cancel Flight
@@ -466,7 +466,7 @@ const ReturnItem = ({ ...infos }) => {
         {infos.status === "pending" ? (
           <Tooltip title="Pending payment" arrow>
             <span>
-              <Button disabled color="green">
+              <Button fluid disabled color="green">
                 Get Ticket
               </Button>
             </span>
@@ -587,9 +587,6 @@ function Dashboard() {
             })}
           </>
         )}
-        {/* <ReturnItem /> */}
-        {/* <OneWayItem />
-        <MultiCityItem /> */}
       </div>
     </>
   );

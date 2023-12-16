@@ -38,7 +38,7 @@ function TicketPopup() {
     >
       <div
         data-state={ticketContext.value.state}
-        className="-translate-y-14 opacity-0 duration-200 md:w-[50%] w-[90%] data-[state=true]:opacity-100 data-[state=true]:translate-y-0 rounded-lg h-fit flex justify-center bg-light flex-col p-7"
+        className="-translate-y-14 opacity-0 duration-200 md:w-[50%] w-[95%] data-[state=true]:opacity-100 data-[state=true]:translate-y-0 rounded-lg h-fit flex justify-center bg-light flex-col md:p-7 p-4"
       >
         <div className="w-full flex justify-between items-center mb-4">
           <p className="text-xl font-montserrat-bold">Your ticket</p>

@@ -31,7 +31,7 @@ const tableDataStyle = {
   paddingBottom: 10,
 };
 
-function createData(type, total, method, status, date, book_id) {
+function createData(type, total, method, status, date, book_id, message) {
   return {
     type,
     total,
@@ -39,6 +39,7 @@ function createData(type, total, method, status, date, book_id) {
     status,
     date,
     book_id: book_id,
+    message,
   };
 }
 
@@ -129,7 +130,11 @@ function Row(props) {
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <RowDropDown book_id={row.book_id} type={row.type} />
+            <RowDropDown
+              message={row.message}
+              book_id={row.book_id}
+              type={row.type}
+            />
           </Collapse>
         </TableCell>
       </TableRow>
@@ -137,7 +142,7 @@ function Row(props) {
   );
 }
 
-const RowDropDown = ({ book_id, type }) => {
+const RowDropDown = ({ book_id, type, message }) => {
   const [fromFlight, setFromFlight] = React.useState();
   const [toFlight, setToFlight] = React.useState();
   const [departReturn, setDepartReturn] = React.useState();
@@ -219,6 +224,14 @@ const RowDropDown = ({ book_id, type }) => {
               {departReturn.return ? departReturn.return : "None"}
             </TableCell>
           </TableRow>
+          {message && (
+            <TableRow>
+              <TableCell style={{ color: "red" }}>Message:</TableCell>
+              <TableCell style={{ color: "red" }} colSpan={4}>
+                {message}
+              </TableCell>
+            </TableRow>
+          )}
         </TableBody>
       </Table>
     </Box>
@@ -239,7 +252,6 @@ const HistoryTable = () => {
       const newData = response.data.data.map((data) => {
         const tempDate = new Date(data.date);
         const date = fixDate(tempDate);
-        let url;
 
         const temp = createData(
           data.type,
@@ -247,7 +259,8 @@ const HistoryTable = () => {
           data.payment_method.toUpperCase(),
           data.status,
           date,
-          data.id
+          data.id,
+          data.message
         );
         return temp;
       });

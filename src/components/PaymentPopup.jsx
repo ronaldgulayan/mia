@@ -49,7 +49,6 @@ const Gcash = () => {
       } else {
         cookieData = JSON.parse(oneWayCookie.getCookie());
       }
-
       const data = {
         userId: cookieData.userId,
         type: cookieData.type,
@@ -62,7 +61,9 @@ const Gcash = () => {
         departure: cookieData.depart,
         payment_method: "gcash",
         _return: cookieData.return,
+        flight_id: cookieData.flight.id,
       };
+
       loadingContext.setValue((curr) => ({
         state: true,
         label: "Loading...",
@@ -207,6 +208,7 @@ const Paymaya = () => {
         departure: cookieData.depart,
         _return: cookieData.return,
         payment_method: "paymaya",
+        flight_id: cookieData.flight.id,
       };
 
       loadingContext.setValue((curr) => ({

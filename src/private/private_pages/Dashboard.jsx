@@ -100,6 +100,7 @@ const OneWayItem = ({ ...infos }) => {
         console.log("irror");
       }
     };
+
     fetch();
   }, []);
 
@@ -512,13 +513,10 @@ function Dashboard() {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const pendingFlight = await axios.get(
+        const pendingDoneFlights = await axios.get(
           getGlobalUrl(
-            `/mia/api/get-flights/${accountContext.value.id}/pending`
+            `/mia/api/get-pending-and-done/${accountContext.value.id}`
           )
-        );
-        const paidFlight = await axios.get(
-          getGlobalUrl(`/mia/api/get-flights/${accountContext.value.id}/paid`)
         );
         const doneFlightTemp = await axios.get(
           getGlobalUrl(`/mia/api/get-flights/${accountContext.value.id}/done`)
@@ -528,7 +526,7 @@ function Dashboard() {
             `/mia/api/get-flights/${accountContext.value.id}/cancelled`
           )
         );
-        setFlights([...pendingFlight.data.data, ...paidFlight.data.data]);
+        setFlights(pendingDoneFlights.data.data);
         setDoneFlight(doneFlightTemp.data.data);
         setCancelledFlight(cancelledFlightTemp.data.data);
         setLoading(false);
@@ -536,7 +534,12 @@ function Dashboard() {
         setLoading(false);
       }
     };
-    fetch();
+
+    const interval = window.setInterval(() => {
+      fetch();
+    }, 5000);
+
+    return () => window.clearInterval(interval);
   }, []);
 
   return (

@@ -153,24 +153,27 @@ const Gcash = () => {
       />
       <p className="text-lg">or send your gcash payment to this number:</p>
       <p className="font-montserrat-bold text-xl">{number}</p>
-      <div className="flex items-center gap-x-1 mt-2">
-        <Tooltip title="Enter your reference number here." arrow>
-          <input
-            onChange={(e) => setReferenceNumber(e.target.value)}
-            value={referenceNumber}
-            autoComplete="off"
-            autoCorrect="off"
-            type="text"
-            className="w-full rounded-sm border border-slate-500 outline-none text-sm p-1 text-"
-            placeholder="Reference number"
-          />
-        </Tooltip>
-        <button
-          onClick={submitEventHandler}
-          className="w-fit text-white text-sm py-1 px-2 rounded-sm bg-green-500"
-        >
-          Submit
-        </button>
+      <div className="flex mt-2 flex-col gap-y-1">
+        <div className="grid grid-cols-4 gap-x-1">
+          <Tooltip title="Enter your reference number here." arrow>
+            <input
+              onChange={(e) => setReferenceNumber(e.target.value)}
+              value={referenceNumber}
+              autoComplete="off"
+              autoCorrect="off"
+              type="text"
+              className="w-full col-span-3 rounded-sm border border-slate-500 outline-none text-sm p-1 text-"
+              placeholder="Reference number"
+            />
+          </Tooltip>
+          <button
+            onClick={submitEventHandler}
+            className="text-white text-sm py-1 px-2 rounded-sm bg-green-500"
+          >
+            Submit
+          </button>
+        </div>
+        <p className="text-left text-xs text-main">Enter 12 digits</p>
       </div>
     </div>
   );
@@ -300,24 +303,27 @@ const Paymaya = () => {
       />
       <p className="text-lg">or send your paymaya payment to this number:</p>
       <p className="font-montserrat-bold text-xl">{number}</p>
-      <div className="flex items-center gap-x-1 mt-2">
-        <Tooltip title="Enter your reference number here." arrow>
-          <input
-            onChange={(e) => setReferenceNumber(e.target.value)}
-            value={referenceNumber}
-            autoComplete="off"
-            autoCorrect="off"
-            type="text"
-            className="w-full rounded-sm border border-slate-500 outline-none text-sm p-1 text-"
-            placeholder="Reference number"
-          />
-        </Tooltip>
-        <button
-          onClick={submitEventHandler}
-          className="w-fit text-white text-sm py-1 px-2 rounded-sm bg-green-500"
-        >
-          Submit
-        </button>
+      <div className="flex mt-2 flex-col gap-y-1">
+        <div className="grid grid-cols-4 gap-x-1">
+          <Tooltip title="Enter your reference number here." arrow>
+            <input
+              onChange={(e) => setReferenceNumber(e.target.value)}
+              value={referenceNumber}
+              autoComplete="off"
+              autoCorrect="off"
+              type="text"
+              className="w-full col-span-3 rounded-sm border border-slate-500 outline-none text-sm p-1 text-"
+              placeholder="Reference number"
+            />
+          </Tooltip>
+          <button
+            onClick={submitEventHandler}
+            className="text-white text-sm py-1 px-2 rounded-sm bg-green-500"
+          >
+            Submit
+          </button>
+        </div>
+        <p className="text-left text-xs text-main">Enter 12 digits</p>
       </div>
     </div>
   );

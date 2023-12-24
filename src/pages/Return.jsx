@@ -201,7 +201,7 @@ function Return() {
               </span>
               <HiChevronDown
                 data-open={passengerIsOpen}
-                className="w-7 h-7 duration-150 data-[open=true]:rotate-180 hidden group-hover:block data-[open=true]:block text-slate-700"
+                className="w-7 h-7 duration-150 data-[open=true]:rotate-180 data-[open=true]:block text-slate-700"
               />
             </div>
             <div

@@ -12,6 +12,16 @@ import { getGlobalUrl } from "../../functions/methods";
 function TicketPopup() {
   const ticketContext = useContext(TicketContext);
 
+  useEffect(() => {
+    if (ticketContext.value.state) {
+      console.log(
+        ticketContext.value.data.user_id +
+          "-" +
+          ticketContext.value.data.book_id
+      );
+    }
+  }, [ticketContext.value.state]);
+
   const downloadEventHandler = () => {
     const ticketElement = document.getElementById("account-ticket");
     html2canvas(ticketElement).then((value) => {
@@ -38,7 +48,7 @@ function TicketPopup() {
     >
       <div
         data-state={ticketContext.value.state}
-        className="-translate-y-14 opacity-0 duration-200 md:w-[50%] w-[95%] data-[state=true]:opacity-100 data-[state=true]:translate-y-0 rounded-lg h-fit flex justify-center bg-light flex-col md:p-7 p-4"
+        className="-translate-y-14 opacity-0 duration-200 md:w-fit w-[95%] data-[state=true]:opacity-100 data-[state=true]:translate-y-0 rounded-lg h-fit flex justify-center bg-light flex-col md:p-7 p-4"
       >
         <div className="w-full flex justify-between items-center mb-4">
           <p className="text-xl font-montserrat-bold">Your ticket</p>
@@ -51,90 +61,127 @@ function TicketPopup() {
             &#10005;
           </button>
         </div>
-        <div
-          id="account-ticket"
-          className="w-full h-fit overflow-hidden bg-white rounded-md shadow-md"
-        >
-          <div className="w-full h-12 bg-main px-3 flex items-center justify-between">
-            <div className="flex h-full items-center gap-x-3 py-1">
-              <img src="/logos/main-logo.png" className="h-full" />
-              <p className="text-white text-sm">Manila International Airport</p>
+        <div className="flex flex-col w-full items-center">
+          <div
+            id="account-ticket"
+            className="w-[21rem] h-fit overflow-hidden bg-white rounded-md shadow-md"
+          >
+            <div className="w-full h-10 bg-main px-2 flex items-center justify-between">
+              <div className="flex h-full items-center gap-x-1 py-2">
+                <img src="/logos/main-logo.png" className="h-full" />
+                <p className="text-white text-sm font-bold">
+                  Manila International Airport
+                </p>
+              </div>
             </div>
-            <p className="text-white">
-              #{ticketContext.value.data ? ticketContext.value.data.book_id : 0}
-            </p>
-          </div>
-          <div className="flex h-full">
-            <div className="max-h-full flex items-center w-fit">
-              <GiCommercialAirplane className="h-40 w-40 md:block hidden text-main p-5" />
-            </div>
-            <div className="md:w-[calc(100%-10rem)] pb-2 w-full flex flex-col px-3">
-              {ticketContext.value.data && ticketContext.value.state ? (
-                <>
-                  <div className="flex items-center py-4 justify-between w-full">
-                    <div className="flex items-center gap-x-3 w-fit relative">
-                      <p className="text-lg leading-5">
-                        {ticketContext.value.data.from}
-                      </p>
-                      <FaPlane className="min-w-[1rem] h-4 text-black" />
-                      <p className="text-lg leading-5">
-                        {ticketContext.value.data.to}
-                      </p>
-                    </div>
-                    <FaCheckCircle className="w-5 min-w-[1.25rem] h-5 text-green-500" />
-                  </div>
-                  <div className="w-full flex gap-x-5 pb-2">
-                    <div className="flex flex-col">
-                      <div className="text-xs">
-                        {ticketContext.value.data.fullName}
+            <div className="flex h-full">
+              <div className="w-full flex h-full flex-col p-2 gap-y-1">
+                {ticketContext.value.data && ticketContext.value.state ? (
+                  <>
+                    <div className="flex items-center justify-between w-full gap-x-2">
+                      <div className="flex items-center gap-x-3 w-[calc(100%-1.25rem)] relative">
+                        <span className="">
+                          <p className="text-xs font-bold">From</p>
+                          <p className="text-[0.7rem]">
+                            {ticketContext.value.data.from}
+                          </p>
+                        </span>
+                        <span>
+                          <p className="text-xs font-bold">To</p>
+                          <p className="text-[0.7rem]">
+                            {ticketContext.value.data.to}
+                          </p>
+                        </span>
                       </div>
-                      <p className="text-xs">
-                        U-{ticketContext.value.data.user_id}
-                      </p>
+                      <FaCheckCircle className="w-5 h-5 text-green-500" />
                     </div>
-                    <div className="flex flex-col">
-                      <p className="text-xs">
-                        {ticketContext.value.data.class}
-                      </p>
-                      <p className="text-xs">
-                        {(() => {
-                          const passengers =
-                            ticketContext.value.data.passengers;
-                          return `${passengers[0]}-${passengers[1]}-${passengers[2]}-${passengers[3]}`;
-                        })()}
-                      </p>
+                    <div className="w-full h-fit grid grid-cols-4">
+                      <div className="flex flex-col gap-y-1">
+                        <span>
+                          <p className="text-xs font-bold">Name</p>
+                          <p className="text-[0.7rem]">
+                            {ticketContext.value.data.fullName}
+                          </p>
+                        </span>
+                        <span>
+                          <p className="text-xs font-bold">User ID</p>
+                          <p className="text-[0.7rem]">
+                            {ticketContext.value.data.user_id}
+                          </p>
+                        </span>
+                      </div>
+                      <div className="flex flex-col gap-y-1">
+                        <span>
+                          <p className="font-bold text-xs">Class</p>
+                          <p className="text-[0.7rem]">
+                            {ticketContext.value.data.class}
+                          </p>
+                        </span>
+                        <span>
+                          <p className="text-xs font-bold">Passengers</p>
+                          <p className="text-[0.7rem]">
+                            {(() => {
+                              const passengers =
+                                ticketContext.value.data.passengers;
+                              return `${passengers[0]}-${passengers[1]}-${passengers[2]}-${passengers[3]}`;
+                            })()}
+                          </p>
+                        </span>
+                      </div>
+                      <div className="flex flex-col gap-y-1">
+                        <span>
+                          <p className="text-xs font-bold">Flag</p>
+                          <p className="text-[0.7rem]">
+                            <Flag
+                              name={ticketContext.value.data.fromCode.toLowerCase()}
+                            />
+                            <Flag
+                              name={ticketContext.value.data.toCode.toLowerCase()}
+                            />
+                          </p>
+                        </span>
+                        <span>
+                          <p className="font-bold text-xs">Type</p>
+                          <p className="text-[0.7rem]">
+                            {ticketContext.value.data.type}
+                          </p>
+                        </span>
+                      </div>
+                      <div className="flex flex-col gap-y-1">
+                        <span>
+                          <p className="text-xs font-bold">Departure</p>
+                          <p className="text-[0.7rem]">
+                            {ticketContext.value.data.departure}
+                          </p>
+                        </span>
+                        {ticketContext.value.data.return_ && (
+                          <span>
+                            <p className="text-xs font-bold">Return</p>
+                            <p className="text-[0.7rem]">
+                              {ticketContext.value.data.return_}
+                            </p>
+                          </span>
+                        )}
+                      </div>
                     </div>
-                    <div className="flex flex-col">
-                      <p className="text-xs">
-                        <Flag
-                          name={ticketContext.value.data.fromCode.toLowerCase()}
-                        />
-                        <Flag
-                          name={ticketContext.value.data.toCode.toLowerCase()}
-                        />
-                      </p>
-                      <p className="text-xs">{ticketContext.value.data.type}</p>
-                    </div>
-                    <div className="flex flex-col">
-                      <p className="text-xs">8AM-6PM</p>
-                    </div>
-                  </div>
-                  <Barcode
-                    displayValue={false}
-                    fontSize={10}
-                    margin={2}
-                    textAlign="left"
-                    height={25}
-                    value={
-                      ticketContext.value.data.fullName.split(" ")[0] +
-                      ticketContext.value.data.user_id
-                    }
-                    background="#eeeeee"
-                  />
-                </>
-              ) : (
-                "None"
-              )}
+                    <Barcode
+                      displayValue={false}
+                      fontSize={10}
+                      margin={2}
+                      textAlign="left"
+                      height={20}
+                      value={
+                        ticketContext.value.data.user_id +
+                        "-" +
+                        ticketContext.value.data.book_id
+                      }
+                      background="#eeeeee"
+                    />
+                  </>
+                ) : (
+                  "None"
+                )}
+              </div>
             </div>
           </div>
         </div>

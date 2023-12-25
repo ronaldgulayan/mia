@@ -130,6 +130,7 @@ const OneWayItem = ({ ...infos }) => {
     // get ticket
 
     const fullName = `${userAccount.value.first_name} ${userAccount.value.last_name}`;
+
     const data = {
       book_id: infos.id,
       user_id: infos.user_id,
@@ -141,6 +142,7 @@ const OneWayItem = ({ ...infos }) => {
       toCode: toPlace.code,
       type: infos.type,
       fullName: fullName,
+      departure: flightInfo.departure,
     };
     ticketContext.setValue((curr) => ({
       ...curr,
@@ -268,7 +270,11 @@ const OneWayItem = ({ ...infos }) => {
             Get Ticket
           </Button>
         )}
-        <Button onClick={cancelFlightEvent} color="red">
+        <Button
+          disabled={infos.status === "paid"}
+          onClick={cancelFlightEvent}
+          color="red"
+        >
           Cancel Flight
         </Button>
       </div>
@@ -324,6 +330,8 @@ const ReturnItem = ({ ...infos }) => {
       toCode: toPlace.code,
       type: infos.type,
       fullName: fullName,
+      departure: flightInfo.departure,
+      return_: flightInfo.return,
     };
     ticketContext.setValue((curr) => ({
       ...curr,
@@ -535,6 +543,7 @@ function Dashboard() {
       }
     };
 
+    fetch();
     const interval = window.setInterval(() => {
       fetch();
     }, 5000);

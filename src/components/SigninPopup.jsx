@@ -79,7 +79,7 @@ function SigninPopup() {
           popupMessage(value.data.title, value.data.message);
         } else if (value.data.status === 200) {
           // success
-          setCookie(value.data.token);
+          setCookie(value.data.token, { expires: 30 });
           visibilityContext.setValue(false);
           loadingContext.setValue((curr) => ({
             state: true,

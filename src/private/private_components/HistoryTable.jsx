@@ -110,9 +110,9 @@ function Row(props) {
               </span>
             )}
           </IconButton>
-        </TableCell>
+              </TableCell>
         <TableCell style={tableDataStyle} align="left">
-          {row.type}
+                  {row.type + ` (${row.book_id})`}
         </TableCell>
         <TableCell align="left">
           <p className="text-base">₱{row.total}</p>
@@ -179,7 +179,8 @@ const RowDropDown = ({ book_id, type, message }) => {
   }
   return (
     <Box sx={{ margin: 1 }}>
-      <Typography
+          <Typography
+
         style={{
           fontFamily: "Montserrat-black",
           fontSize: 20,
@@ -190,7 +191,7 @@ const RowDropDown = ({ book_id, type, message }) => {
       >
         Flight
       </Typography>
-      <Table size="small" aria-label="purchases">
+      <Table size="medium" aria-label="purchases">
         <TableHead>
           <TableRow>
             <TableCell style={tableHeaderStyle}>Flight</TableCell>
@@ -222,15 +223,37 @@ const RowDropDown = ({ book_id, type, message }) => {
             </TableCell>
             <TableCell style={tableDataStyle} align="right">
               {departReturn.return ? departReturn.return : "None"}
-            </TableCell>
+             </TableCell>
           </TableRow>
-          {message && (
+          {message && message.includes("&&") ? (
             <TableRow>
-              <TableCell style={{ color: "red" }}>Message:</TableCell>
-              <TableCell style={{ color: "red" }} colSpan={4}>
-                {message}
-              </TableCell>
+              {message.split("-")[1] == "Request a refund for my payment." ? (
+                <>
+                  <TableCell style={{ color: "red" }}>
+                    Pending refund:
+                  </TableCell>
+                  <TableCell style={{ color: "red" }} colSpan={3}>
+                    ( {message.split("-")[1]} )
+                  </TableCell>
+                </>
+              ) : (
+                <>
+                  <TableCell style={{ color: "red" }}>Your message:</TableCell>
+                                      <TableCell style={{ color: "red" }} colSpan={3}>
+                    ( {message.split("-")[1]} )
+                  </TableCell>
+                </>
+              )}
             </TableRow>
+          ) : (
+            message && (
+              <TableRow>
+                <TableCell style={{ color: "green" }}>Admin Message:</TableCell>
+                <TableCell style={{ color: "green" }} colSpan={3}>
+                  {message}
+                </TableCell>
+              </TableRow>
+            )
           )}
         </TableBody>
       </Table>
@@ -275,7 +298,7 @@ const HistoryTable = () => {
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell style={tableHeaderStyle}>Type</TableCell>
+            <TableCell style={tableHeaderStyle}>Type/ID</TableCell>
             <TableCell style={tableHeaderStyle} align="left">
               Total Payment
             </TableCell>

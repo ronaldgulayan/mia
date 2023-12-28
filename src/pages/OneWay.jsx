@@ -191,7 +191,7 @@ function OneWay() {
         <div className="flex flex-col gap-y-1">
           <div
             onClick={() => setPassengerIsOpen(!passengerIsOpen)}
-            className="text-2xl w-fit cursor-pointer flex flex-col group"
+            className="text-2xl w-fit cursor-pointer flex flex-col"
           >
             <div className="flex items-center w-fit gap-x-1">
               <span className="select-none">
@@ -201,7 +201,7 @@ function OneWay() {
               </span>
               <HiChevronDown
                 data-open={passengerIsOpen}
-                className="w-7 h-7 duration-150 data-[open=true]:rotate-180 hidden group-hover:block data-[open=true]:block text-slate-700"
+                className="w-7 h-7 duration-150 data-[open=true]:rotate-180 block data-[open=true]:block text-slate-700"
               />
             </div>
             <div

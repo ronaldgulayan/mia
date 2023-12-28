@@ -14,11 +14,14 @@ import axios from "axios";
 import { getGlobalUrl } from "../../functions/methods";
 import { HiChevronDown } from "react-icons/hi";
 import { TicketContext } from "../private_context/PrivateContext";
+import { Dropdown } from "semantic-ui-react";
 
-const cancelFlightEventHandler = (response, book_id) => {
+const cancelFlightEventHandler = (response, book_id, message) => {
   if (response === "ok") {
     axios
-      .post(getGlobalUrl("/mia/api/cancel-flight/" + book_id))
+      .post(getGlobalUrl("/mia/api/cancel-flight/" + book_id), {
+        message: message,
+      })
       .then((value) => {
         if (value.data.status === 500) {
           window.alert("Something error.");
@@ -78,6 +81,24 @@ const OneWayItem = ({ ...infos }) => {
   const alertBoxContext = useContext(AccountPopupContext);
   const ticketContext = useContext(TicketContext);
   const userAccount = useContext(AccountInformationContext);
+  const [cancellationData, setCancellationData] = useState("");
+  const [cancellationOptions, setCancellationOptions] = useState([
+    {
+      key: 1,
+      text: "The reference number I provided was incorrect.",
+      value: "incorrect",
+    },
+    {
+      key: 2,
+      text: "Request a refund for my payment.",
+      value: "refund",
+    },
+    {
+      key: 3,
+      text: "I just want to cancel, and I haven't made any payment yet.",
+      value: "cancel",
+    },
+  ]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -152,14 +173,22 @@ const OneWayItem = ({ ...infos }) => {
   };
 
   const cancelFlightEvent = () => {
+    const message = () => {
+      return cancellationOptions.find(({ value }) => {
+        return value === cancellationData;
+      }).text;
+    };
+
     const submitTemp = (response) => {
-      cancelFlightEventHandler(response, infos.id);
+      cancelFlightEventHandler(response, infos.id, message());
     };
     alertBoxContext.setValue((curr) => ({
       ...curr,
       state: true,
       title: "Confirmation",
-      message: `Are you sure you want to cancel this flight '${infos.id}'?`,
+      message: `Are you sure you want to cancel this flight '${
+        infos.id
+      }'? Message: ${message()}`,
       error: true,
       submitEventHandler: submitTemp,
     }));
@@ -270,13 +299,23 @@ const OneWayItem = ({ ...infos }) => {
             Get Ticket
           </Button>
         )}
-        <Button
+        <Dropdown
           disabled={infos.status === "paid"}
-          onClick={cancelFlightEvent}
-          color="red"
-        >
-          Cancel Flight
-        </Button>
+          placeholder="Cancellation Options"
+          options={cancellationOptions}
+          selection
+          clearable
+          onChange={(e, data) => setCancellationData(data.value)}
+        />
+        {cancellationData && (
+          <Button
+            disabled={infos.status === "paid"}
+            onClick={cancelFlightEvent}
+            color="red"
+          >
+            Submit
+          </Button>
+        )}
       </div>
     </div>
   );
@@ -290,6 +329,25 @@ const ReturnItem = ({ ...infos }) => {
   const alertBoxContext = useContext(AccountPopupContext);
   const ticketContext = useContext(TicketContext);
   const userAccount = useContext(AccountInformationContext);
+
+  const [cancellationData, setCancellationData] = useState("");
+  const [cancellationOptions, setCancellationOptions] = useState([
+    {
+      key: 1,
+      text: "The reference number I provided was incorrect.",
+      value: "incorrect",
+    },
+    {
+      key: 2,
+      text: "Request a refund for my payment.",
+      value: "refund",
+    },
+    {
+      key: 3,
+      text: "I just want to cancel, and I haven't made any payment yet.",
+      value: "cancel",
+    },
+  ]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -341,14 +399,23 @@ const ReturnItem = ({ ...infos }) => {
   };
 
   const cancelFlightEvent = () => {
-    const submitTemp = (response) => {
-      cancelFlightEventHandler(response, infos.id);
+    const message = () => {
+      return cancellationOptions.find(({ value }) => {
+        return value === cancellationData;
+      }).text;
     };
+
+    const submitTemp = (response) => {
+      cancelFlightEventHandler(response, infos.id, message());
+    };
+
     alertBoxContext.setValue((curr) => ({
       ...curr,
       state: true,
       title: "Confirmation",
-      message: `Are you sure you want to cancel this flight '${infos.id}'?`,
+      message: `Are you sure you want to cancel this flight '${
+        infos.id
+      }'? Message: ${message()}`,
       error: true,
       submitEventHandler: submitTemp,
     }));
@@ -375,8 +442,6 @@ const ReturnItem = ({ ...infos }) => {
     ];
     return passengers.filter((value) => value.value > 0);
   };
-
-  // return null;
 
   if (!fromPlace || !toPlace) {
     return (
@@ -485,13 +550,23 @@ const ReturnItem = ({ ...infos }) => {
             Get Ticket
           </Button>
         )}
-        <Button
+        <Dropdown
           disabled={infos.status === "paid"}
-          onClick={cancelFlightEvent}
-          color="red"
-        >
-          Cancel Flight
-        </Button>
+          placeholder="Cancellation Options"
+          options={cancellationOptions}
+          selection
+          clearable
+          onChange={(e, data) => setCancellationData(data.value)}
+        />
+        {cancellationData && (
+          <Button
+            disabled={infos.status === "paid"}
+            onClick={cancelFlightEvent}
+            color="red"
+          >
+            Submit
+          </Button>
+        )}
       </div>
     </div>
   );

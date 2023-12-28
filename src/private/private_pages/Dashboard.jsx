@@ -485,7 +485,11 @@ const ReturnItem = ({ ...infos }) => {
             Get Ticket
           </Button>
         )}
-        <Button onClick={cancelFlightEvent} color="red">
+        <Button
+          disabled={infos.status === "paid"}
+          onClick={cancelFlightEvent}
+          color="red"
+        >
           Cancel Flight
         </Button>
       </div>
